@@ -7,6 +7,8 @@
 //
 
 #import "VicinityViewController.h"
+#import "SWRevealViewController.h"
+
 
 @interface VicinityViewController ()
 
@@ -26,7 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	_sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(revealToggle:);
+    _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
 }
 
 - (void)didReceiveMemoryWarning

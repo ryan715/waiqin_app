@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import <Parse/Parse.h>
 
 @interface RegisterViewController ()
 
@@ -26,6 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.textName.delegate = self;
+    self.textPassword.delegate = self;
+    self.ConfirmPasswordText.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
@@ -33,6 +37,36 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)LoginButton:(id)sender
+{
+    NSLog(@"LOGIN BUTTON");
+    [self.delegate backToLogin:self];
+}
+
+- (IBAction)RegisterButton:(id)sender
+{
+    PFUser *user = [PFUser user];
+    
+    user.username = self.textName.text;
+    user.password = self.textPassword.text;
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self performSegueWithIdentifier:@"Signup" sender:self ];
+        }else{
+            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [errorAlertView show];
+        }
+    }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

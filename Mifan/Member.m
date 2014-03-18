@@ -10,4 +10,26 @@
 
 @implementation Member
 
+- (id)initWithImage:(NSString *)image
+              Nc:(NSString *)nc
+                 Xb:(NSString *)xb
+                 Nl:(NSString *)nl
+
+{
+    self = [super init];
+    
+    if (self) {
+        self.memberImage = image;
+        self.memberNc  = nc;
+        self.memberXb  = xb;
+        self.memberNl  = nl;
+    }
+    
+    return self;
+}
+
+
+
+
+
 @end

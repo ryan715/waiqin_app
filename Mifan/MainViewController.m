@@ -7,8 +7,15 @@
 //
 
 #import "MainViewController.h"
+#import "SWRevealViewController.h"
+#import "Member.h"
+#import "MembersCell.h"
 
 @interface MainViewController ()
+{
+    NSArray *_dataArray;
+    NSMutableArray *_dataList;
+}
 
 @end
 
@@ -26,13 +33,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //_sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
+    
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(revealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.title = @"邂逅";
+    
+    NSLog(@"load this data");
+    // 初始化数据数组
+    _dataArray = @[@[@"tx1.jpg", @"∝.糖豆゜", @"女", @"黑夜的眼睛"],
+                   @[@"tx3.jpg", @"幸福加载中...", @"女", @"黑夜的眼睛"],
+                   @[@"tx4.jpg", @"吃心不改", @"女", @"黑夜的眼睛"],
+                   @[@"tx5.jpg", @"Mé、尐懒虫ゞ", @"女", @"黑夜的眼睛"],
+                   @[@"tx6.jpg", @"水煮美人鱼罒3罒", @"女", @"黑夜的眼睛"],
+                   @[@"tx7.jpg", @"柠萌￢ε￢", @"女", @"黑夜的眼睛"],
+                   @[@"tx8.jpg", @"黑夜精灵", @"女", @"黑夜的眼睛"],
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+                   @[@"tx2.jpg", @"手心", @"女", @"寂寞让我如此美丽"]];
+    
+    _dataList = [[NSMutableArray alloc]init];
+    for (int i=0; i<_dataArray.count; i++) {
+        
+       Member *model = [[Member alloc] initWithImage:_dataArray[i][0] Nc:_dataArray[i][1] Xb:_dataArray[i][2] Nl:_dataArray[i][3]];
+       [_dataList addObject:model];
+    }
+
+ }
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,26 +75,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return _dataList.count;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *tzCell = @"MemberCellIdentifier";
+    static BOOL isRegNib = NO;
+    if (!isRegNib) {
+        NSLog(@"isRegNib");
+        [self.tableView registerNib:[UINib nibWithNibName:@"MembersCell" bundle:nil] forCellReuseIdentifier:tzCell];
+        isRegNib = YES;
+    }
+    NSLog(@"THE INDEXPATH ROW IS %ld",indexPath.row);
+    NSLog(@"THE DATA COUNT IS %ld", _dataList.count);
+    MembersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:tzCell];
+    [cell setupCell:_dataList[indexPath.row]];
     
-    // Configure the cell...
-    
+    if (cell == nil)
+    {
+//               cell = [[MembersCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tzCell];
+        [self.tableView registerNib:[UINib nibWithNibName:@"MembersCell" bundle:nil] forCellReuseIdentifier:tzCell];
+         MembersCell *cell1 = [self.tableView dequeueReusableCellWithIdentifier:tzCell];
+        [cell1 setupCell:_dataList[indexPath.row]];
+        cell = cell1;
+        NSLog(@"CELL IS NIL ");
+    }
     return cell;
+
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88.0f;
 }
 
 /*

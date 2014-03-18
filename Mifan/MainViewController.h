@@ -10,4 +10,7 @@
 
 @interface MainViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
+
 @end

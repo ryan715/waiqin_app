@@ -7,8 +7,13 @@
 //
 
 #import "SidebarMenuViewController.h"
+#import "VicinityViewController.h"
+#import "SWRevealViewController.h"
+#import "MainViewController.h"
 
 @interface SidebarMenuViewController ()
+
+@property (nonatomic, strong) NSArray *menuItems;
 
 @end
 
@@ -27,12 +32,11 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+    self.view.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+    
+    _menuItems = @[@"title", @"profile", @"vicinity", @"friends", @"about"];}
 
 - (void)didReceiveMemoryWarning
 {
@@ -45,24 +49,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.menuItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = [self.menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
     return cell;
 }
 
@@ -105,16 +104,42 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void) prepareForSegue:(UIStoryboardSegue *) segue sender: (id) sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+    NSLog(@"prepareForSegue");
+    // Set the title of navigation bar by using the menu items
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
+    destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
+    
+    // Set the photo if it navigates to the PhotoView
+    if ([segue.identifier isEqualToString:@"toVicinity"]) {
+        NSLog(@"VicinityViewController");
+        VicinityViewController *vicinityController = (VicinityViewController*)segue.destinationViewController;
+    }
+    
+    if ([segue.identifier isEqualToString:@"toFriends"]) {
+        NSLog(@"toMain");
+        MainViewController *mainController = (MainViewController *)segue.destinationViewController;
+        [segue destinationViewController];
+    }
 
- */
+    
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+         NSLog(@"SWRevealViewControllerSegue");
+        SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
+        
+        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+            
+            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+            [navController setViewControllers: @[dvc] animated: NO ];
+            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+        };
+        
+    }
+    
+        
+}
 
 @end

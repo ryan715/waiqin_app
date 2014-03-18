@@ -6,9 +6,10 @@
 //  Copyright (c) 2013年 ryan. All rights reserved.
 //
 
-#import "MemberCellsCell.h"
+#import "MembersCell.h"
+#import "Member.h"
 
-@implementation MemberCellsCell
+@implementation MembersCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,5 +26,15 @@
 
     // Configure the view for the selected state
 }
+
+-(void)setupCell:(Member *)model{
+    UIImage *image = [UIImage imageNamed:model.memberImage];
+    [self.memberImg setImage:image];
+    
+    self.nameLabel.text = model.memberNc;
+    self.xbLabel.text = model.memberXb;
+    self.qmLabel.text = model.memberNl;
+}
+
 
 @end

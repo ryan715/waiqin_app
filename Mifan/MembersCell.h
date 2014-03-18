@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Member.h"
 
-@interface MemberCellsCell : UITableViewCell
+@interface MembersCell : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UIImageView *memberImg;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *xbLabel;
+@property (strong, nonatomic) IBOutlet UILabel *qmLabel;
+
+-(void)setupCell:(Member *)model;
+
+
 
 @end
