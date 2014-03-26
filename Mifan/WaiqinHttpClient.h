@@ -16,13 +16,14 @@
 
 + (WaiqinHttpClient *)sharedWaiqinHttpClient;
 - (instancetype)initWithBaseURL:(NSURL *)url;
-
+- (void)loginActionUser:(NSString *)userName withPassword:(NSString *)userPassword;
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
 
 @optional
-
+-(void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user;
+-(void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error;
 
 @end
 

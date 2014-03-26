@@ -43,6 +43,7 @@
 		181FFCA618351B7900059284 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCA518351B7900059284 /* RegisterViewController.m */; };
 		181FFCAA1835203D00059284 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCA91835203D00059284 /* SWRevealViewController.m */; };
 		181FFCAD183521D600059284 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCAC183521D600059284 /* MainViewController.m */; };
+		1823D6F218E16EFE008FD055 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823D6F118E16EFE008FD055 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1880FBB118507059002B9830 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBB018507059002B9830 /* Parse.framework */; };
 		1880FBB31850706A002B9830 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBB21850706A002B9830 /* AudioToolbox.framework */; };
 		1880FBB518507072002B9830 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBB418507072002B9830 /* Accounts.framework */; };
@@ -149,6 +150,8 @@
 		181FFCA91835203D00059284 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		181FFCAB183521D600059284 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		181FFCAC183521D600059284 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1823D6F018E16EFE008FD055 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		1823D6F118E16EFE008FD055 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		1880FBB018507059002B9830 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1880FBB21850706A002B9830 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1880FBB418507072002B9830 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -319,6 +322,7 @@
 		181FFC721835153B00059284 /* Mifan */ = {
 			isa = PBXGroup;
 			children = (
+				1823D6EF18E16EEC008FD055 /* Libs */,
 				1809355718D7D20E0001A7A6 /* AFNetworking */,
 				1809353D18D7D1FA0001A7A6 /* UIKit+AFNetworking */,
 				18B923B71835CBBD008B6685 /* Images */,
@@ -386,6 +390,15 @@
 				181FFCA91835203D00059284 /* SWRevealViewController.m */,
 			);
 			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		1823D6EF18E16EEC008FD055 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				1823D6F018E16EFE008FD055 /* JSONKit.h */,
+				1823D6F118E16EFE008FD055 /* JSONKit.m */,
+			);
+			name = Libs;
 			sourceTree = "<group>";
 		};
 		18B923AD1835BFAE008B6685 /* Models */ = {
@@ -532,6 +545,7 @@
 				1809355518D7D1FA0001A7A6 /* UIRefreshControl+AFNetworking.m in Sources */,
 				1809355618D7D1FA0001A7A6 /* UIWebView+AFNetworking.m in Sources */,
 				181FFCA618351B7900059284 /* RegisterViewController.m in Sources */,
+				1823D6F218E16EFE008FD055 /* JSONKit.m in Sources */,
 				1809357018D7D20E0001A7A6 /* AFURLConnectionOperation.m in Sources */,
 				181FFCA31835161E00059284 /* LoginViewController.m in Sources */,
 				181FFC831835153B00059284 /* ViewController.m in Sources */,

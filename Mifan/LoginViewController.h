@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RegisterViewController.h"
+#import "WaiqinHttpClient.h"
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate,RegisterViewControllerDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate,RegisterViewControllerDelegate, WaiqinHttpClientDelegate>
 
 
 @property(weak,nonatomic) IBOutlet UITextField *textName;

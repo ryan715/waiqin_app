@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import <Parse/Parse.h>
+#import "JSONKit.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface LoginViewController ()
 
@@ -56,18 +58,72 @@
     NSString *UserName = self.textName.text;
     NSString *UserPassword = self.textPassword.text;
     
-    [PFUser logInWithUsernameInBackground:UserName password:UserPassword block:^(PFUser *user, NSError *error) {
-        if (user) {
-             [self performSegueWithIdentifier:@"toMain" sender:self];
-        }else{
-            NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [errorAlertView show];
-            
-        }
-    }];
+//    NSString *UserName = @"a005";
+//    NSString *UserPassword = @"1";
+    
+    
+    
+    
+    /********* md5 crypto ***********/
+    
+    const char *cStr = [UserPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    UserPassword = [NSString stringWithFormat:
+            @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]
+            ];
+    
+    
+    /********* end  md5 crypto ***********/
+//
+//    [PFUser logInWithUsernameInBackground:UserName password:UserPassword block:^(PFUser *user, NSError *error) {
+//        if (user) {
+//             [self performSegueWithIdentifier:@"toMain" sender:self];
+//        }else{
+//            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+//            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [errorAlertView show];
+//            
+//        }
+//    }];
+    NSLog(@"begin");
+    WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    client.delegate = self;
+    [client loginActionUser:UserName withPassword:UserPassword];
+    NSLog(@"end");
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user
+{
+    //waiqinHTTPClient
+    NSDictionary *res = [user objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        [self performSegueWithIdentifier:@"toMain" sender:self];
+    }
+    else{
+        NSString *errorString = [res objectForKey:@"message"];
+        UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                   [errorAlertView show];
+
+    }
+//    NSLog(@"THE status IS %@",status);
+//    id lists = [res objectForKey:@"lists"];
+//    NSArray *array = lists;
+//    NSDictionary *dic = [array objectAtIndex:0];
+//    //NSDictionary *list = [lists objectFromJSONData];
+//    NSString *department = [dic objectForKey:@"telephone"];
+////    NSDictionary *lists = [res objectForKey:@"lists"];
+////
+//  NSLog(@"THE department IS %@",department);
+
 
 }
+
 
 - (void)backToLogin:(RegisterViewController *)viewController
 {
