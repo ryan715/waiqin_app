@@ -58,6 +58,16 @@
     NSString *UserName = self.textName.text;
     NSString *UserPassword = self.textPassword.text;
     
+    
+    if ([self NameBlankString:UserName PasswordBlankString:UserPassword]){
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                     message:[NSString stringWithFormat:@"%@",@"用户名或者密码错误"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+
+    }
+    else {
 //    NSString *UserName = @"a005";
 //    NSString *UserPassword = @"1";
     
@@ -94,7 +104,7 @@
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
     [client loginActionUser:UserName withPassword:UserPassword];
-    NSLog(@"end");
+    }
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user
@@ -140,6 +150,24 @@
         registerViewController.delegate = self;
     
     }
+}
+
+-(BOOL) NameBlankString:(NSString *)StrUsername PasswordBlankString:(NSString *)StrPassword
+{
+    
+    if (StrUsername == nil || StrPassword == nil) {
+        return YES;
+    }
+    if (StrUsername == NULL || StrPassword == NULL) {
+        return YES;
+    }
+    if ([StrUsername isKindOfClass:[NSNull class]] || [StrPassword isKindOfClass:[NSNull class]] ) {
+        return YES;
+    }
+    if ([[StrUsername stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [[StrPassword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0) {
+        return YES;
+    }
+    return NO;
 }
 
 
