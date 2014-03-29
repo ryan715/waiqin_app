@@ -11,4 +11,5 @@
 @interface VicinityViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton;
 @end

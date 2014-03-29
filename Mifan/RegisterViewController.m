@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @interface RegisterViewController ()
 
@@ -47,20 +47,20 @@
 
 - (IBAction)RegisterButton:(id)sender
 {
-    PFUser *user = [PFUser user];
-    
-    user.username = self.textName.text;
-    user.password = self.textPassword.text;
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            [self performSegueWithIdentifier:@"Signup" sender:self ];
-        }else{
-            NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [errorAlertView show];
-        }
-    }];
+//    PFUser *user = [PFUser user];
+//    
+//    user.username = self.textName.text;
+//    user.password = self.textPassword.text;
+//    
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            [self performSegueWithIdentifier:@"Signup" sender:self ];
+//        }else{
+//            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+//            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [errorAlertView show];
+//        }
+//    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

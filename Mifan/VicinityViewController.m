@@ -31,12 +31,25 @@
 	_sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
     _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
+    
+    [self customUIBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)customUIBarButtonItem
+{
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"定位" style:UIBarButtonItemStylePlain target:self action:@selector(doToLocation:)];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (void)doToLocation:(id)sender
+{
+     [self performSegueWithIdentifier:@"toLocation" sender:self];
 }
 
 @end

@@ -60,4 +60,25 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     }];
 }
 
+
+- (void)uploadLocation:(NSString *)userName withBeizhu:(NSString *)beizhu withLongitude:(NSString *)longitude withLatitude:(NSString *)latitude
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"Username"] = userName;
+    parameters[@"Beizhu"] = beizhu;
+    parameters[@"Longitude"] = longitude;
+    parameters[@"Latitude"] = latitude;
+    
+    [self POST:@"GetAddLocationRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:uploadLocation:)]) {
+            [self.delegate waiqinHTTPClient:self uploadLocation:responseObject];
+        }
+    }
+        
+    failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+
+    }];
+}
+
 @end

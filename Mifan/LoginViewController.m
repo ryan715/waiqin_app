@@ -8,8 +8,8 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
-#import <Parse/Parse.h>
-#import "JSONKit.h"
+//#import <Parse/Parse.h>
+
 #import <CommonCrypto/CommonDigest.h>
 
 @interface LoginViewController ()

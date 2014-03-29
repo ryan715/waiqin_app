@@ -17,12 +17,17 @@
 + (WaiqinHttpClient *)sharedWaiqinHttpClient;
 - (instancetype)initWithBaseURL:(NSURL *)url;
 - (void)loginActionUser:(NSString *)userName withPassword:(NSString *)userPassword;
+- (void)uploadLocation:(NSString *)userName withBeizhu:(NSString *)beizhu withLongitude:(NSString *)longitude withLatitude:(NSString *)latitude;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
 
 @optional
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user;
+-(void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadLocation:(id)response;
+
+
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error;
 
 @end
