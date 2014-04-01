@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 //#import <Parse/Parse.h>
-
+#import "MBProgressHUD.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @interface LoginViewController ()
@@ -68,13 +68,18 @@
 
     }
     else {
+        
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.mode = MBProgressHUDModeIndeterminate;
+        [self.hud show:YES];
+        
+        
+      
 //    NSString *UserName = @"a005";
 //    NSString *UserPassword = @"1";
     
-    
-    
-    
-    /********* md5 crypto ***********/
+        
+           /********* md5 crypto ***********/
     
     const char *cStr = [UserPassword UTF8String];
     unsigned char result[16];
@@ -104,6 +109,8 @@
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
     [client loginActionUser:UserName withPassword:UserPassword];
+        
+//        [hud hide:YES];
     }
 }
 
@@ -112,6 +119,8 @@
     //waiqinHTTPClient
     NSDictionary *res = [user objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
+    
+    [self.hud hide:YES];
     if ([status isEqualToString:@"1"]) {
         [self performSegueWithIdentifier:@"toMain" sender:self];
     }

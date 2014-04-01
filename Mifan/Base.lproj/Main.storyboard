@@ -373,9 +373,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="wXt-cO-kp5"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="xcF-mD-8bS">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="Dmg-XP-YFd">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -385,11 +383,12 @@
                     <connections>
                         <outlet property="sidebarButton" destination="Dmg-XP-YFd" id="XGC-ch-9WW"/>
                         <segue destination="HwR-TB-5A3" kind="modal" identifier="toLocation" id="sWn-1a-Gw3"/>
+                        <segue destination="8oP-sn-yLv" kind="modal" identifier="toLocationDetail" id="aQ4-qQ-8Xt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oj5-ZD-tKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2379" y="-1135"/>
+            <point key="canvasLocation" x="2843" y="-1127"/>
         </scene>
         <!--Location Me View Controller-->
         <scene sceneID="pBb-XY-49W">
@@ -405,6 +404,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="2Gl-fa-SeM">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="cUe-0I-4zS">
+                            <connections>
+                                <action selector="backAction:" destination="T3H-WU-8HC" id="leT-bI-sJG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="上报位置" id="sjT-3E-VPn">
                             <connections>
                                 <action selector="uploadButtonClick:" destination="T3H-WU-8HC" id="LxH-Vv-rWL"/>
@@ -414,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKW-Bu-PPJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3990" y="-1135"/>
+            <point key="canvasLocation" x="5042" y="-1135"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="REY-Fb-AO9">
@@ -463,6 +467,31 @@
             </objects>
             <point key="canvasLocation" x="2379" y="1516"/>
         </scene>
+        <!--Location Detail View Controller-->
+        <scene sceneID="6SA-yS-g2g">
+            <objects>
+                <viewController id="05K-2L-ag2" customClass="LocationDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xFH-gm-fbo"/>
+                        <viewControllerLayoutGuide type="bottom" id="3eJ-Ps-TzS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9mO-a0-2eG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qFB-4n-fGS">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="k9a-kI-efG">
+                            <connections>
+                                <action selector="backAction:" destination="05K-2L-ag2" id="B3U-0P-8UW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Un-5E-Qi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4338" y="-1594"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Czo-M6-HIy">
             <objects>
@@ -479,7 +508,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4o-Z3-CCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3374" y="-1141"/>
+            <point key="canvasLocation" x="4338" y="-819"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zl1-fb-xAt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8oP-sn-yLv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y45-aC-avc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="05K-2L-ag2" kind="relationship" relationship="rootViewController" id="uEG-gd-tPw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hje-So-s1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3812" y="-1594"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

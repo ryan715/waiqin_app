@@ -131,5 +131,14 @@ CLPlacemark *placemark;
         [errorAlertView show];
         
     }
-  }
+}
+
+
+
+- (IBAction)backAction:(id)sender
+{
+    [self.delegate backToLocation:self];
+}
+
+
 @end

@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
+#import "LocationMeViewController.h"
+#import "LocationDetailViewController.h"
 
-@interface VicinityViewController : UIViewController
+@interface VicinityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WaiqinHttpClientDelegate, LocationMeViewControllerDelegate, LocationDetailViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton;
+
+@property (weak, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) UITableView *listTable;
 @end

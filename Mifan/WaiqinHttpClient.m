@@ -7,6 +7,7 @@
 //
 
 #import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
 
 static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/webservice/";
 
@@ -41,6 +42,9 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 
 - (void)loginActionUser:(NSString *)userName withPassword:(NSString *)userPassword
 {
+    
+    
+    
     NSMutableDictionary *parameters =[NSMutableDictionary dictionary];
     parameters[@"username"] = userName;
     parameters[@"pwdmd5"] = userPassword;
@@ -58,6 +62,7 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
             [self.delegate waiqinHTTPClient: self didFailWithError:error];
         }
     }];
+   
 }
 
 
@@ -79,6 +84,24 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
 
     }];
+}
+
+- (void)listLocationAction:(NSString *)userId withPageIndex:(NSString *)pageIndex withPageSize:(NSString *)pageSize
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"pageindex"] = pageIndex;
+    parameters[@"pagesize"] = pageSize;
+    parameters[@"userid"] = userId;
+    
+    [self POST:@"GetLocationRecordlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:listLocation:)]) {
+            [self.delegate waiqinHTTPClient:self listLocation:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+        
+    }];
+
 }
 
 @end
