@@ -10,6 +10,7 @@
 #import "VicinityViewController.h"
 #import "SWRevealViewController.h"
 #import "MainViewController.h"
+#import "PictureListViewController.h"
 
 @interface SidebarMenuViewController ()
 
@@ -36,7 +37,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"title", @"profile", @"vicinity", @"friends", @"about"];}
+    _menuItems = @[@"title", @"profile", @"vicinity", @"picture", @"friends", @"about"];}
 
 - (void)didReceiveMemoryWarning
 {
@@ -117,6 +118,11 @@
     if ([segue.identifier isEqualToString:@"toVicinity"]) {
         NSLog(@"VicinityViewController");
         VicinityViewController *vicinityController = (VicinityViewController*)segue.destinationViewController;
+    }
+    
+    if ([segue.identifier isEqualToString:@"toPicture"]) {
+        //NSLog(@"VicinityViewController");
+        PictureListViewController *pictureController = (PictureListViewController *)segue.destinationViewController;
     }
     
     if ([segue.identifier isEqualToString:@"toFriends"]) {

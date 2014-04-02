@@ -33,7 +33,7 @@ enum {
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"i am her %@",self.location.beizhu);
+    //NSLog(@"i am her %@",self.location.beizhu);
     [self customMap];
     self.title = @"定位信息";
     
@@ -62,7 +62,7 @@ enum {
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 60, 320, 508)];
     self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
-    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(22.817301643255036, 108.37892807406996);
+    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([self.location.latitude floatValue], [self.location.longitude floatValue]);
     //center
     self.mapView.centerCoordinate = coords;
 }
@@ -97,9 +97,11 @@ enum {
     
     /* Red annotation. */
     MAPointAnnotation *red = [[MAPointAnnotation alloc] init];
-    red.coordinate = CLLocationCoordinate2DMake(22.817301643255036, 108.37892807406996);
+    red.coordinate = CLLocationCoordinate2DMake([self.location.latitude floatValue], [self.location.longitude floatValue]);
     red.title      = @"Red";
     [self.annotations insertObject:red atIndex:AnnotationViewControllerAnnotationTypeRed];
+    
+    NSLog(@"the lat ist %@, the long is %@",self.location.latitude, self.location.longitude);
     
 //    /* Green annotation. */
 //    MAPointAnnotation *green = [[MAPointAnnotation alloc] init];
