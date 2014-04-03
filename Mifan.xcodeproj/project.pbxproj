@@ -78,6 +78,12 @@
 		18B923C61835CBC9008B6685 /* tx7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BE1835CBC9008B6685 /* tx7.jpg */; };
 		18B923C71835CBC9008B6685 /* tx8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BF1835CBC9008B6685 /* tx8.jpg */; };
 		18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB2A8218EBABA900B69D07 /* PictureListViewController.m */; };
+		18E4B8AA18ECF9BB0002DC0F /* PictureNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */; };
+		18E4B8AD18ED01D80002DC0F /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8AC18ED01D80002DC0F /* UIPlaceHolderTextView.m */; };
+		18E4B8B418ED081A0002DC0F /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8AF18ED081A0002DC0F /* UIImage+Alpha.m */; };
+		18E4B8B518ED081A0002DC0F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8B118ED081A0002DC0F /* UIImage+Resize.m */; };
+		18E4B8B618ED081A0002DC0F /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8B318ED081A0002DC0F /* UIImage+RoundedCorner.m */; };
+		18E4B8B918ED08290002DC0F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8B818ED08290002DC0F /* Photo.m */; };
 		18F3419218E2CDFC00C22BA9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F3419118E2CDFC00C22BA9 /* OpenGLES.framework */; };
 		18F767F2185215B700D46232 /* VicinityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F767F1185215B700D46232 /* VicinityViewController.m */; };
 /* End PBXBuildFile section */
@@ -202,6 +208,18 @@
 		18B923BF1835CBC9008B6685 /* tx8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tx8.jpg; sourceTree = "<group>"; };
 		18CB2A8118EBABA900B69D07 /* PictureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListViewController.h; sourceTree = "<group>"; };
 		18CB2A8218EBABA900B69D07 /* PictureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListViewController.m; sourceTree = "<group>"; };
+		18E4B8A818ECF9BB0002DC0F /* PictureNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureNewViewController.h; sourceTree = "<group>"; };
+		18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureNewViewController.m; sourceTree = "<group>"; };
+		18E4B8AB18ED01D80002DC0F /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		18E4B8AC18ED01D80002DC0F /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		18E4B8AE18ED081A0002DC0F /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		18E4B8AF18ED081A0002DC0F /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		18E4B8B018ED081A0002DC0F /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		18E4B8B118ED081A0002DC0F /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		18E4B8B218ED081A0002DC0F /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		18E4B8B318ED081A0002DC0F /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		18E4B8B718ED08290002DC0F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		18E4B8B818ED08290002DC0F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		18F3419118E2CDFC00C22BA9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		18F767F0185215B700D46232 /* VicinityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VicinityViewController.h; sourceTree = "<group>"; };
 		18F767F1185215B700D46232 /* VicinityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VicinityViewController.m; sourceTree = "<group>"; };
@@ -348,6 +366,8 @@
 		181FFC721835153B00059284 /* Mifan */ = {
 			isa = PBXGroup;
 			children = (
+				18E4B8A818ECF9BB0002DC0F /* PictureNewViewController.h */,
+				18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */,
 				186F23EA18E4FD5800BE8626 /* AMap.bundle */,
 				1823D6EF18E16EEC008FD055 /* Libs */,
 				1809355718D7D20E0001A7A6 /* AFNetworking */,
@@ -428,6 +448,16 @@
 		1823D6EF18E16EEC008FD055 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				18E4B8B718ED08290002DC0F /* Photo.h */,
+				18E4B8B818ED08290002DC0F /* Photo.m */,
+				18E4B8AE18ED081A0002DC0F /* UIImage+Alpha.h */,
+				18E4B8AF18ED081A0002DC0F /* UIImage+Alpha.m */,
+				18E4B8B018ED081A0002DC0F /* UIImage+Resize.h */,
+				18E4B8B118ED081A0002DC0F /* UIImage+Resize.m */,
+				18E4B8B218ED081A0002DC0F /* UIImage+RoundedCorner.h */,
+				18E4B8B318ED081A0002DC0F /* UIImage+RoundedCorner.m */,
+				18E4B8AB18ED01D80002DC0F /* UIPlaceHolderTextView.h */,
+				18E4B8AC18ED01D80002DC0F /* UIPlaceHolderTextView.m */,
 				187FCDF718E67A81002590E1 /* MBProgressHUD.h */,
 				187FCDF818E67A81002590E1 /* MBProgressHUD.m */,
 			);
@@ -587,21 +617,27 @@
 				186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */,
 				181FFCA31835161E00059284 /* LoginViewController.m in Sources */,
 				181FFC831835153B00059284 /* ViewController.m in Sources */,
+				18E4B8AA18ECF9BB0002DC0F /* PictureNewViewController.m in Sources */,
 				181FFC7D1835153B00059284 /* AppDelegate.m in Sources */,
 				1809355018D7D1FA0001A7A6 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				1809353C18D7CF550001A7A6 /* WaiqinHttpClient.m in Sources */,
 				18B923AC1835AA99008B6685 /* SidebarMenuViewController.m in Sources */,
 				1809356B18D7D20E0001A7A6 /* AFHTTPRequestOperation.m in Sources */,
+				18E4B8B618ED081A0002DC0F /* UIImage+RoundedCorner.m in Sources */,
 				1809354F18D7D1FA0001A7A6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1809356E18D7D20E0001A7A6 /* AFNetworkReachabilityManager.m in Sources */,
+				18E4B8B418ED081A0002DC0F /* UIImage+Alpha.m in Sources */,
 				187FCDF918E67A81002590E1 /* MBProgressHUD.m in Sources */,
 				181FFCAD183521D600059284 /* MainViewController.m in Sources */,
+				18E4B8AD18ED01D80002DC0F /* UIPlaceHolderTextView.m in Sources */,
 				1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */,
+				18E4B8B518ED081A0002DC0F /* UIImage+Resize.m in Sources */,
 				1884299918556A3F0029D38F /* AboutViewController.m in Sources */,
 				1809356C18D7D20E0001A7A6 /* AFHTTPRequestOperationManager.m in Sources */,
 				1809356D18D7D20E0001A7A6 /* AFHTTPSessionManager.m in Sources */,
 				1809355318D7D1FA0001A7A6 /* UIImageView+AFNetworking.m in Sources */,
 				1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */,
+				18E4B8B918ED08290002DC0F /* Photo.m in Sources */,
 				18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */,
 				1809357118D7D20E0001A7A6 /* AFURLRequestSerialization.m in Sources */,
 				181FFC791835153B00059284 /* main.m in Sources */,

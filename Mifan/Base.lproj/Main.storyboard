@@ -487,10 +487,10 @@
             </objects>
             <point key="canvasLocation" x="3263" y="-447"/>
         </scene>
-        <!--View Controller-->
+        <!--Picture New View Controller-->
         <scene sceneID="XSs-65-Ajs">
             <objects>
-                <viewController id="Edt-Eq-M4n" sceneMemberID="viewController">
+                <viewController id="Edt-Eq-M4n" customClass="PictureNewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="guO-pr-Pkr"/>
                         <viewControllerLayoutGuide type="bottom" id="jiz-RA-bUV"/>
@@ -500,11 +500,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XBJ-zB-wT7"/>
+                    <navigationItem key="navigationItem" id="XBJ-zB-wT7">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="lQy-vQ-L63">
+                            <connections>
+                                <action selector="backAction:" destination="Edt-Eq-M4n" id="Wlf-s0-tVw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="kg9-5P-7Mc">
+                            <connections>
+                                <action selector="sentAction:" destination="Edt-Eq-M4n" id="suv-F0-rnW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJS-ys-leb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4180" y="-426"/>
+            <point key="canvasLocation" x="4402" y="-476"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="REY-Fb-AO9">

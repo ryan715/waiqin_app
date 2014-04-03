@@ -21,6 +21,9 @@
 
 - (void)listLocationAction:(NSString *)userId withPageIndex:(NSString *)pageIndex withPageSize:(NSString *)pageSize;
 
+- (void)uploadImage:(NSString *)userName withBeizhu:(NSString *)beiZhu withImage:(NSString *
+                                                                                  )image;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -29,7 +32,7 @@
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user;
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadLocation:(id)response;
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client listLocation:(id)responseData;
-
+-(void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate;
 -(void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error;
 
 @end

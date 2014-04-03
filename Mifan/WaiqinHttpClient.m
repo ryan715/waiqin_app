@@ -104,4 +104,24 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 
 }
 
+- (void)uploadImage:(NSString *)userName withBeizhu:(NSString *)beiZhu withImage:(NSString *)image
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"Username"] = userName;
+    parameters[@"Beizhu"] = beiZhu;
+    parameters[@"Imgstr"] = image;
+    
+    [self POST:@"GetAddPicRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:uploadImage:)
+            ]) {
+            
+            NSLog(@"the upload image is %@",responseObject);
+            [self.delegate waiqinHTTPClient:self uploadImage:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+        NSLog(@"the upload image is %@",error);
+    }];
+}
+
 @end

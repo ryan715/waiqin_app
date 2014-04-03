@@ -8,9 +8,12 @@
 
 #import "PictureListViewController.h"
 #import "SWRevealViewController.h"
+#import "PictureNewViewController.h"
 
 @interface PictureListViewController ()
-
+{
+    UIImage *photoImage;
+}
 @end
 
 @implementation PictureListViewController
@@ -111,7 +114,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -119,13 +122,68 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"toPictureNew"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PictureNewViewController *picNew = [[navigationController viewControllers] objectAtIndex:0];
+        
+        picNew.photoImage = photoImage;
+        
+        picNew.delegate = self;
+    }
 }
-*/
+
 
 - (IBAction)photoAction:(id)sender
 {
     [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册选择", nil]
      showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    
+    switch (buttonIndex) {
+        case 0:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            }else{
+                NSLog(@"模拟器无法打开相机");
+            }
+            [self presentModalViewController:picker animated:YES];
+            break;
+        case 1:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:picker animated:YES];
+        default:
+            break;
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    photoImage = [self scaleImage:originImage toScale:0.3];
+    [picker dismissModalViewControllerAnimated:NO];
+    
+    [self performSegueWithIdentifier:@"toPictureNew" sender:self];
+}
+
+- (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSzie
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSzie, image.size.height *scaleSzie));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSzie, image.size.height * scaleSzie)];
+    UIImage *scaleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaleImage;
+    
+}
+
+- (void)toNewList:(PictureNewViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
