@@ -124,4 +124,20 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     }];
 }
 
+- (void)listImage:(NSString *)userId withPageIndex:(NSString *)pageIndex withPageSize:(NSString *)pageSize
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"userid"] = userId;
+    parameters[@"pageindex"] = pageIndex;
+    parameters[@"pagesize"] = pageSize;
+    
+    [self POST:@"GetPicRecordlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:listImageDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self listImageDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+}
+
 @end

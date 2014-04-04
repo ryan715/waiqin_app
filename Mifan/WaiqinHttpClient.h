@@ -23,17 +23,17 @@
 
 - (void)uploadImage:(NSString *)userName withBeizhu:(NSString *)beiZhu withImage:(NSString *
                                                                                   )image;
-
+- (void)listImage:(NSString *)userId withPageIndex:(NSString *)pageIndex withPageSize:(NSString *)pageSize;
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
 
 @optional
--(void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user;
--(void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadLocation:(id)response;
--(void)waiqinHTTPClient:(WaiqinHttpClient *)client listLocation:(id)responseData;
--(void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate;
--(void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error;
-
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)user;
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadLocation:(id)response;
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client listLocation:(id)responseData;
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate;
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error;
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData;
 @end
 

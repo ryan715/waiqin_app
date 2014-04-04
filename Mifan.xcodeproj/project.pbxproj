@@ -25,6 +25,11 @@
 		1809357118D7D20E0001A7A6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356618D7D20E0001A7A6 /* AFURLRequestSerialization.m */; };
 		1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356818D7D20E0001A7A6 /* AFURLResponseSerialization.m */; };
 		1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356A18D7D20E0001A7A6 /* AFURLSessionManager.m */; };
+		1814C0E318EE48E000093BCC /* PicturesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814C0E218EE48E000093BCC /* PicturesCell.m */; };
+		1814C0E518EE491900093BCC /* PicturesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1814C0E418EE491900093BCC /* PicturesCell.xib */; };
+		1814C0E818EE529A00093BCC /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814C0E718EE529A00093BCC /* Picture.m */; };
+		1814C0EA18EE5F1700093BCC /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1814C0E918EE5F1700093BCC /* SDWebImage.framework */; };
+		1814C0EC18EE5F3600093BCC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1814C0EB18EE5F3600093BCC /* ImageIO.framework */; };
 		181A318018E8FF6A000B8A40 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A317F18E8FF6A000B8A40 /* Location.m */; };
 		181A318318E92484000B8A40 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A318218E92484000B8A40 /* LocationDetailViewController.m */; };
 		181FFC6D1835153B00059284 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181FFC6C1835153B00059284 /* Foundation.framework */; };
@@ -137,6 +142,13 @@
 		1809356818D7D20E0001A7A6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		1809356918D7D20E0001A7A6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		1809356A18D7D20E0001A7A6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		1814C0E118EE48E000093BCC /* PicturesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesCell.h; sourceTree = "<group>"; };
+		1814C0E218EE48E000093BCC /* PicturesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesCell.m; sourceTree = "<group>"; };
+		1814C0E418EE491900093BCC /* PicturesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicturesCell.xib; sourceTree = "<group>"; };
+		1814C0E618EE529A00093BCC /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		1814C0E718EE529A00093BCC /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		1814C0E918EE5F1700093BCC /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		1814C0EB18EE5F3600093BCC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		181A317E18E8FF6A000B8A40 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		181A317F18E8FF6A000B8A40 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		181A318118E92484000B8A40 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailViewController.h; sourceTree = "<group>"; };
@@ -230,10 +242,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1814C0EC18EE5F3600093BCC /* ImageIO.framework in Frameworks */,
 				1880FBC5185070BD002B9830 /* Security.framework in Frameworks */,
 				186F23F118E4FE5100BE8626 /* libstdc++.6.0.9.dylib in Frameworks */,
 				186F23EF18E4FE4500BE8626 /* CoreTelephony.framework in Frameworks */,
 				181FFC6F1835153B00059284 /* CoreGraphics.framework in Frameworks */,
+				1814C0EA18EE5F1700093BCC /* SDWebImage.framework in Frameworks */,
 				1880FBCB185070DA002B9830 /* SystemConfiguration.framework in Frameworks */,
 				18F3419218E2CDFC00C22BA9 /* OpenGLES.framework in Frameworks */,
 				1880FBC3185070B4002B9830 /* QuartzCore.framework in Frameworks */,
@@ -316,6 +330,13 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		1814C0DF18EE489900093BCC /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
 		181FFC601835153B00059284 = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +359,8 @@
 		181FFC6B1835153B00059284 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1814C0EB18EE5F3600093BCC /* ImageIO.framework */,
+				1814C0E918EE5F1700093BCC /* SDWebImage.framework */,
 				186F23F018E4FE5100BE8626 /* libstdc++.6.0.9.dylib */,
 				186F23EE18E4FE4500BE8626 /* CoreTelephony.framework */,
 				186F23EC18E4FD7B00BE8626 /* MAMapKit.framework */,
@@ -366,43 +389,44 @@
 		181FFC721835153B00059284 /* Mifan */ = {
 			isa = PBXGroup;
 			children = (
-				18E4B8A818ECF9BB0002DC0F /* PictureNewViewController.h */,
-				18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */,
-				186F23EA18E4FD5800BE8626 /* AMap.bundle */,
-				1823D6EF18E16EEC008FD055 /* Libs */,
-				1809355718D7D20E0001A7A6 /* AFNetworking */,
-				1809353D18D7D1FA0001A7A6 /* UIKit+AFNetworking */,
-				18B923B71835CBBD008B6685 /* Images */,
-				18B923AE1835BFB7008B6685 /* Views */,
-				18B923AD1835BFAE008B6685 /* Models */,
-				181FFCA71835203D00059284 /* SWRevealViewController */,
-				181FFC7B1835153B00059284 /* AppDelegate.h */,
-				181FFC7C1835153B00059284 /* AppDelegate.m */,
-				181FFC7E1835153B00059284 /* Main.storyboard */,
-				181FFC811835153B00059284 /* ViewController.h */,
-				181FFC821835153B00059284 /* ViewController.m */,
-				181FFC841835153B00059284 /* Images.xcassets */,
-				181FFC731835153B00059284 /* Supporting Files */,
-				181FFCA11835161E00059284 /* LoginViewController.h */,
-				181FFCA21835161E00059284 /* LoginViewController.m */,
-				181FFCA418351B7900059284 /* RegisterViewController.h */,
-				181FFCA518351B7900059284 /* RegisterViewController.m */,
-				181FFCAB183521D600059284 /* MainViewController.h */,
-				181FFCAC183521D600059284 /* MainViewController.m */,
-				18B923AA1835AA99008B6685 /* SidebarMenuViewController.h */,
-				18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */,
-				18F767F0185215B700D46232 /* VicinityViewController.h */,
-				18F767F1185215B700D46232 /* VicinityViewController.m */,
 				1884299718556A3F0029D38F /* AboutViewController.h */,
 				1884299818556A3F0029D38F /* AboutViewController.m */,
-				1809353A18D7CF550001A7A6 /* WaiqinHttpClient.h */,
-				1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */,
-				186F23F218E4FF0F00BE8626 /* LocationMeViewController.h */,
-				186F23F318E4FF0F00BE8626 /* LocationMeViewController.m */,
+				1809355718D7D20E0001A7A6 /* AFNetworking */,
+				186F23EA18E4FD5800BE8626 /* AMap.bundle */,
+				181FFC7B1835153B00059284 /* AppDelegate.h */,
+				181FFC7C1835153B00059284 /* AppDelegate.m */,
+				18B923B71835CBBD008B6685 /* Images */,
+				181FFC841835153B00059284 /* Images.xcassets */,
+				1823D6EF18E16EEC008FD055 /* Libs */,
 				181A318118E92484000B8A40 /* LocationDetailViewController.h */,
 				181A318218E92484000B8A40 /* LocationDetailViewController.m */,
+				186F23F218E4FF0F00BE8626 /* LocationMeViewController.h */,
+				186F23F318E4FF0F00BE8626 /* LocationMeViewController.m */,
+				181FFCA11835161E00059284 /* LoginViewController.h */,
+				181FFCA21835161E00059284 /* LoginViewController.m */,
+				181FFC7E1835153B00059284 /* Main.storyboard */,
+				181FFCAB183521D600059284 /* MainViewController.h */,
+				181FFCAC183521D600059284 /* MainViewController.m */,
+				18B923AD1835BFAE008B6685 /* Models */,
 				18CB2A8118EBABA900B69D07 /* PictureListViewController.h */,
 				18CB2A8218EBABA900B69D07 /* PictureListViewController.m */,
+				18E4B8A818ECF9BB0002DC0F /* PictureNewViewController.h */,
+				18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */,
+				181FFCA418351B7900059284 /* RegisterViewController.h */,
+				181FFCA518351B7900059284 /* RegisterViewController.m */,
+				18B923AA1835AA99008B6685 /* SidebarMenuViewController.h */,
+				18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */,
+				181FFC731835153B00059284 /* Supporting Files */,
+				181FFCA71835203D00059284 /* SWRevealViewController */,
+				1814C0DF18EE489900093BCC /* TableCell */,
+				1809353D18D7D1FA0001A7A6 /* UIKit+AFNetworking */,
+				18F767F0185215B700D46232 /* VicinityViewController.h */,
+				18F767F1185215B700D46232 /* VicinityViewController.m */,
+				181FFC811835153B00059284 /* ViewController.h */,
+				181FFC821835153B00059284 /* ViewController.m */,
+				18B923AE1835BFB7008B6685 /* Views */,
+				1809353A18D7CF550001A7A6 /* WaiqinHttpClient.h */,
+				1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */,
 			);
 			path = Mifan;
 			sourceTree = "<group>";
@@ -471,6 +495,8 @@
 				18B923B01835C029008B6685 /* Member.m */,
 				181A317E18E8FF6A000B8A40 /* Location.h */,
 				181A317F18E8FF6A000B8A40 /* Location.m */,
+				1814C0E618EE529A00093BCC /* Picture.h */,
+				1814C0E718EE529A00093BCC /* Picture.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -481,6 +507,9 @@
 				18B923B21835C2CB008B6685 /* MembersCell.h */,
 				18B923B31835C2CB008B6685 /* MembersCell.m */,
 				18B923B51835C2F3008B6685 /* MembersCell.xib */,
+				1814C0E118EE48E000093BCC /* PicturesCell.h */,
+				1814C0E218EE48E000093BCC /* PicturesCell.m */,
+				1814C0E418EE491900093BCC /* PicturesCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -578,6 +607,7 @@
 			files = (
 				18B923C11835CBC9008B6685 /* tx2.jpg in Resources */,
 				181FFC851835153B00059284 /* Images.xcassets in Resources */,
+				1814C0E518EE491900093BCC /* PicturesCell.xib in Resources */,
 				18B923C61835CBC9008B6685 /* tx7.jpg in Resources */,
 				181FFC771835153B00059284 /* InfoPlist.strings in Resources */,
 				18B923C41835CBC9008B6685 /* tx5.jpg in Resources */,
@@ -615,6 +645,7 @@
 				181A318018E8FF6A000B8A40 /* Location.m in Sources */,
 				1809357018D7D20E0001A7A6 /* AFURLConnectionOperation.m in Sources */,
 				186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */,
+				1814C0E318EE48E000093BCC /* PicturesCell.m in Sources */,
 				181FFCA31835161E00059284 /* LoginViewController.m in Sources */,
 				181FFC831835153B00059284 /* ViewController.m in Sources */,
 				18E4B8AA18ECF9BB0002DC0F /* PictureNewViewController.m in Sources */,
@@ -645,6 +676,7 @@
 				18B923B11835C029008B6685 /* Member.m in Sources */,
 				1809355118D7D1FA0001A7A6 /* UIAlertView+AFNetworking.m in Sources */,
 				1809356F18D7D20E0001A7A6 /* AFSecurityPolicy.m in Sources */,
+				1814C0E818EE529A00093BCC /* Picture.m in Sources */,
 				181FFCAA1835203D00059284 /* SWRevealViewController.m in Sources */,
 				1809355218D7D1FA0001A7A6 /* UIButton+AFNetworking.m in Sources */,
 				18B923B41835C2CB008B6685 /* MembersCell.m in Sources */,

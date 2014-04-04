@@ -9,10 +9,12 @@
 #import "PictureListViewController.h"
 #import "SWRevealViewController.h"
 #import "PictureNewViewController.h"
+#import "PicturesCell.h"
 
 @interface PictureListViewController ()
 {
     UIImage *photoImage;
+    NSMutableArray *itemList;
 }
 @end
 
@@ -30,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    itemList = [[NSMutableArray alloc] init];
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
     
@@ -41,6 +43,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,26 +58,80 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return itemList.count;
 }
 
-/*
+- (void)loadData
+{
+    WaiqinHttpClient *client =[WaiqinHttpClient sharedWaiqinHttpClient];
+    client.delegate = self;
+    [client listImage:@"31" withPageIndex:@"1" withPageSize:@"15"];
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    
+    if ([status isEqualToString:@"1"]) {
+                NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        
+        NSLog(@"the array list is %d", arrayList.count);
+        for (int i= 0; i< arrayList.count; i++) {
+            dictionaryList = [arrayList objectAtIndex:i];
+            NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
+            Picture *model = [[Picture alloc] initWithName:@"a005" Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString];
+            
+            [itemList addObject:model];
+            NSLog(@"the pic list is %d", itemList.count);
+
+        }
+        [self.tableView reloadData];
+    } else {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                     message:@"加载失败"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
+    static NSString *pictureCell = @"PictureCellIdentifier";
+    static BOOL isRegNib = NO;
+    if (!isRegNib) {
+        [self.tableView registerNib:[UINib nibWithNibName:@"PicturesCell" bundle:nil ] forCellReuseIdentifier:pictureCell];
+        isRegNib = YES;
+    }
+    PicturesCell *cell = [self.tableView dequeueReusableCellWithIdentifier:pictureCell];
+    [cell setupCell: itemList[indexPath.row]];
     
+    if (cell == nil) {
+        [self.tableView registerNib:[UINib nibWithNibName:@"PicturesCell" bundle:nil] forCellReuseIdentifier:pictureCell];
+        PicturesCell *cell1 = [self.tableView dequeueReusableCellWithIdentifier:pictureCell];
+        [cell1 setupCell:itemList[indexPath.row]];
+        cell = cell1;
+    }
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
