@@ -156,4 +156,23 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     
 }
 
+/* 获取群组成员 */
+- (void)userList:(NSString *)userId pageIndex:(NSString *)pageindex pageSize:(NSString *)pagesize
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"userid"] = userId;
+    parameters[@"pageindex"] = pageindex;
+    parameters[@"pagesize"] = pagesize;
+    
+    [self POST:@"GetUserforqunzhulist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:userListDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self userListDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+    
+}
+
+
 @end

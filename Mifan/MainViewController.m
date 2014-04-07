@@ -10,16 +10,21 @@
 #import "SWRevealViewController.h"
 #import "Member.h"
 #import "MembersCell.h"
+#import <CommonCrypto/CommonDigest.h>
+
 
 @interface MainViewController ()
 {
     NSArray *_dataArray;
     NSMutableArray *_dataList;
+    User *user;
 }
+
 
 @end
 
 @implementation MainViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,7 +47,7 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    self.title = @"邂逅";
+    self.title = @"我的群组";
     
     NSLog(@"load this data");
     // 初始化数据数组
@@ -57,13 +62,87 @@
                    @[@"tx2.jpg", @"手心", @"女", @"寂寞让我如此美丽"]];
     
     _dataList = [[NSMutableArray alloc]init];
-    for (int i=0; i<_dataArray.count; i++) {
+//    for (int i=0; i<_dataArray.count; i++) {
+//        
+//       Member *model = [[Member alloc] initWithImage:_dataArray[i][0] Nc:_dataArray[i][1] Xb:_dataArray[i][2] Nl:_dataArray[i][3]];
+//       [_dataList addObject:model];
+//    }
+    
+    
+    [self getUserAction];
+    
+}
+
+
+- (void)getUserAction
+{
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+}
+
+
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        dictionaryList = [arrayList objectAtIndex: 0];
+        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
         
-       Member *model = [[Member alloc] initWithImage:_dataArray[i][0] Nc:_dataArray[i][1] Xb:_dataArray[i][2] Nl:_dataArray[i][3]];
-       [_dataList addObject:model];
+        [client userList:user.idString pageIndex:@"1" pageSize:@"15"];
+    }
+}
+
+/* 获取群组成员 */
+- (void)waiqinHTTPClient: (WaiqinHttpClient *)client userListDelegate:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        NSLog(@"the arr y count is %d", arrayList.count);
+        
+        //dictionaryList = [arrayList objectAtIndex: 0];
+        for (int j= 0; j< arrayList.count; j++) {
+            
+            
+            dictionaryList = [arrayList objectAtIndex: j];
+            
+            Member *model = [[Member alloc] initWithImage:_dataArray[j][0] Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"]];
+            [_dataList addObject:model];
+           
+            [self.tableView reloadData];
+        }
+    } else {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                     message:@"加载失败"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+
     }
 
- }
+}
 
 - (void)didReceiveMemoryWarning
 {

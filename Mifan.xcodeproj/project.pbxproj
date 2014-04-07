@@ -71,6 +71,8 @@
 		1880FBCB185070DA002B9830 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBCA185070DA002B9830 /* SystemConfiguration.framework */; };
 		1884299918556A3F0029D38F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884299818556A3F0029D38F /* AboutViewController.m */; };
 		18B8B0DD18F24D6200CE69CA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */; };
+		18B8B0E018F2567D00CE69CA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0DF18F2567D00CE69CA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18B8B0E318F258E300CE69CA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0E218F258E300CE69CA /* User.m */; };
 		18B923AC1835AA99008B6685 /* SidebarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */; };
 		18B923B11835C029008B6685 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923B01835C029008B6685 /* Member.m */; };
 		18B923B41835C2CB008B6685 /* MembersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923B31835C2CB008B6685 /* MembersCell.m */; };
@@ -206,6 +208,10 @@
 		1884299818556A3F0029D38F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		18B8B0DB18F24D6200CE69CA /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		18B8B0DE18F2567D00CE69CA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		18B8B0DF18F2567D00CE69CA /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		18B8B0E118F258E300CE69CA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		18B8B0E218F258E300CE69CA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		18B923AA1835AA99008B6685 /* SidebarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarMenuViewController.h; sourceTree = "<group>"; };
 		18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarMenuViewController.m; sourceTree = "<group>"; };
 		18B923AF1835C029008B6685 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
@@ -477,6 +483,8 @@
 		1823D6EF18E16EEC008FD055 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				18B8B0DE18F2567D00CE69CA /* KeychainItemWrapper.h */,
+				18B8B0DF18F2567D00CE69CA /* KeychainItemWrapper.m */,
 				18E4B8B718ED08290002DC0F /* Photo.h */,
 				18E4B8B818ED08290002DC0F /* Photo.m */,
 				18E4B8AE18ED081A0002DC0F /* UIImage+Alpha.h */,
@@ -502,6 +510,8 @@
 				181A317F18E8FF6A000B8A40 /* Location.m */,
 				1814C0E618EE529A00093BCC /* Picture.h */,
 				1814C0E718EE529A00093BCC /* Picture.m */,
+				18B8B0E118F258E300CE69CA /* User.h */,
+				18B8B0E218F258E300CE69CA /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -650,9 +660,11 @@
 				181A318018E8FF6A000B8A40 /* Location.m in Sources */,
 				1809357018D7D20E0001A7A6 /* AFURLConnectionOperation.m in Sources */,
 				186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */,
+				18B8B0E018F2567D00CE69CA /* KeychainItemWrapper.m in Sources */,
 				1814C0E318EE48E000093BCC /* PicturesCell.m in Sources */,
 				181FFCA31835161E00059284 /* LoginViewController.m in Sources */,
 				181FFC831835153B00059284 /* ViewController.m in Sources */,
+				18B8B0E318F258E300CE69CA /* User.m in Sources */,
 				18E4B8AA18ECF9BB0002DC0F /* PictureNewViewController.m in Sources */,
 				181FFC7D1835153B00059284 /* AppDelegate.m in Sources */,
 				1809355018D7D1FA0001A7A6 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

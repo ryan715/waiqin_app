@@ -11,6 +11,7 @@
 //#import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "MainViewController.h"
 
 @interface LoginViewController ()
 
@@ -32,7 +33,21 @@
     [super viewDidLoad];
 	self.textName.delegate = self;
     self.textPassword.delegate = self;
-}
+    
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];    //    if (_user.nameString != nil && _user.passwordString != nil) {
+//        NSString *userName = _user.nameString;
+//        NSString *userPassword = _user.passwordString;
+    self.textName.text = userName;
+    self.textPassword.text = userPassword;
+//
+//    }
+//    
+//    
+    
+    
+    }
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,6 +94,9 @@
 //    NSString *UserPassword = @"1";
     
         
+        _user = [[User alloc] initWithImage:@"" name:UserName pwd:UserPassword group:@"" idString:@""];
+        
+        
            /********* md5 crypto ***********/
     
     const char *cStr = [UserPassword UTF8String];
@@ -109,7 +127,7 @@
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
     [client loginActionUser:UserName withPassword:UserPassword];
-        
+   
 //        [hud hide:YES];
     }
 }
@@ -122,6 +140,10 @@
     
     [self.hud hide:YES];
     if ([status isEqualToString:@"1"]) {
+        
+        [_wrapper setObject:_user.nameString forKey:(__bridge id)kSecAttrAccount];
+        [_wrapper setObject:_user.passwordString forKey:(__bridge id)kSecValueData];
+        
         [self performSegueWithIdentifier:@"toMain" sender:self];
     }
     else{
@@ -159,6 +181,14 @@
         registerViewController.delegate = self;
     
     }
+    
+//    if ([segue.identifier isEqualToString:@"toMain"])
+//    {
+//        UINavigationController *navigationController = segue.destinationViewController;
+//        MainViewController *mainViewController = [[navigationController viewControllers] objectAtIndex:0];
+//        mainViewController.user = _user;
+//        
+//    }
 }
 
 -(BOOL) NameBlankString:(NSString *)StrUsername PasswordBlankString:(NSString *)StrPassword

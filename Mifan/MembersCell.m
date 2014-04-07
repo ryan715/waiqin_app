@@ -32,7 +32,12 @@
     [self.memberImg setImage:image];
     
     self.nameLabel.text = model.memberNc;
-    self.xbLabel.text = model.memberXb;
+    
+    if ([model.memberXb isEqualToString:@"0"]) {
+        self.xbLabel.text = @"群员";
+    } else {
+        self.xbLabel.text = @"群主";
+    }
     self.qmLabel.text = model.memberNl;
 }
 
