@@ -35,7 +35,7 @@
     [super viewDidLoad];
 	_sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
-    _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
+   // _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
     self.title = @"我的定位";
     [self customUIBarButtonItem];
     [self customeTableView];

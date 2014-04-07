@@ -140,4 +140,20 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     }];
 }
 
+/* 查看图片详情 */
+- (void)imageDetail:(NSString *)idString
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"id"] = idString;
+    
+    [self POST:@"GetOnePicRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:imageDetailDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self imageDetailDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+    
+}
+
 @end

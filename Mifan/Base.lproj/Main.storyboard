@@ -213,6 +213,36 @@
             </objects>
             <point key="canvasLocation" x="3466" y="305"/>
         </scene>
+        <!--Profile View Controller - Title-->
+        <scene sceneID="acv-jb-Buk">
+            <objects>
+                <viewController id="WpR-ju-EBO" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hCQ-bq-aLs"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fw7-qO-CsX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PnS-3y-rLi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="菜单" id="PyE-w0-KQn"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="fyf-eX-BT7">
+                        <connections>
+                            <outlet property="leftBarButtonItem" destination="PyE-w0-KQn" id="619-1F-601"/>
+                        </connections>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sidebarButton" destination="PyE-w0-KQn" id="wUV-BE-r3W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KXA-RM-uE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2310" y="-861"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="PAj-Co-Y8t">
             <objects>
@@ -272,6 +302,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="WpR-ju-EBO" kind="custom" identifier="toProfile" customClass="SWRevealViewControllerSegue" id="pbL-Ve-c8F"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="vicinity" id="8I5-LW-fMn">
                                 <rect key="frame" x="0.0" y="110" width="320" height="44"/>
@@ -395,9 +428,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="xcF-mD-8bS">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Dmg-XP-YFd">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="菜单" id="Dmg-XP-YFd"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -517,7 +548,7 @@
             </objects>
             <point key="canvasLocation" x="4402" y="-476"/>
         </scene>
-        <!--About View Controller-->
+        <!--About View Controller - Title-->
         <scene sceneID="REY-Fb-AO9">
             <objects>
                 <tableViewController id="Ya8-gY-qIb" customClass="AboutViewController" sceneMemberID="viewController">
@@ -540,10 +571,22 @@
                             <outlet property="delegate" destination="Ya8-gY-qIb" id="XNx-Hg-lG5"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="菜单" id="LQL-eX-INo"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="ryy-Qn-dhA">
+                        <connections>
+                            <outlet property="leftBarButtonItem" destination="LQL-eX-INo" id="ubT-f0-ETv"/>
+                        </connections>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sidebarButton" destination="LQL-eX-INo" id="EJt-Tp-oEz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVm-ZR-kwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3636" y="1404"/>
+            <point key="canvasLocation" x="3566" y="1110"/>
         </scene>
         <!--Navigation Controller - 好友-->
         <scene sceneID="ZrT-QY-XNF">

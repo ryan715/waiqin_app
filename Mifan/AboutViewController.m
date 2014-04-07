@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "SWRevealViewController.h"
 
 @interface AboutViewController ()
 
@@ -26,7 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

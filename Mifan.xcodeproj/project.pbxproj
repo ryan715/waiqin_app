@@ -70,6 +70,7 @@
 		1880FBC9185070CC002B9830 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBC8185070CC002B9830 /* StoreKit.framework */; };
 		1880FBCB185070DA002B9830 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBCA185070DA002B9830 /* SystemConfiguration.framework */; };
 		1884299918556A3F0029D38F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884299818556A3F0029D38F /* AboutViewController.m */; };
+		18B8B0DD18F24D6200CE69CA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */; };
 		18B923AC1835AA99008B6685 /* SidebarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */; };
 		18B923B11835C029008B6685 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923B01835C029008B6685 /* Member.m */; };
 		18B923B41835C2CB008B6685 /* MembersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B923B31835C2CB008B6685 /* MembersCell.m */; };
@@ -203,6 +204,8 @@
 		1880FBCA185070DA002B9830 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1884299718556A3F0029D38F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1884299818556A3F0029D38F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		18B8B0DB18F24D6200CE69CA /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		18B923AA1835AA99008B6685 /* SidebarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarMenuViewController.h; sourceTree = "<group>"; };
 		18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarMenuViewController.m; sourceTree = "<group>"; };
 		18B923AF1835C029008B6685 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				18B923AE1835BFB7008B6685 /* Views */,
 				1809353A18D7CF550001A7A6 /* WaiqinHttpClient.h */,
 				1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */,
+				18B8B0DB18F24D6200CE69CA /* ProfileViewController.h */,
+				18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */,
 			);
 			path = Mifan;
 			sourceTree = "<group>";
@@ -667,6 +672,7 @@
 				1809356C18D7D20E0001A7A6 /* AFHTTPRequestOperationManager.m in Sources */,
 				1809356D18D7D20E0001A7A6 /* AFHTTPSessionManager.m in Sources */,
 				1809355318D7D1FA0001A7A6 /* UIImageView+AFNetworking.m in Sources */,
+				18B8B0DD18F24D6200CE69CA /* ProfileViewController.m in Sources */,
 				1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */,
 				18E4B8B918ED08290002DC0F /* Photo.m in Sources */,
 				18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */,
