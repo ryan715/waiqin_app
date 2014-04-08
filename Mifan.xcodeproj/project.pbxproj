@@ -55,6 +55,9 @@
 		186F23EF18E4FE4500BE8626 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186F23EE18E4FE4500BE8626 /* CoreTelephony.framework */; };
 		186F23F118E4FE5100BE8626 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 186F23F018E4FE5100BE8626 /* libstdc++.6.0.9.dylib */; };
 		186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186F23F318E4FF0F00BE8626 /* LocationMeViewController.m */; };
+		187512B618F37F3D00FEECEE /* MemberDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187512B518F37F3D00FEECEE /* MemberDetailViewController.m */; };
+		187512B918F3994A00FEECEE /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 187512B818F3994A00FEECEE /* CustomSegue.m */; };
+		187512BC18F39B5F00FEECEE /* forwadbackSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 187512BB18F39B5F00FEECEE /* forwadbackSegue.m */; };
 		187FCDF918E67A81002590E1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FCDF818E67A81002590E1 /* MBProgressHUD.m */; };
 		1880FBB31850706A002B9830 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBB21850706A002B9830 /* AudioToolbox.framework */; };
 		1880FBB518507072002B9830 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBB418507072002B9830 /* Accounts.framework */; };
@@ -189,6 +192,12 @@
 		186F23F018E4FE5100BE8626 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		186F23F218E4FF0F00BE8626 /* LocationMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMeViewController.h; sourceTree = "<group>"; };
 		186F23F318E4FF0F00BE8626 /* LocationMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMeViewController.m; sourceTree = "<group>"; };
+		187512B418F37F3D00FEECEE /* MemberDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberDetailViewController.h; sourceTree = "<group>"; };
+		187512B518F37F3D00FEECEE /* MemberDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberDetailViewController.m; sourceTree = "<group>"; };
+		187512B718F3994A00FEECEE /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
+		187512B818F3994A00FEECEE /* CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegue.m; sourceTree = "<group>"; };
+		187512BA18F39B5F00FEECEE /* forwadbackSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwadbackSegue.h; sourceTree = "<group>"; };
+		187512BB18F39B5F00FEECEE /* forwadbackSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = forwadbackSegue.m; sourceTree = "<group>"; };
 		187FCDF718E67A81002590E1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		187FCDF818E67A81002590E1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		1880FBB21850706A002B9830 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -438,6 +447,10 @@
 				1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */,
 				18B8B0DB18F24D6200CE69CA /* ProfileViewController.h */,
 				18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */,
+				187512B418F37F3D00FEECEE /* MemberDetailViewController.h */,
+				187512B518F37F3D00FEECEE /* MemberDetailViewController.m */,
+				187512BA18F39B5F00FEECEE /* forwadbackSegue.h */,
+				187512BB18F39B5F00FEECEE /* forwadbackSegue.m */,
 			);
 			path = Mifan;
 			sourceTree = "<group>";
@@ -483,6 +496,8 @@
 		1823D6EF18E16EEC008FD055 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				187512B718F3994A00FEECEE /* CustomSegue.h */,
+				187512B818F3994A00FEECEE /* CustomSegue.m */,
 				18B8B0DE18F2567D00CE69CA /* KeychainItemWrapper.h */,
 				18B8B0DF18F2567D00CE69CA /* KeychainItemWrapper.m */,
 				18E4B8B718ED08290002DC0F /* Photo.h */,
@@ -681,6 +696,7 @@
 				1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */,
 				18E4B8B518ED081A0002DC0F /* UIImage+Resize.m in Sources */,
 				1884299918556A3F0029D38F /* AboutViewController.m in Sources */,
+				187512B618F37F3D00FEECEE /* MemberDetailViewController.m in Sources */,
 				1809356C18D7D20E0001A7A6 /* AFHTTPRequestOperationManager.m in Sources */,
 				1809356D18D7D20E0001A7A6 /* AFHTTPSessionManager.m in Sources */,
 				1809355318D7D1FA0001A7A6 /* UIImageView+AFNetworking.m in Sources */,
@@ -695,9 +711,11 @@
 				1809355118D7D1FA0001A7A6 /* UIAlertView+AFNetworking.m in Sources */,
 				1809356F18D7D20E0001A7A6 /* AFSecurityPolicy.m in Sources */,
 				1814C0E818EE529A00093BCC /* Picture.m in Sources */,
+				187512B918F3994A00FEECEE /* CustomSegue.m in Sources */,
 				181FFCAA1835203D00059284 /* SWRevealViewController.m in Sources */,
 				1809355218D7D1FA0001A7A6 /* UIButton+AFNetworking.m in Sources */,
 				18B923B41835C2CB008B6685 /* MembersCell.m in Sources */,
+				187512BC18F39B5F00FEECEE /* forwadbackSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

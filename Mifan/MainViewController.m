@@ -11,6 +11,8 @@
 #import "Member.h"
 #import "MembersCell.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "MemberDetailViewController.h"
+#import "CustomSegue.h"
 
 
 @interface MainViewController ()
@@ -124,8 +126,6 @@
         
         //dictionaryList = [arrayList objectAtIndex: 0];
         for (int j= 0; j< arrayList.count; j++) {
-            
-            
             dictionaryList = [arrayList objectAtIndex: j];
             
             Member *model = [[Member alloc] initWithImage:_dataArray[j][0] Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"]];
@@ -171,12 +171,12 @@
     static NSString *tzCell = @"MemberCellIdentifier";
     static BOOL isRegNib = NO;
     if (!isRegNib) {
-        NSLog(@"isRegNib");
+        //NSLog(@"isRegNib");
         [self.tableView registerNib:[UINib nibWithNibName:@"MembersCell" bundle:nil] forCellReuseIdentifier:tzCell];
         isRegNib = YES;
     }
-    NSLog(@"THE INDEXPATH ROW IS %ld",indexPath.row);
-    NSLog(@"THE DATA COUNT IS %ld", _dataList.count);
+    //NSLog(@"THE INDEXPATH ROW IS %ld",indexPath.row);
+    //NSLog(@"THE DATA COUNT IS %ld", _dataList.count);
     MembersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:tzCell];
     [cell setupCell:_dataList[indexPath.row]];
     
@@ -196,6 +196,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 88.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    LocationDetailViewController *locationDetail = [[LocationDetailViewController alloc] init];
+    //    [self.navigationController pushViewController:locationDetail animated:YES];
+    //
+    //    UIBarButtonItem *returnButtonItem = [[UIBarButtonItem alloc] init];
+    //    returnButtonItem.title = @"返回";
+    //    self.navigationItem.backBarButtonItem = returnButtonItem;
+    NSLog(@"click");
+    [self performSegueWithIdentifier:@"toMemberDetail" sender:self];
+    
+    
 }
 
 /*
@@ -237,16 +251,66 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"steop1");
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+//    if ([sender isKindOfClass:[MembersCell class]]) {
+//        if ([segue.destinationViewController isKindOfClass:[MemberDetailViewController class]]) {
+
+    if ([segue.identifier isEqualToString:@"toMemberDetail"]) {
+
+    //NSIndexPath *indexPath = [self.tableView.indexPathForSelectedRow];
+            
+            MemberDetailViewController *memberDetail = segue.destinationViewController;
+        Member *userSingle = _dataList[self.tableView.indexPathForSelectedRow.row];
+        
+//        NSLog(@"the user id is %@",userSingle.idString);
+            memberDetail.model = _dataList[self.tableView.indexPathForSelectedRow.row];
+        }
+//    }
+    
+    
+//    if ([sender isKindOfClass:[UITableViewCell class]]) {
+//        
+//        if ([segue.destinationViewController isKindOfClass:[MemberDetailViewController class]]) {
+//            
+//            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+//            
+//            MemberDetailViewController *nextViewController = segue.destinationViewController;
+//            
+////            nextViewController.string = [NSString stringWithFormat:@"%d",indexPath.row];
+//            
+//        }
+//    }
+    
+    
+    
+//    CustomSegue *s = (CustomSegue *)segue;
+//    
+//    if ([segue.identifier isEqualToString:@"forwardSegue"]) {
+//        s.isDismiss = NO;
+//        NSLog(@"the isdismiss NO");
+//    }else if ([segue.identifier isEqualToString:@"backwardSegue"]){
+//        s.isDismiss = YES;
+//        NSLog(@"the isdismiss NO");
+//    }
+//    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+//    {
+//        s.isLandscapeOrientation = YES;
+//    }
+//    else
+//    {
+//        s.isLandscapeOrientation = NO;
+//    }
+
 }
 
- */
+
 
 @end

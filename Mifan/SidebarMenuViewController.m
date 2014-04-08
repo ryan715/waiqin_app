@@ -108,7 +108,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *) segue sender: (id) sender
 {
-    NSLog(@"prepareForSegue");
+   // NSLog(@"prepareForSegue");
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
@@ -116,7 +116,7 @@
     
     // Set the photo if it navigates to the PhotoView
     if ([segue.identifier isEqualToString:@"toVicinity"]) {
-        NSLog(@"VicinityViewController");
+        //NSLog(@"VicinityViewController");
         VicinityViewController *vicinityController = (VicinityViewController*)segue.destinationViewController;
     }
     
