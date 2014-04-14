@@ -8,6 +8,7 @@
 
 #import "WaiqinHttpClient.h"
 #import "MBProgressHUD.h"
+#import "Reachability.h"
 
 static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/webservice/";
 
@@ -172,6 +173,40 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
     }];
     
+}
+
+
+- (BOOL) isConnectionAvailable
+{
+    BOOL isExistenceNetwork = YES;
+    Reachability *reach = [Reachability reachabilityWithHostname:@"www.163.com"];
+    switch ([reach currentReachabilityStatus]) {
+        case NotReachable:
+            isExistenceNetwork = NO;
+            break;
+        
+        case ReachableViaWiFi:
+            isExistenceNetwork =YES;
+            break;
+            
+        case ReachableViaWWAN:
+            isExistenceNetwork = YES;
+            break;
+//        default:
+//            break;
+    }
+    
+//    if (!isExistenceNetwork) {
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.removeFromSuperViewOnHide =YES;
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = NSLocalizedString(@"网络链接失败", nil);
+//        hud.minSize = CGSizeMake(132.f, 108.0f);
+//        [hud hide:YES afterDelay:3];
+//        return NO;
+//    }
+    
+    return isExistenceNetwork;
 }
 
 

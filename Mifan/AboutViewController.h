@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeychainItemWrapper.h"
+#import "WaiqinHttpClient.h"
 
-@interface AboutViewController : UITableViewController
+@interface AboutViewController : UITableViewController<WaiqinHttpClientDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-
+@property (retain, nonatomic) KeychainItemWrapper *wrapper;
+@property (weak, nonatomic) WaiqinHttpClient *client;
 @end

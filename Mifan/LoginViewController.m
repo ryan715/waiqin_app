@@ -126,9 +126,23 @@
     NSLog(@"begin");
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
-    [client loginActionUser:UserName withPassword:UserPassword];
+        
+        if (![client isConnectionAvailable]) {
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.removeFromSuperViewOnHide =YES;
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = NSLocalizedString(@"网络链接失败", nil);
+            hud.minSize = CGSizeMake(132.f, 108.0f);
+            [hud hide:YES afterDelay:3];
+            
+            [self.hud hide:YES];
+           
+        } else {
+            [client loginActionUser:UserName withPassword:UserPassword];
    
 //        [hud hide:YES];
+        }
     }
 }
 

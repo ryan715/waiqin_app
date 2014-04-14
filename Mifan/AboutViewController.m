@@ -8,9 +8,14 @@
 
 #import "AboutViewController.h"
 #import "SWRevealViewController.h"
+#import <CommonCrypto/CommonDigest.h>
+#import "User.h"
+#import "ImageHelper.h"
 
 @interface AboutViewController ()
-
+{
+    User *user;
+}
 @end
 
 @implementation AboutViewController
@@ -36,6 +41,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self getUserAction];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,24 +57,78 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *tableViewCellIdentifier = @"AboutCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableViewCellIdentifier ];
     
-    // Configure the cell...
-    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableViewCellIdentifier];
+    }
+    if (indexPath.row == 0) {
+        NSLog(@"test");
+        [cell.contentView addSubview:[self customUser:@""]];
+    }
     return cell;
+}
+
+
+- (void)getUserAction
+{
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        dictionaryList = [arrayList objectAtIndex: 0];
+        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+        
+        [self customUser:@""];
+        
+    }
+}
+
+- (UIImageView *)customUser: (NSString *)imageURLString
+{
+    UIImage *profileImage = [UIImage imageNamed:@"tx1.jpg"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    ImageHelper *imageHelper = [[ImageHelper alloc] init];
+    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
+    return imageView;
+    //[self.view addSubview:imageView];
 }
 
 /*

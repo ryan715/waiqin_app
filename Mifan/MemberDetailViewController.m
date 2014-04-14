@@ -7,13 +7,14 @@
 //
 
 #import "MemberDetailViewController.h"
+#import "ImageHelper.h"
 
 @interface MemberDetailViewController ()
 
 @end
 
 @implementation MemberDetailViewController
-@synthesize model;
+@synthesize model,listTable;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,7 +28,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"the user id is %@",model.memberNc);
+    NSLog(@"the user id is %@",model.memberNl);
+    
+    UIImage *profileImage = [UIImage imageNamed:@"tx1.jpg"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 80, 100, 100)];
+    ImageHelper *imageHelper = [[ImageHelper alloc] init];
+    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
+    
+    UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(150, 80, 100, 100)];
+    lblName.text = model.memberNc;
+    lblName.font = [UIFont fontWithName:@"Arial" size:18.0];
+    
+    UILabel *lblGroup = [[UILabel alloc] initWithFrame:CGRectMake(150, 120, 200, 100)];
+    lblGroup.text = [NSString stringWithFormat:@"%@ —— %@",model.memberNl, model.memberXb];
+    lblGroup.font = [UIFont fontWithName:@"Arial" size:14.0];
+    lblGroup.textColor = [UIColor grayColor];
+    
+    [self.view addSubview:imageView];
+    [self.view addSubview:lblName];
+    [self.view addSubview:lblGroup];
+    [self customeTableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +56,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -46,5 +68,55 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+/* 创建定位列表 */
+- (void)customeTableView
+{
+    self.listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 200, 320, 500) style:UITableViewStyleGrouped ];
+    
+    //self.listTable =
+    [self.listTable setDelegate:self];
+    [self.listTable setDataSource:self];
+    [self.view addSubview:self.listTable];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *tableViewCellIdentifier = @"TableViewCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableViewCellIdentifier ];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableViewCellIdentifier];
+    }
+    
+    //Location *locationModel = [itemList objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = model.telephoneString;
+    } else if(indexPath.row == 1)
+    {
+        cell.textLabel.text = model.emailString;
+    }
+    
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 
 @end

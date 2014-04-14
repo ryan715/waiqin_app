@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Member.h"
 
-@interface MemberDetailViewController : UIViewController
+@interface MemberDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) Member *model;
-
+@property (strong, nonatomic) UITableView *listTable;
 @end

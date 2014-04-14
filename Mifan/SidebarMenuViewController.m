@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "MainViewController.h"
 #import "PictureListViewController.h"
+#import "AboutViewController.h"
 
 @interface SidebarMenuViewController ()
 
@@ -130,6 +131,13 @@
         MainViewController *mainController = (MainViewController *)segue.destinationViewController;
         [segue destinationViewController];
     }
+    
+//    if ([segue.identifier isEqualToString:@"toProfile"]) {
+//        NSLog(@"toProfile");
+//        AboutViewController *aboutViewController = (AboutViewController *)segue.destinationViewController;
+//        [segue destinationViewController];
+//    }
+
 
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {

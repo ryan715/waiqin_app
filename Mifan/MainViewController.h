@@ -11,7 +11,7 @@
 #import "KeychainItemWrapper.h"
 #import "WaiqinHttpClient.h"
 
-@interface MainViewController : UITableViewController
+@interface MainViewController : UITableViewController<WaiqinHttpClientDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;

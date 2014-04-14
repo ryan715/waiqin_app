@@ -10,4 +10,8 @@
 
 @interface ImageHelper : NSObject
 
+- (UIImage *) ellipseImage: (UIImage *) image withInset: (CGFloat) inset;
+
+- (UIImage *) ellipseImage: (UIImage *) image withInset: (CGFloat) inset withBorderWidth:(CGFloat)width withBorderColor:(UIColor*)color;
+
 @end

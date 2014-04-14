@@ -73,6 +73,9 @@
 		1880FBC9185070CC002B9830 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBC8185070CC002B9830 /* StoreKit.framework */; };
 		1880FBCB185070DA002B9830 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880FBCA185070DA002B9830 /* SystemConfiguration.framework */; };
 		1884299918556A3F0029D38F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884299818556A3F0029D38F /* AboutViewController.m */; };
+		18A8A0D118F8EB1D0029FE68 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A8A0D018F8EB1D0029FE68 /* Reachability.m */; };
+		18B861FC18F7DFBC0003046A /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B861FB18F7DFBC0003046A /* ImageHelper.m */; };
+		18B861FF18F7E9CE0003046A /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B861FE18F7E9CE0003046A /* UIImage+Blur.m */; };
 		18B8B0DD18F24D6200CE69CA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */; };
 		18B8B0E018F2567D00CE69CA /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0DF18F2567D00CE69CA /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18B8B0E318F258E300CE69CA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8B0E218F258E300CE69CA /* User.m */; };
@@ -215,6 +218,12 @@
 		1880FBCA185070DA002B9830 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1884299718556A3F0029D38F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1884299818556A3F0029D38F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		18A8A0CF18F8EB1D0029FE68 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		18A8A0D018F8EB1D0029FE68 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		18B861FA18F7DFBC0003046A /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
+		18B861FB18F7DFBC0003046A /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
+		18B861FD18F7E9CE0003046A /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
+		18B861FE18F7E9CE0003046A /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		18B8B0DB18F24D6200CE69CA /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		18B8B0DC18F24D6200CE69CA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		18B8B0DE18F2567D00CE69CA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -348,11 +357,14 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		1814C0DF18EE489900093BCC /* TableCell */ = {
+		1814C0DF18EE489900093BCC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				18B861F918F7DF980003046A /* New Group */,
+				18B861FA18F7DFBC0003046A /* ImageHelper.h */,
+				18B861FB18F7DFBC0003046A /* ImageHelper.m */,
 			);
-			name = TableCell;
+			name = Util;
 			sourceTree = "<group>";
 		};
 		181FFC601835153B00059284 = {
@@ -436,7 +448,7 @@
 				18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */,
 				181FFC731835153B00059284 /* Supporting Files */,
 				181FFCA71835203D00059284 /* SWRevealViewController */,
-				1814C0DF18EE489900093BCC /* TableCell */,
+				1814C0DF18EE489900093BCC /* Util */,
 				1809353D18D7D1FA0001A7A6 /* UIKit+AFNetworking */,
 				18F767F0185215B700D46232 /* VicinityViewController.h */,
 				18F767F1185215B700D46232 /* VicinityViewController.m */,
@@ -496,6 +508,10 @@
 		1823D6EF18E16EEC008FD055 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				18A8A0CF18F8EB1D0029FE68 /* Reachability.h */,
+				18A8A0D018F8EB1D0029FE68 /* Reachability.m */,
+				18B861FD18F7E9CE0003046A /* UIImage+Blur.h */,
+				18B861FE18F7E9CE0003046A /* UIImage+Blur.m */,
 				187512B718F3994A00FEECEE /* CustomSegue.h */,
 				187512B818F3994A00FEECEE /* CustomSegue.m */,
 				18B8B0DE18F2567D00CE69CA /* KeychainItemWrapper.h */,
@@ -514,6 +530,13 @@
 				187FCDF818E67A81002590E1 /* MBProgressHUD.m */,
 			);
 			name = Libs;
+			sourceTree = "<group>";
+		};
+		18B861F918F7DF980003046A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		18B923AD1835BFAE008B6685 /* Models */ = {
@@ -693,9 +716,11 @@
 				187FCDF918E67A81002590E1 /* MBProgressHUD.m in Sources */,
 				181FFCAD183521D600059284 /* MainViewController.m in Sources */,
 				18E4B8AD18ED01D80002DC0F /* UIPlaceHolderTextView.m in Sources */,
+				18A8A0D118F8EB1D0029FE68 /* Reachability.m in Sources */,
 				1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */,
 				18E4B8B518ED081A0002DC0F /* UIImage+Resize.m in Sources */,
 				1884299918556A3F0029D38F /* AboutViewController.m in Sources */,
+				18B861FC18F7DFBC0003046A /* ImageHelper.m in Sources */,
 				187512B618F37F3D00FEECEE /* MemberDetailViewController.m in Sources */,
 				1809356C18D7D20E0001A7A6 /* AFHTTPRequestOperationManager.m in Sources */,
 				1809356D18D7D20E0001A7A6 /* AFHTTPSessionManager.m in Sources */,
@@ -708,6 +733,7 @@
 				181FFC791835153B00059284 /* main.m in Sources */,
 				18F767F2185215B700D46232 /* VicinityViewController.m in Sources */,
 				18B923B11835C029008B6685 /* Member.m in Sources */,
+				18B861FF18F7E9CE0003046A /* UIImage+Blur.m in Sources */,
 				1809355118D7D1FA0001A7A6 /* UIAlertView+AFNetworking.m in Sources */,
 				1809356F18D7D20E0001A7A6 /* AFSecurityPolicy.m in Sources */,
 				1814C0E818EE529A00093BCC /* Picture.m in Sources */,

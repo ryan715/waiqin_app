@@ -28,6 +28,9 @@
 - (void)imageDetail:(NSString *)idString;
 
 - (void)userList:(NSString *)userId pageIndex:(NSString *)pageindex pageSize:(NSString *)pagesize;
+
+- (BOOL) isConnectionAvailable;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
