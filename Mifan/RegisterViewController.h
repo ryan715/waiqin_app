@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
 
 @class RegisterViewController;
 
@@ -17,10 +18,10 @@
 
 @end
 
-@interface RegisterViewController : UIViewController<UITextFieldDelegate>
+@interface RegisterViewController : UIViewController<UITextFieldDelegate,WaiqinHttpClientDelegate>
 
 @property (nonatomic,weak) id<RegisterViewControllerDelegate>delegate;
-
+@property (weak, nonatomic) MBProgressHUD *hud;
 @property(weak,nonatomic) IBOutlet UITextField *textName;
 @property(weak,nonatomic) IBOutlet UITextField *textPassword;
 @property(weak,nonatomic) IBOutlet UITextField *ConfirmPasswordText;

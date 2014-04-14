@@ -31,6 +31,8 @@
 
 - (BOOL) isConnectionAvailable;
 
+- (void)registerAction:(NSString *)userName Password:(NSString *)pwdmd5 TrueName: (NSString *)truename Email: (NSString *)email Telephone: (NSString *)telephone;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -44,5 +46,7 @@
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData;
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client imageDetailDelegate:(id)responseData;
 - (void)waiqinHTTPClient: (WaiqinHttpClient *)client userListDelegate: (id)responseData;
+
+- (void) waiqinHTTPClient: (WaiqinHttpClient *)client registerDelegate: (id)responseData;
 @end
 

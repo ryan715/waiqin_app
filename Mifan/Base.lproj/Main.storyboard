@@ -32,7 +32,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xz-LY-blF">
                                 <rect key="frame" x="35" y="386" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="登录">
+                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -46,19 +48,29 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLg-rd-edT">
+                                <rect key="frame" x="29" y="433" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nXe-V5-IGH" kind="custom" identifier="toRegister" customClass="forwadbackSegue" id="9l4-hj-lqv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="textName" destination="U8U-ve-1G0" id="y66-hx-6y7"/>
                         <outlet property="textPassword" destination="5gw-tk-21B" id="CuP-Tt-rNa"/>
-                        <segue destination="lNq-7T-TkD" kind="modal" identifier="toRegister" id="cKz-Ac-XgM"/>
                         <segue destination="Pgx-8E-WeN" kind="modal" identifier="toMain" id="Jdd-SC-9DX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="135"/>
+            <point key="canvasLocation" x="1088" y="-221"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="eAY-Lh-jiS">
@@ -78,7 +90,7 @@
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="30"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-HI-NMq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入用户昵称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-HI-NMq">
                                 <rect key="frame" x="35" y="309" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -97,8 +109,9 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0s-7S-FBR">
-                                <rect key="frame" x="35" y="445" width="250" height="30"/>
+                                <rect key="frame" x="-55" y="441" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="立即注册">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -106,16 +119,20 @@
                                     <action selector="RegisterButton:" destination="nXe-V5-IGH" eventType="touchUpInside" id="2Ya-dN-8eV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UE4-Pw-K0i">
+                                <rect key="frame" x="-5" y="488" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="返回登录">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="custom" identifier="toLogin" customClass="forwadbackSegue" id="HU3-uO-G0G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nc8-7i-WoB">
-                        <barButtonItem key="leftBarButtonItem" title="登录" id="rDS-UD-tr0">
-                            <connections>
-                                <action selector="LoginButton:" destination="nXe-V5-IGH" id="itb-Cl-Ukw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="ConfirmPasswordText" destination="wXX-3w-00j" id="PeO-we-9DM"/>
                         <outlet property="textName" destination="eQl-HI-NMq" id="9Tm-qG-Ewt"/>
@@ -264,25 +281,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXA-RM-uE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2890" y="-1121"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="PAj-Co-Y8t">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lNq-7T-TkD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="xE7-Rq-2Ur"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="STv-6O-aP6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nXe-V5-IGH" kind="relationship" relationship="rootViewController" id="g2o-xs-ghN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DXN-gm-1TH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1007" y="-589"/>
         </scene>
         <!--Sidebar Menu View Controller-->
         <scene sceneID="3wK-2T-MBE">
@@ -712,7 +710,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jdd-SC-9DX"/>
+        <segue reference="bJH-Cz-HMm"/>
         <segue reference="tWm-lP-lJN"/>
     </inferredMetricsTieBreakers>
 </document>

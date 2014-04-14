@@ -176,6 +176,28 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 }
 
 
+/* 
+ 用户注册
+ */
+- (void)registerAction:(NSString *)userName Password:(NSString *)pwdmd5 TrueName:(NSString *)truename Email:(NSString *)email Telephone:(NSString *)telephone
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"Username"] = userName;
+    parameters[@"pwdmd5"] = pwdmd5;
+    parameters[@"truename"] = truename;
+    parameters[@"email"] = email;
+    parameters[@"telephone"] = telephone;
+    
+    [self POST:@"UserRegister" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:registerDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self registerDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+}
+
+
 - (BOOL) isConnectionAvailable
 {
     BOOL isExistenceNetwork = YES;

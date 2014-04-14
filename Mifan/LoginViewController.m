@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "MainViewController.h"
+#import "forwadbackSegue.h"
 
 @interface LoginViewController ()
 
@@ -63,7 +64,26 @@
 
 - (IBAction)Register:(id)sender
 {
-    [self performSegueWithIdentifier:@"toRegister" sender:self];
+    //[self performSegueWithIdentifier:@"toRegister" sender:self];
+//    forwadbackSegue * = (forwadbackSegue *)segue;
+//    
+//    if ([segue.identifier isEqualToString:@"forwardSegue"]) {
+//        s.isDismiss = NO;
+//        NSLog(@"the isdismiss NO");
+//    }else if ([segue.identifier isEqualToString:@"backwardSegue"]){
+//        s.isDismiss = YES;
+//        NSLog(@"the isdismiss NO");
+//    }
+//    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+//    {
+//        s.isLandscapeOrientation = YES;
+//    }
+//    else
+//    {
+//        s.isLandscapeOrientation = NO;
+//    }
+//    
+
 
 }
 
@@ -175,7 +195,7 @@
 ////    NSDictionary *lists = [res objectForKey:@"lists"];
 ////
 //  NSLog(@"THE department IS %@",department);
-
+    
 
 }
 
@@ -188,13 +208,44 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"prepare for sege");
-    if ([segue.identifier isEqualToString:@"toRegister"])
-    {
-        UINavigationController *navigationController = segue.destinationViewController;
-        RegisterViewController *registerViewController = [[navigationController viewControllers] objectAtIndex:0];
-        registerViewController.delegate = self;
+//    if ([segue.identifier isEqualToString:@"toRegister"])
+//    {
+//        UINavigationController *navigationController = segue.destinationViewController;
+//        RegisterViewController *registerViewController = [[navigationController viewControllers] objectAtIndex:0];
+//        registerViewController.delegate = self;
+//    
+//    }
     
+    
+    forwadbackSegue *s = (forwadbackSegue *)segue;
+    
+    if ([segue.identifier isEqualToString:@"toRegister"]) {
+        s.isDismiss = NO;
+        NSLog(@"the isdismiss NO");
+        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+        {
+            s.isLandscapeOrientation = YES;
+        }
+        else
+        {
+            s.isLandscapeOrientation = NO;
+        }
+
+    }else if ([segue.identifier isEqualToString:@"backwardSegue"]){
+        s.isDismiss = YES;
+        NSLog(@"the isdismiss NO");
+        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+        {
+            s.isLandscapeOrientation = YES;
+        }
+        else
+        {
+            s.isLandscapeOrientation = NO;
+        }
+
     }
+    
+
     
 //    if ([segue.identifier isEqualToString:@"toMain"])
 //    {
@@ -203,6 +254,7 @@
 //        mainViewController.user = _user;
 //        
 //    }
+    
 }
 
 -(BOOL) NameBlankString:(NSString *)StrUsername PasswordBlankString:(NSString *)StrPassword
