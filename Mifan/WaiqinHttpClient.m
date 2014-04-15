@@ -10,7 +10,9 @@
 #import "MBProgressHUD.h"
 #import "Reachability.h"
 
-static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/webservice/";
+//static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/webservice/";
+
+static NSString* const WaiqinOnlineURLString = @"http://192.168.1.143:8080/ExpertSelectSystemV1.1/webservice/";
 
 @implementation WaiqinHttpClient
 
@@ -105,13 +107,15 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 
 }
 
+/* 图片上传 */
+
 - (void)uploadImage:(NSString *)userName withBeizhu:(NSString *)beiZhu withImage:(NSString *)image
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"Username"] = userName;
     parameters[@"Beizhu"] = beiZhu;
     parameters[@"Imgstr"] = image;
-    
+    parameters[@"Isopen"] = @"1";
     [self POST:@"GetAddPicRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:uploadImage:)
             ]) {

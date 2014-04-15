@@ -128,7 +128,7 @@
         for (int j= 0; j< arrayList.count; j++) {
             dictionaryList = [arrayList objectAtIndex: j];
             
-            Member *model = [[Member alloc] initWithImage:_dataArray[j][0] Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
+            Member *model = [[Member alloc] initWithImage:@"tx8.jpg" Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
             [_dataList addObject:model];
            
             [self.tableView reloadData];

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeychainItemWrapper.h"
+#import "WaiqinHttpClient.h"
 
-@interface PictureListViewController : UITableViewController<UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface PictureListViewController : UITableViewController<UIImagePickerControllerDelegate, UIActionSheetDelegate, WaiqinHttpClientDelegate>
 
 @property (nonatomic, weak)IBOutlet UIBarButtonItem *sidebarButton;
+@property (retain, nonatomic) KeychainItemWrapper *wrapper;
+@property (weak, nonatomic) WaiqinHttpClient *client;
 
 - (IBAction)photoAction:(id)sender;
 @end

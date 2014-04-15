@@ -160,4 +160,22 @@ CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]c
 }
 */
 
+
+- (IBAction)LogoutButtonClick:(id)sender
+{
+    [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil, nil] showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self performSegueWithIdentifier:@"LogoutAction" sender:self];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 @end

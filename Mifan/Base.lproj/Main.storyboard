@@ -70,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="-221"/>
+            <point key="canvasLocation" x="1262" y="-1107"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="eAY-Lh-jiS">
@@ -263,6 +263,19 @@
                     <view key="view" contentMode="scaleToFill" id="PnS-3y-rLi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-TN-eVe">
+                                <rect key="frame" x="130" y="487" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="LogoutButtonClick:" destination="WpR-ju-EBO" eventType="touchUpInside" id="Oqw-hZ-3G3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
@@ -276,11 +289,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="sidebarButton" destination="PyE-w0-KQn" id="wUV-BE-r3W"/>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="LogoutAction" id="Z2j-J9-3oV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXA-RM-uE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2890" y="-1121"/>
+            <point key="canvasLocation" x="2062" y="-1229"/>
         </scene>
         <!--Sidebar Menu View Controller-->
         <scene sceneID="3wK-2T-MBE">
@@ -710,7 +724,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bJH-Cz-HMm"/>
+        <segue reference="Z2j-J9-3oV"/>
+        <segue reference="Jdd-SC-9DX"/>
         <segue reference="tWm-lP-lJN"/>
     </inferredMetricsTieBreakers>
 </document>

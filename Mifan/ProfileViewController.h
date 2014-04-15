@@ -10,9 +10,11 @@
 #import "KeychainItemWrapper.h"
 #import "WaiqinHttpClient.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController<UIActionSheetDelegate>
 
 @property (weak,nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
 @property (weak, nonatomic) WaiqinHttpClient *client;
+
+- (IBAction)LogoutButtonClick:(id)sender;
 @end

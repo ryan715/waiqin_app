@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WaiqinHttpClient.h"
+#import "User.h"
 
 @class PictureNewViewController;
 
@@ -21,6 +22,7 @@
 @interface PictureNewViewController : UIViewController<UITextViewDelegate, WaiqinHttpClientDelegate>
 @property (nonatomic, strong) id<PictureNewViewControllerDelegate> delegate;
 @property (nonatomic, weak) UIImage *photoImage;
+@property   (weak, nonatomic) User *userModel;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)sentAction:(id)sender;

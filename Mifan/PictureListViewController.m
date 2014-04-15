@@ -10,11 +10,14 @@
 #import "SWRevealViewController.h"
 #import "PictureNewViewController.h"
 #import "PicturesCell.h"
+#import <CommonCrypto/CommonDigest.h>
+#import "User.h"
 
 @interface PictureListViewController ()
 {
     UIImage *photoImage;
     NSMutableArray *itemList;
+    User *user;
 }
 @end
 
@@ -70,9 +73,40 @@
 
 - (void)loadData
 {
-    WaiqinHttpClient *client =[WaiqinHttpClient sharedWaiqinHttpClient];
-    client.delegate = self;
-    [client listImage:@"31" withPageIndex:@"1" withPageSize:@"15"];
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+
+    
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        dictionaryList = [arrayList objectAtIndex: 0];
+        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+        
+        [client listImage:user.idString withPageIndex:@"1" withPageSize:@"15"];
+    }
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData
@@ -185,7 +219,7 @@
         PictureNewViewController *picNew = [[navigationController viewControllers] objectAtIndex:0];
         
         picNew.photoImage = photoImage;
-        
+        picNew.userModel = user;
         picNew.delegate = self;
     }
 }

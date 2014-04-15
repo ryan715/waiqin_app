@@ -84,19 +84,19 @@
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
     
-    [client uploadImage:@"a005" withBeizhu:contentString withImage:photoString];
+    [client uploadImage:_userModel.nameString withBeizhu:contentString withImage:photoString];
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate
 {
     NSDictionary *ws = [responseDate objectForKey:@"wsr"];
     NSString *status = [ws objectForKey:@"status"];
-    
+    NSString *errMessage = [ws objectForKey:@"message"];
     if ([status isEqualToString:@"1"]) {
         UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:@"上传成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorAlertView show];
     }else{
-        UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:@"上传失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message: errMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorAlertView show];
     }
 }
