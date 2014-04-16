@@ -10,6 +10,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WaiqinHttpClient.h"
+#import "User.h"
 
 @class LocationMeViewController;
 
@@ -25,6 +26,7 @@
 @property (nonatomic, retain) NSString *latitudeValue;
 @property (nonatomic, retain) NSString *placeValue;
 @property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, weak) User *userModel;
 @property (nonatomic, weak) id<LocationMeViewControllerDelegate>delegate;
 - (IBAction)uploadButtonClick:(id)sender;
 - (IBAction)backAction:(id)sender;

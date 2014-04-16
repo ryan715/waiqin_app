@@ -17,7 +17,7 @@
 CLLocationManager *locationManager;
 CLGeocoder *geocoder;
 CLPlacemark *placemark;
-@synthesize longitudeValue,latitudeValue;
+@synthesize longitudeValue,latitudeValue, userModel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -103,8 +103,8 @@ CLPlacemark *placemark;
             
             WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
             client.delegate = self;
-            [client uploadLocation:@"a006" withBeizhu:self.placeValue withLongitude:self.longitudeValue withLatitude:self.latitudeValue];
-            NSLog(@"the long is %@, the lat is %@, the address is %@",self.longitudeValue, self.latitudeValue, self.placeValue);
+            [client uploadLocation:userModel.idString withBeizhu:self.placeValue withLongitude:self.longitudeValue withLatitude:self.latitudeValue];
+//            NSLog(@"the long is %@, the lat is %@, the address is %@",self.longitudeValue, self.latitudeValue, self.placeValue);
             
             
 

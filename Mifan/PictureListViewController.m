@@ -47,6 +47,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self loadData];
+    self.title = @"图文上报";
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +99,11 @@
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
 {
     NSDictionary *res = [responseData objectForKey:@"wsr"];
-    NSString *status = [res objectForKey:@"status"];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         NSArray *arrayList = [res objectForKey:@"lists"];
@@ -106,6 +111,7 @@
         user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
         
         [client listImage:user.idString withPageIndex:@"1" withPageSize:@"15"];
+    }
     }
 }
 

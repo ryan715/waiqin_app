@@ -103,14 +103,19 @@
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
 {
     NSDictionary *res = [responseData objectForKey:@"wsr"];
-    NSString *status = [res objectForKey:@"status"];
-    if ([status isEqualToString:@"1"]) {
-        NSDictionary *dictionaryList;
-        NSArray *arrayList = [res objectForKey:@"lists"];
-        dictionaryList = [arrayList objectAtIndex: 0];
-        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+
+    if (statusID != [NSNull null]) {
         
-        [client userList:user.idString pageIndex:@"1" pageSize:@"15"];
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *dictionaryList;
+            NSArray *arrayList = [res objectForKey:@"lists"];
+            dictionaryList = [arrayList objectAtIndex: 0];
+            user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+            
+            [client userList:user.idString pageIndex:@"1" pageSize:@"15"];
+        }
     }
 }
 

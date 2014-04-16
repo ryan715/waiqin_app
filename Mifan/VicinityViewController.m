@@ -11,10 +11,13 @@
 #import "LocationMeViewController.h"
 #import "LocationDetailViewController.h"
 #import "Location.h"
+#import "User.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface VicinityViewController ()
 {
     NSMutableArray *itemList;
+    User *userModel;
 }
 
 @end
@@ -36,10 +39,12 @@
 	_sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
    // _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
     self.title = @"我的定位";
     [self customUIBarButtonItem];
     [self customeTableView];
-    [self loadData];
+    [self getUserAction];
     
     itemList = [[NSMutableArray alloc] init];
 }
@@ -120,6 +125,51 @@
 }
 
 
+- (void)getUserAction
+{
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        dictionaryList = [arrayList objectAtIndex: 0];
+        userModel = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+        
+        [_client listLocationAction:userModel.idString withPageIndex:@"1" withPageSize:@"10"];
+//        [client userList:userModel.idString pageIndex:@"1" pageSize:@"15"];
+        }
+    }
+}
+
+
+
+
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listLocation:(id)responseData
 {
     //NSLog(@"the list all is %@", responseData);
@@ -166,6 +216,8 @@
     if ([segue.identifier isEqualToString:@"toLocation"]) {
 
         LocationMeViewController *locationMe = [[navigationController viewControllers] objectAtIndex:0];
+        
+        locationMe.userModel = userModel;
         [locationMe setDelegate:self];
     }
     
