@@ -105,16 +105,21 @@
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     id statusID = [res objectForKey:@"status"];
     NSString *status = @"";
-
+    
     if (statusID != [NSNull null]) {
         
+        status = statusID;
+        //NSLog(@"the respose data are %@", responseData);
         if ([status isEqualToString:@"1"]) {
+            
+            //NSLog(@"the respose data are %@", responseData);
             NSDictionary *dictionaryList;
             NSArray *arrayList = [res objectForKey:@"lists"];
             dictionaryList = [arrayList objectAtIndex: 0];
             user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
             
-            [client userList:user.idString pageIndex:@"1" pageSize:@"15"];
+            [_client userList:user.idString pageIndex:@"1" pageSize:@"15"];
+            //NSLog(@"the respose data are %@", responseData);
         }
     }
 }
@@ -122,6 +127,8 @@
 /* 获取群组成员 */
 - (void)waiqinHTTPClient: (WaiqinHttpClient *)client userListDelegate:(id)responseData
 {
+    
+    NSLog(@"the respose data are %@", responseData);
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
     if ([status isEqualToString:@"1"]) {

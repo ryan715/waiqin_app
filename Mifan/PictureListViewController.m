@@ -103,7 +103,7 @@
     NSString *status = @"";
     
     if (statusID != [NSNull null]) {
-
+        status = statusID;
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         NSArray *arrayList = [res objectForKey:@"lists"];
