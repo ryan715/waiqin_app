@@ -33,6 +33,9 @@
 
 - (void)registerAction:(NSString *)userName Password:(NSString *)pwdmd5 TrueName: (NSString *)truename Email: (NSString *)email Telephone: (NSString *)telephone;
 
+- (void)GetUpdatetxUserforqunzhuAction: (NSString *)imgstr UserId: (NSString *)userid;
+
+- (void) GetOneUserforqunzhuAction: (NSString *)userid;
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -48,5 +51,9 @@
 - (void)waiqinHTTPClient: (WaiqinHttpClient *)client userListDelegate: (id)responseData;
 
 - (void) waiqinHTTPClient: (WaiqinHttpClient *)client registerDelegate: (id)responseData;
+
+- (void) waiqinHTTPClient: (WaiqinHttpClient *) client getUpdatetxUserforqunzhuDelegate: (id) responseData;
+
+- (void) waiqinHTTPClient: (WaiqinHttpClient *) client getOneUserforqunzhuDelegate: (id) responseData;
 @end
 

@@ -140,7 +140,9 @@
         for (int j= 0; j< arrayList.count; j++) {
             dictionaryList = [arrayList objectAtIndex: j];
             
-            Member *model = [[Member alloc] initWithImage:@"tx8.jpg" Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
+            NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
+            
+            Member *model = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
             [_dataList addObject:model];
            
             [self.tableView reloadData];

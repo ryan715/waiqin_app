@@ -12,6 +12,7 @@
 #import "User.h"
 #import "ImageHelper.h"
 #import "UIImage+Blur.h"
+#import "Photo.h"
 
 @interface ProfileViewController ()
 {
@@ -82,10 +83,13 @@
         dictionaryList = [arrayList objectAtIndex: 0];
         user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
         
-        [self customUser:@""];
+        [_client GetOneUserforqunzhuAction:user.idString];
+        //[self customUser:@""];
         
     }
 }
+
+
 
 - (void)customUser: (NSString *)imageURLString
 {
@@ -97,6 +101,13 @@
 //    return imageView;
     imageView.contentMode = UIViewContentModeCenter;
     imageView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2-100);
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleFingerEvent)];
+//    singleTap.numberOfTouchesRequired = 1;
+//    singleTap.numberOfTapsRequired = 1;
+//    singleTap.delegate = self;
+    [imageView addGestureRecognizer:singleTap];
+    imageView.userInteractionEnabled = YES;
     
     UIImage *profileBackgroundImage = [UIImage imageNamed:@"tx1.jpg"];
     
@@ -148,6 +159,78 @@ CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]c
 }
 
 
+- (void)handleSingleFingerEvent
+{
+    UIActionSheet *picActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册选择", nil];
+    [picActionSheet showInView:[self view]];
+    picActionSheet.tag = 101;
+    
+}
+
+
+/* 处理图片 */
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *photoImage = [self scaleImage:originImage toScale:0.3];
+    NSString *photoString = [Photo image2String: photoImage];
+
+    [_client GetUpdatetxUserforqunzhuAction:photoString UserId:user.idString];
+    [picker dismissModalViewControllerAnimated:NO];
+    
+    //[self performSegueWithIdentifier:@"toPictureNew" sender:self];
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client getOneUserforqunzhuDelegate:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        //        NSDictionary *dictionaryList;
+        //        NSArray *arrayList = [res objectForKey:@"lists"];
+        //        dictionaryList = [arrayList objectAtIndex: 0];
+        //        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+        //
+        //        [self customUser:@""];
+        
+        NSLog(@"update image success");
+    }
+    
+}
+
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client getUpdatetxUserforqunzhuDelegate:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+//        NSDictionary *dictionaryList;
+//        NSArray *arrayList = [res objectForKey:@"lists"];
+//        dictionaryList = [arrayList objectAtIndex: 0];
+//        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+//        
+//        [self customUser:@""];
+        
+        NSLog(@"update image success");
+    }
+
+}
+
+
+
+
+- (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSzie
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSzie, image.size.height *scaleSzie));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSzie, image.size.height * scaleSzie)];
+    UIImage *scaleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaleImage;
+    
+}
+
+
 
 /*
 #pragma mark - Navigation
@@ -163,11 +246,16 @@ CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]c
 
 - (IBAction)LogoutButtonClick:(id)sender
 {
-    [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil, nil] showInView:self.view];
+    UIActionSheet *logoutActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil, nil];
+    [logoutActionSheet showInView:self.view];
+    logoutActionSheet.tag = 102;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (actionSheet.tag == 102) {
+        
+   
     switch (buttonIndex) {
         case 0:
             [self performSegueWithIdentifier:@"LogoutAction" sender:self];
@@ -176,6 +264,28 @@ CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]c
         default:
             break;
     }
+    }else if(actionSheet.tag == 101){
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = (id)self;
+    
+    switch (buttonIndex) {
+        case 0:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            }else{
+                NSLog(@"模拟器无法打开相机");
+            }
+            [self presentModalViewController:picker animated:YES];
+            break;
+        case 1:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:picker animated:YES];
+        default:
+            break;
+    }
+    }
+
 }
 
 @end

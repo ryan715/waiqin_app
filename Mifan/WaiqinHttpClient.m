@@ -201,6 +201,41 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     }];
 }
 
+/* 会员更换头像 */
+
+- (void)GetUpdatetxUserforqunzhuAction:(NSString *)imgstr UserId:(NSString *)userid
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"imgstr"] = imgstr;
+    parameters[@"userid"] = userid;
+    
+    [self POST:@"GetUpdatetxUserforqunzhu" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:getUpdatetxUserforqunzhuDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self getUpdatetxUserforqunzhuDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+
+}
+
+/* 获取个人信息 */
+- (void)GetOneUserforqunzhuAction:(NSString *)userid
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    parameters[@"imgstr"] = imgstr;
+    parameters[@"id"] = userid;
+    
+    [self POST:@"GetOneUserforqunzhu" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:getOneUserforqunzhuDelegate::)]) {
+            [self.delegate waiqinHTTPClient:self getOneUserforqunzhuDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+
+}
+
 
 - (BOOL) isConnectionAvailable
 {

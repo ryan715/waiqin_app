@@ -8,6 +8,7 @@
 
 #import "MembersCell.h"
 #import "Member.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation MembersCell
 
@@ -28,8 +29,12 @@
 }
 
 -(void)setupCell:(Member *)model{
-    UIImage *image = [UIImage imageNamed:model.memberImage];
-    [self.memberImg setImage:image];
+//    UIImage *image = [UIImage imageNamed:model.memberImage];
+//    [self.memberImg setImage:image];
+
+    
+    [self.memberImg setImageWithURL:[NSURL URLWithString: model.memberImage]];
+//    NSLog(@"the pic url %@", model.pictureString);
     
     self.nameLabel.text = model.memberNc;
     self.xbLabel.text = model.memberXb;
