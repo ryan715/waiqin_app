@@ -46,8 +46,6 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 - (void)loginActionUser:(NSString *)userName withPassword:(NSString *)userPassword
 {
     
-    
-    
     NSMutableDictionary *parameters =[NSMutableDictionary dictionary];
     parameters[@"username"] = userName;
     parameters[@"pwdmd5"] = userPassword;
@@ -227,7 +225,7 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
     parameters[@"id"] = userid;
     
     [self POST:@"GetOneUserforqunzhu" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:getOneUserforqunzhuDelegate::)]) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:getOneUserforqunzhuDelegate:)]) {
             [self.delegate waiqinHTTPClient:self getOneUserforqunzhuDelegate:responseObject];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

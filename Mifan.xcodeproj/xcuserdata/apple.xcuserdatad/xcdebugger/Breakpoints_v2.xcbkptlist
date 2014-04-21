@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mifan/ProfileViewController.m"
-            timestampString = "419485157.048627"
+            timestampString = "419745197.238399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-handleSingleFingerEvent"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-customUser:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

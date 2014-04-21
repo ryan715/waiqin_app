@@ -13,10 +13,13 @@
 #import "ImageHelper.h"
 #import "UIImage+Blur.h"
 #import "Photo.h"
+#import "Member.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProfileViewController ()
 {
     User *user;
+    Member * memberModel;
 }
 @end
 
@@ -90,13 +93,43 @@
 }
 
 
+/* 获取用户信息 */
+- (void) waiqinHTTPClient: (WaiqinHttpClient *) client getOneUserforqunzhuDelegate: (id) responseData{
+    NSLog(@"check getOneUserforqunzhuDelegate");
+    
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    if ([status isEqualToString:@"1"]) {
+        NSDictionary *dictionaryList;
+        NSArray *arrayList = [res objectForKey:@"lists"];
+        dictionaryList = [arrayList objectAtIndex: 0];
+       
+    NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
+    
+    memberModel = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
+        NSLog(@"the member url is %@", memberModel.memberImage);
+        [self customUser:memberModel.memberImage];
+    }
+
+}
+
+
 
 - (void)customUser: (NSString *)imageURLString
 {
-    UIImage *profileImage = [UIImage imageNamed:@"tx1.jpg"];
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    NSData *profileImageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *profileImage = [UIImage imageWithData:profileImageData];
+    
+//    UIImage *profileImage = [NSURL URLWithString: imageURLString];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    [imageView setImageWithURL:[NSURL URLWithString: imageURLString]];
+
+    
     ImageHelper *imageHelper = [[ImageHelper alloc] init];
+//    setImageWithURL:[NSURL URLWithString: model.memberImage]
+    
     imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
 //    return imageView;
     imageView.contentMode = UIViewContentModeCenter;
@@ -109,19 +142,16 @@
     [imageView addGestureRecognizer:singleTap];
     imageView.userInteractionEnabled = YES;
     
-    UIImage *profileBackgroundImage = [UIImage imageNamed:@"tx1.jpg"];
+    UIImage *profileBackgroundImage = [NSURL URLWithString: imageURLString];//[UIImage imageNamed:@"tx1.jpg"];
     
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 60, 320, 300)];
-//    ImageHelper *imageHelper = [[ImageHelper alloc] init];
-//    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
-//    //    return imageView;
-//    
+  
     
     // jpeg quality image data
     float quality = .00001f;
     // intensity of blurred
     float blurred = .5f;
-    NSData *imageData = UIImageJPEGRepresentation(profileBackgroundImage, quality);
+    NSData *imageData = UIImageJPEGRepresentation(profileImage, quality);
     UIImage *blurredImage = [[UIImage imageWithData:imageData] blurredImage:blurred];
     backgroundImageView.image = blurredImage;
     
@@ -137,9 +167,9 @@
 //    lblName.font = [UIFont fontWithName:@"Arial" size:22.0];
 //   
    
-CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]constrainedToSize:CGSizeMake(200, 100) lineBreakMode:NSLineBreakByCharWrapping];// 这里限制宽30, 不限制高度
+CGSize labelSize = [memberModel.memberNc sizeWithFont:[UIFont systemFontOfSize:22.0]constrainedToSize:CGSizeMake(300, 100) lineBreakMode:NSLineBreakByCharWrapping];// 这里限制宽30, 不限制高度
     UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width, labelSize.height+50)];
-    lblName.text = user.nameString;
+    lblName.text = memberModel.memberNc;
     lblName.textColor = [UIColor whiteColor];
     lblName.font = [UIFont fontWithName:@"Arial" size:22.0];
 
@@ -182,22 +212,6 @@ CGSize labelSize = [user.nameString sizeWithFont:[UIFont systemFontOfSize:22.0]c
     //[self performSegueWithIdentifier:@"toPictureNew" sender:self];
 }
 
-- (void)waiqinHTTPClient:(WaiqinHttpClient *)client getOneUserforqunzhuDelegate:(id)responseData
-{
-    NSDictionary *res = [responseData objectForKey:@"wsr"];
-    NSString *status = [res objectForKey:@"status"];
-    if ([status isEqualToString:@"1"]) {
-        //        NSDictionary *dictionaryList;
-        //        NSArray *arrayList = [res objectForKey:@"lists"];
-        //        dictionaryList = [arrayList objectAtIndex: 0];
-        //        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
-        //
-        //        [self customUser:@""];
-        
-        NSLog(@"update image success");
-    }
-    
-}
 
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client getUpdatetxUserforqunzhuDelegate:(id)responseData

@@ -170,20 +170,33 @@
 {
     //waiqinHTTPClient
     NSDictionary *res = [user objectForKey:@"wsr"];
-    NSString *status = [res objectForKey:@"status"];
+//    NSString *status = [res objectForKey:@"status"];
     
     [self.hud hide:YES];
-    if ([status isEqualToString:@"1"]) {
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
         
-        [_wrapper setObject:_user.nameString forKey:(__bridge id)kSecAttrAccount];
-        [_wrapper setObject:_user.passwordString forKey:(__bridge id)kSecValueData];
+        status = statusID;
+
+        if ([status isEqualToString:@"1"]) {
         
-        [self performSegueWithIdentifier:@"toMain" sender:self];
-    }
-    else{
+            [_wrapper setObject:_user.nameString forKey:(__bridge id)kSecAttrAccount];
+            [_wrapper setObject:_user.passwordString forKey:(__bridge id)kSecValueData];
+        
+            [self performSegueWithIdentifier:@"toMain" sender:self];
+        }
+        else{
+            NSString *errorString = [res objectForKey:@"message"];
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                   [errorAlertView show];
+
+        }
+    }else{
         NSString *errorString = [res objectForKey:@"message"];
         UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                   [errorAlertView show];
+        [errorAlertView show];
 
     }
 //    NSLog(@"THE status IS %@",status);
