@@ -36,9 +36,25 @@
 - (void)setupCell:(Picture *)model
 {
     [self.pictureImageView setImageWithURL:[NSURL URLWithString: model.pictureString]];
+    
+//    self.pictureImageView.canClick = YES;
+//    [self.pictureImageView setClickToViewController:h];
+    
+//    [self.pictureImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(BtnClick:)]];
+
     NSLog(@"the pic url %@", model.pictureString);
     self.nameLabel.text = model.nameString;
     self.titleLabel.text = model.titleString;
 }
+
+
+//- (void)BtnClick:(UITapGestureRecognizer *)imageTap
+//{
+//    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+//                                                 message:@"click ok"
+//                                                delegate:nil
+//                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [av show];
+//}
 
 @end

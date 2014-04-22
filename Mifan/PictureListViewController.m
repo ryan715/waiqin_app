@@ -12,12 +12,15 @@
 #import "PicturesCell.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "User.h"
+#import "Hint.h"
+
 
 @interface PictureListViewController ()
 {
     UIImage *photoImage;
     NSMutableArray *itemList;
     User *user;
+    Hint *h;
 }
 @end
 
@@ -48,6 +51,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self loadData];
     self.title = @"图文上报";
+    
+    h = [[Hint alloc]initWithNibName:@"Hint" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,15 +168,47 @@
     PicturesCell *cell = [self.tableView dequeueReusableCellWithIdentifier:pictureCell];
     [cell setupCell: itemList[indexPath.row]];
     
+    cell.pictureImageView.canClick = YES;
+    [cell.pictureImageView setClickToViewController];
+    
+    
     if (cell == nil) {
         [self.tableView registerNib:[UINib nibWithNibName:@"PicturesCell" bundle:nil] forCellReuseIdentifier:pictureCell];
         PicturesCell *cell1 = [self.tableView dequeueReusableCellWithIdentifier:pictureCell];
         [cell1 setupCell:itemList[indexPath.row]];
+        
+        cell1.pictureImageView.canClick = YES;
+        [cell1.pictureImageView setClickToViewController];
         cell = cell1;
     }
     return cell;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    // 1.封装图片数据
+//    NSMutableArray *photos = [NSMutableArray arrayWithCapacity: 1];
+////    for (int i = 0; i < [myImageUrlArr count]; i++) {
+//        // 替换为中等尺寸图片
+//    Picture *picModel = itemList[indexPath.row];
+//    
+//        NSString * getImageStrUrl = [NSString stringWithFormat:@"%@", picModel.pictureString];
+//        MJPhoto *photo = [[MJPhoto alloc] init];
+//        photo.url = [NSURL URLWithString: getImageStrUrl ]; // 图片路径
+//        
+//    UIImageView * imageView; //(UIImageView *)[self.view viewWithTag: imageTap.view.tag ];
+//        photo.srcImageView = imageView;
+//        [photos addObject:photo];
+////    }
+//    
+//    // 2.显示相册
+//    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+////    browser.currentPhotoIndex = (imageTap.view.tag - 10000); // 弹出相册时显示的第一张图片是？
+//    browser.photos = photos; // 设置所有的图片
+//    [browser show];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

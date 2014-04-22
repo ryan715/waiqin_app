@@ -195,7 +195,7 @@
         }
     }else{
         NSString *errorString = [res objectForKey:@"message"];
-        UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:@"服务端没有相应" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorAlertView show];
 
     }

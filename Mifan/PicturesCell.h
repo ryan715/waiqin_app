@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Picture.h"
+#import "ClickImage.h"
 
 @interface PicturesCell : UITableViewCell
 
-@property (nonatomic,weak) IBOutlet UIImageView *pictureImageView;
+@property (nonatomic,weak) IBOutlet ClickImage *pictureImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 

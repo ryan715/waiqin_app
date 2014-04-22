@@ -34,7 +34,9 @@
 
     
     [self.memberImg setImageWithURL:[NSURL URLWithString: model.memberImage]];
-//    NSLog(@"the pic url %@", model.pictureString);
+    
+        
+    //    NSLog(@"the pic url %@", model.pictureString);
     
     self.nameLabel.text = model.memberNc;
     self.xbLabel.text = model.memberXb;
@@ -46,6 +48,7 @@
 //    }
     self.qmLabel.text = model.memberNl;
 }
+
 
 
 @end

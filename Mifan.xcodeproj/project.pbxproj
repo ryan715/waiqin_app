@@ -92,6 +92,9 @@
 		18B923C61835CBC9008B6685 /* tx7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BE1835CBC9008B6685 /* tx7.jpg */; };
 		18B923C71835CBC9008B6685 /* tx8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BF1835CBC9008B6685 /* tx8.jpg */; };
 		18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB2A8218EBABA900B69D07 /* PictureListViewController.m */; };
+		18E436561905FEE000F9BAE8 /* ClickImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E436551905FEE000F9BAE8 /* ClickImage.m */; };
+		18E4365A1906005000F9BAE8 /* Hint.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E436581906005000F9BAE8 /* Hint.m */; };
+		18E4365B1906005000F9BAE8 /* Hint.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E436591906005000F9BAE8 /* Hint.xib */; };
 		18E4B8AA18ECF9BB0002DC0F /* PictureNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */; };
 		18E4B8AD18ED01D80002DC0F /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8AC18ED01D80002DC0F /* UIPlaceHolderTextView.m */; };
 		18E4B8B418ED081A0002DC0F /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4B8AF18ED081A0002DC0F /* UIImage+Alpha.m */; };
@@ -247,6 +250,11 @@
 		18B923BF1835CBC9008B6685 /* tx8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tx8.jpg; sourceTree = "<group>"; };
 		18CB2A8118EBABA900B69D07 /* PictureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListViewController.h; sourceTree = "<group>"; };
 		18CB2A8218EBABA900B69D07 /* PictureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListViewController.m; sourceTree = "<group>"; };
+		18E436541905FEE000F9BAE8 /* ClickImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickImage.h; sourceTree = "<group>"; };
+		18E436551905FEE000F9BAE8 /* ClickImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickImage.m; sourceTree = "<group>"; };
+		18E436571906005000F9BAE8 /* Hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hint.h; sourceTree = "<group>"; };
+		18E436581906005000F9BAE8 /* Hint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hint.m; sourceTree = "<group>"; };
+		18E436591906005000F9BAE8 /* Hint.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Hint.xib; sourceTree = "<group>"; };
 		18E4B8A818ECF9BB0002DC0F /* PictureNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureNewViewController.h; sourceTree = "<group>"; };
 		18E4B8A918ECF9BB0002DC0F /* PictureNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureNewViewController.m; sourceTree = "<group>"; };
 		18E4B8AB18ED01D80002DC0F /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
@@ -508,6 +516,11 @@
 		1823D6EF18E16EEC008FD055 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				18E436571906005000F9BAE8 /* Hint.h */,
+				18E436581906005000F9BAE8 /* Hint.m */,
+				18E436591906005000F9BAE8 /* Hint.xib */,
+				18E436541905FEE000F9BAE8 /* ClickImage.h */,
+				18E436551905FEE000F9BAE8 /* ClickImage.m */,
 				18A8A0CF18F8EB1D0029FE68 /* Reachability.h */,
 				18A8A0D018F8EB1D0029FE68 /* Reachability.m */,
 				18B861FD18F7E9CE0003046A /* UIImage+Blur.h */,
@@ -659,6 +672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B923C11835CBC9008B6685 /* tx2.jpg in Resources */,
+				18E4365B1906005000F9BAE8 /* Hint.xib in Resources */,
 				181FFC851835153B00059284 /* Images.xcassets in Resources */,
 				1814C0E518EE491900093BCC /* PicturesCell.xib in Resources */,
 				18B923C61835CBC9008B6685 /* tx7.jpg in Resources */,
@@ -696,6 +710,7 @@
 				181FFCA618351B7900059284 /* RegisterViewController.m in Sources */,
 				181A318318E92484000B8A40 /* LocationDetailViewController.m in Sources */,
 				181A318018E8FF6A000B8A40 /* Location.m in Sources */,
+				18E4365A1906005000F9BAE8 /* Hint.m in Sources */,
 				1809357018D7D20E0001A7A6 /* AFURLConnectionOperation.m in Sources */,
 				186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */,
 				18B8B0E018F2567D00CE69CA /* KeychainItemWrapper.m in Sources */,
@@ -739,6 +754,7 @@
 				1814C0E818EE529A00093BCC /* Picture.m in Sources */,
 				187512B918F3994A00FEECEE /* CustomSegue.m in Sources */,
 				181FFCAA1835203D00059284 /* SWRevealViewController.m in Sources */,
+				18E436561905FEE000F9BAE8 /* ClickImage.m in Sources */,
 				1809355218D7D1FA0001A7A6 /* UIButton+AFNetworking.m in Sources */,
 				18B923B41835C2CB008B6685 /* MembersCell.m in Sources */,
 				187512BC18F39B5F00FEECEE /* forwadbackSegue.m in Sources */,
