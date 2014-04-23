@@ -122,6 +122,8 @@
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData
 {
+    NSLog(@"the response data is %@",[responseData objectForKey:@"wsr"]);
+    
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
     

@@ -12,6 +12,8 @@
 
 static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/webservice/";
 
+static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/";
+
 //static NSString* const WaiqinOnlineURLString = @"http://192.168.1.143:8080/ExpertSelectSystemV1.1/webservice/";
 
 @implementation WaiqinHttpClient

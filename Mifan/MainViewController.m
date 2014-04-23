@@ -130,14 +130,24 @@
     
     NSLog(@"the respose data are %@", responseData);
     NSDictionary *res = [responseData objectForKey:@"wsr"];
-    NSString *status = [res objectForKey:@"status"];
+//    NSString *status = [res objectForKey:@"status"];
+    
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+        
+        status = statusID;
+
+    
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         NSArray *arrayList = [res objectForKey:@"lists"];
-        NSLog(@"the arr y count is %d", arrayList.count);
+        //NSLog(@"the arr y count is %d", arrayList.count);
         
         //dictionaryList = [arrayList objectAtIndex: 0];
         for (int j= 0; j< arrayList.count; j++) {
+            NSLog(@"the iterator is %d", j);
             dictionaryList = [arrayList objectAtIndex: j];
             
             NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
@@ -155,7 +165,7 @@
         [av show];
 
     }
-
+    }
 }
 
 - (void)didReceiveMemoryWarning
