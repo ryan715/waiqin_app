@@ -236,6 +236,23 @@ static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/Exp
 
 }
 
+/* 新建群组 */
+- (void)UserUpdateUnitName: (NSString *)userid UnitName:(NSString *)unitname
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"userid"] = userid;
+    parameters[@"unitname"] = unitname;
+    
+    [self POST:@"UserUpdateUnitName" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:UserUpdateUnitNameDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self UserUpdateUnitNameDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+
+}
+
 
 - (BOOL) isConnectionAvailable
 {
@@ -269,6 +286,8 @@ static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/Exp
     
     return isExistenceNetwork;
 }
+
+
 
 
 @end

@@ -50,6 +50,9 @@
 		181FFCA618351B7900059284 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCA518351B7900059284 /* RegisterViewController.m */; };
 		181FFCAA1835203D00059284 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCA91835203D00059284 /* SWRevealViewController.m */; };
 		181FFCAD183521D600059284 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181FFCAC183521D600059284 /* MainViewController.m */; };
+		183317721908A3B500AF4902 /* GroupOperationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183317711908A3B500AF4902 /* GroupOperationTableViewController.m */; };
+		183317761908A84100AF4902 /* GroupNewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183317751908A84100AF4902 /* GroupNewTableViewController.m */; };
+		183317791908ACCC00AF4902 /* GroupJoinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183317781908ACCC00AF4902 /* GroupJoinTableViewController.m */; };
 		186F23EB18E4FD5800BE8626 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 186F23EA18E4FD5800BE8626 /* AMap.bundle */; };
 		186F23ED18E4FD7B00BE8626 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186F23EC18E4FD7B00BE8626 /* MAMapKit.framework */; };
 		186F23EF18E4FE4500BE8626 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186F23EE18E4FE4500BE8626 /* CoreTelephony.framework */; };
@@ -192,6 +195,12 @@
 		181FFCA91835203D00059284 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		181FFCAB183521D600059284 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		181FFCAC183521D600059284 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		183317701908A3B500AF4902 /* GroupOperationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupOperationTableViewController.h; sourceTree = "<group>"; };
+		183317711908A3B500AF4902 /* GroupOperationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupOperationTableViewController.m; sourceTree = "<group>"; };
+		183317741908A84100AF4902 /* GroupNewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNewTableViewController.h; sourceTree = "<group>"; };
+		183317751908A84100AF4902 /* GroupNewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNewTableViewController.m; sourceTree = "<group>"; };
+		183317771908ACCC00AF4902 /* GroupJoinTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupJoinTableViewController.h; sourceTree = "<group>"; };
+		183317781908ACCC00AF4902 /* GroupJoinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupJoinTableViewController.m; sourceTree = "<group>"; };
 		186F23EA18E4FD5800BE8626 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		186F23EC18E4FD7B00BE8626 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		186F23EE18E4FE4500BE8626 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -471,6 +480,12 @@
 				187512B518F37F3D00FEECEE /* MemberDetailViewController.m */,
 				187512BA18F39B5F00FEECEE /* forwadbackSegue.h */,
 				187512BB18F39B5F00FEECEE /* forwadbackSegue.m */,
+				183317701908A3B500AF4902 /* GroupOperationTableViewController.h */,
+				183317711908A3B500AF4902 /* GroupOperationTableViewController.m */,
+				183317741908A84100AF4902 /* GroupNewTableViewController.h */,
+				183317751908A84100AF4902 /* GroupNewTableViewController.m */,
+				183317771908ACCC00AF4902 /* GroupJoinTableViewController.h */,
+				183317781908ACCC00AF4902 /* GroupJoinTableViewController.m */,
 			);
 			path = Mifan;
 			sourceTree = "<group>";
@@ -706,6 +721,7 @@
 			files = (
 				1809355418D7D1FA0001A7A6 /* UIProgressView+AFNetworking.m in Sources */,
 				1809355518D7D1FA0001A7A6 /* UIRefreshControl+AFNetworking.m in Sources */,
+				183317791908ACCC00AF4902 /* GroupJoinTableViewController.m in Sources */,
 				1809355618D7D1FA0001A7A6 /* UIWebView+AFNetworking.m in Sources */,
 				181FFCA618351B7900059284 /* RegisterViewController.m in Sources */,
 				181A318318E92484000B8A40 /* LocationDetailViewController.m in Sources */,
@@ -737,10 +753,12 @@
 				1884299918556A3F0029D38F /* AboutViewController.m in Sources */,
 				18B861FC18F7DFBC0003046A /* ImageHelper.m in Sources */,
 				187512B618F37F3D00FEECEE /* MemberDetailViewController.m in Sources */,
+				183317721908A3B500AF4902 /* GroupOperationTableViewController.m in Sources */,
 				1809356C18D7D20E0001A7A6 /* AFHTTPRequestOperationManager.m in Sources */,
 				1809356D18D7D20E0001A7A6 /* AFHTTPSessionManager.m in Sources */,
 				1809355318D7D1FA0001A7A6 /* UIImageView+AFNetworking.m in Sources */,
 				18B8B0DD18F24D6200CE69CA /* ProfileViewController.m in Sources */,
+				183317761908A84100AF4902 /* GroupNewTableViewController.m in Sources */,
 				1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */,
 				18E4B8B918ED08290002DC0F /* Photo.m in Sources */,
 				18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */,
