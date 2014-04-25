@@ -122,26 +122,46 @@
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData
 {
-    NSLog(@"the response data is %@",[responseData objectForKey:@"wsr"]);
+//    NSLog(@"the response data is %@",[responseData objectForKey:@"wsr"]);
+
+//   清空数据
+//    itemList = nil;
     
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
     
     if ([status isEqualToString:@"1"]) {
                 NSDictionary *dictionaryList;
-        NSArray *arrayList = [res objectForKey:@"lists"];
         
-        NSLog(@"the array list is %d", arrayList.count);
-        for (int i= 0; i< arrayList.count; i++) {
-            dictionaryList = [arrayList objectAtIndex:i];
-            NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
-            Picture *model = [[Picture alloc] initWithName:@"a005" Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString];
-            
-            [itemList addObject:model];
-            NSLog(@"the pic list is %d", itemList.count);
-
+        id idCount = [responseData objectForKey:@"count"];
+        NSString *strCount = @"";
+        
+        if (idCount != [NSNull null]) {
+            strCount = idCount;
+            if (![strCount isEqualToString:@"0"]) {
+                NSArray *arrayList = [res objectForKey:@"lists"];
+                [itemList removeAllObjects];
+                //        NSLog(@"the array list is %d", arrayList.count);
+                for (int i= 0; i< arrayList.count; i++) {
+                    dictionaryList = [arrayList objectAtIndex:i];
+                    NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
+                    Picture *model = [[Picture alloc] initWithName: [dictionaryList objectForKey:@"username"] Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString];
+                    
+                    [itemList addObject:model];
+                    //            NSLog(@"the pic list is %d", itemList.count);
+                    
+                }
+                [self.tableView reloadData];
+            } else {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                             message:@"当前无数据"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [av show];
+            }
         }
-        [self.tableView reloadData];
+
+        
     } else {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
                                                      message:@"加载失败"
@@ -320,6 +340,7 @@
 - (void)toNewList:(PictureNewViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self loadData];
 }
 
 @end

@@ -127,11 +127,11 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
 +(NSString *) image2String:(UIImage *)image{
 	NSData* pictureData = UIImageJPEGRepresentation(image,0.3);//进行图片压缩从0.0到1.0（0.0表示最大压缩，质量最低);
-	NSLog(@"调用了image@String方法");
-	NSLog(@"%@这个值是什么实现的？",pictureData);
+//	NSLog(@"调用了image@String方法");
+//	NSLog(@"%@这个值是什么实现的？",pictureData);
 	NSString* pictureDataString = [pictureData base64Encoding];//图片转码成为base64Encoding，
-	NSLog(@"%@++++是空值么？",pictureDataString);
-	NSLog(@"base64转码，的实验");
+//	NSLog(@"%@++++是空值么？",pictureDataString);
+//	NSLog(@"base64转码，的实验");
 	return pictureDataString;
 }
 

@@ -35,25 +35,28 @@
     [self customSet];
 }
 
+/* 自定义输入文本框 */
 - (void)customSet
 {
     textView.delegate = self;
     UIPlaceHolderTextView *placeTextView = [[UIPlaceHolderTextView alloc] init];
     placeTextView.placeholder = @"输入上报内容";
-    placeTextView.frame = CGRectMake(20, 80, 300, 100);
+    placeTextView.frame = CGRectMake(20, 80, 280, 100);
+    [placeTextView setFont: [UIFont fontWithName:@"Arial" size:18]];
     placeTextView.delegate = self;
     textView = placeTextView;
-    
     [self.view addSubview: textView];
-    
-    
     UIImageView *photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 200, 200, 300)];
     photoImageView.image = [self photoImage];
-    
     [self.view addSubview:photoImageView];
-    
-    
 }
+
+/* 点击空白 隐藏键盘 */
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [textView resignFirstResponder];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,16 +82,26 @@
 
 - (IBAction)sentAction:(id)sender
 {
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    [self.hud show:YES];
+
     NSString *contentString = textView.text;
     NSString *photoString = [Photo image2String: photoImage];
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
+//    NSLog(@"the upload user is %@", _userModel.nameString);
     
     [client uploadImage:_userModel.nameString withBeizhu:contentString withImage:photoString];
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate
 {
+    [self.hud hide:YES];
+    
+    
+    [self.delegate toNewList:self];
+    
     NSDictionary *ws = [responseDate objectForKey:@"wsr"];
     NSString *status = [ws objectForKey:@"status"];
     NSString *errMessage = [ws objectForKey:@"message"];
@@ -99,6 +112,14 @@
         UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message: errMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [errorAlertView show];
     }
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error
+{
+    [self.hud hide:YES];
+    UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message: @"数据异常，请重试" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [errorAlertView show];
+
 }
 
 @end

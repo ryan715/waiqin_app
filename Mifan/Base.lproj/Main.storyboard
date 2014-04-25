@@ -228,13 +228,18 @@
                                 <segue destination="iex-kC-UBl" kind="push" identifier="toCreateGroup" id="OWi-bT-R48"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="菜单" id="sIh-Br-ZRt"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="yBB-l2-8gd">
                         <connections>
+                            <outlet property="leftBarButtonItem" destination="sIh-Br-ZRt" id="t3Y-kf-6Ib"/>
                             <outlet property="rightBarButtonItem" destination="vgz-7P-tKp" id="nOA-bR-tui"/>
                         </connections>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sidebarButton" destination="sIh-Br-ZRt" id="0Hw-1T-YSi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ddj-Sr-y7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

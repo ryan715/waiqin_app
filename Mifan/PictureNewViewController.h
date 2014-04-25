@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WaiqinHttpClient.h"
 #import "User.h"
+#import "MBProgressHUD.h"
 
 @class PictureNewViewController;
 
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) id<PictureNewViewControllerDelegate> delegate;
 @property (nonatomic, weak) UIImage *photoImage;
 @property   (weak, nonatomic) User *userModel;
+
+@property (weak, nonatomic) MBProgressHUD *hud;
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)sentAction:(id)sender;

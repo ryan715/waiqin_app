@@ -42,9 +42,12 @@
     
 //    [self.pictureImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(BtnClick:)]];
 
-    NSLog(@"the pic url %@", model.pictureString);
+//    NSLog(@"the pic url %@", model.pictureString);
     self.nameLabel.text = model.nameString;
     self.titleLabel.text = model.titleString;
+    
+    self.titleLabel.numberOfLines = 0;
+    [self.titleLabel sizeToFit];
 }
 
 
