@@ -14,7 +14,13 @@
 
 @property (nonatomic, weak)IBOutlet UIBarButtonItem *sidebarButton;
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
-@property (weak, nonatomic) WaiqinHttpClient *client;
+@property (retain, nonatomic) WaiqinHttpClient *client;
 
 - (IBAction)photoAction:(id)sender;
+
+
+- (void) createTableFooter;
+- (void) loadDataBegin;
+- (void) loadDataing;
+- (void) loadDataEnd;
 @end

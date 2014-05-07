@@ -44,10 +44,20 @@
 
 //    NSLog(@"the pic url %@", model.pictureString);
     self.nameLabel.text = model.nameString;
+    
     self.titleLabel.text = model.titleString;
     
-    self.titleLabel.numberOfLines = 0;
-    [self.titleLabel sizeToFit];
+    
+    self.titleLabel.font = [UIFont systemFontOfSize: 13];
+//    self.titleLabel.text = ((Picture *)itemList[indexPath.row]).titleString;
+    self.titleLabel.numberOfLines = 0 ;
+    CGSize requiredSize = [self.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize: CGSizeMake(200, 10000) lineBreakMode:NSLineBreakByWordWrapping];
+    self.titleLabel.frame = CGRectMake(113, 48, requiredSize.width, requiredSize.height);
+    
+    NSLog(@"the title is %@, and the height is %f, and the width is %f",model.titleString, requiredSize.height, requiredSize.width);
+    
+//    self.titleLabel.numberOfLines = 0;
+//    [self.titleLabel sizeToFit];
 }
 
 

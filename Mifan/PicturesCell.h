@@ -14,7 +14,8 @@
 
 @property (nonatomic,weak) IBOutlet ClickImage *pictureImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+//@property (nonatomic, weak) UILabel *titleLabel;
 
 - (void)setupCell:(Picture *)model;
 

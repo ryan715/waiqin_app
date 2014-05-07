@@ -14,6 +14,8 @@ static NSString* const WaiqinOnlineURLString = @"http://72.14.191.249:8080/Exper
 
 static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/ExpertSelectSystemV1.1/";
 
+static int const intPageSize = 15;
+
 //static NSString* const WaiqinOnlineURLString = @"http://192.168.1.143:8080/ExpertSelectSystemV1.1/webservice/";
 
 @implementation WaiqinHttpClient
@@ -236,7 +238,7 @@ static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/Exp
 
 }
 
-/* 新建群组 */
+/* 修改群组 */
 - (void)UserUpdateUnitName: (NSString *)userid UnitName:(NSString *)unitname
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -251,6 +253,23 @@ static NSString* const WaiqinOnlineImageString = @"http://72.14.191.249:8080/Exp
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
     }];
 
+}
+
+/* 新建群组 */
+- (void)UserAddUnitName: (NSString *)userid UnitName:(NSString *)unitname
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"userid"] = userid;
+    parameters[@"unitname"] = unitname;
+    
+    [self POST:@"UserAddUnitName" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:UserAddUnitNameDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self UserUpdateUnitNameDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+    
 }
 
 

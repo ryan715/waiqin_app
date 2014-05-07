@@ -25,10 +25,11 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV2-W2-COo">
-                        <rect key="frame" x="113" y="48" width="188" height="53"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-7A-7g1">
+                        <rect key="frame" x="114" y="54" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -36,7 +37,7 @@
             <connections>
                 <outlet property="nameLabel" destination="J7b-mn-7Oa" id="xRT-9i-Fo7"/>
                 <outlet property="pictureImageView" destination="cxF-86-ekV" id="HOI-UM-HT5"/>
-                <outlet property="titleLabel" destination="dV2-W2-COo" id="mRw-Ov-xF3"/>
+                <outlet property="titleLabel" destination="UmG-7A-7g1" id="fbg-a7-96Y"/>
             </connections>
         </tableViewCell>
     </objects>

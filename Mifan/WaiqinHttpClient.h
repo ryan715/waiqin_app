@@ -38,6 +38,8 @@
 - (void) GetOneUserforqunzhuAction: (NSString *)userid;
 
 - (void) UserUpdateUnitName: (NSString *)userid UnitName: (NSString *)unitname;
+
+- (void) UserAddUnitName: (NSString *)userid UnitName: (NSString *)unitname;
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -59,5 +61,7 @@
 - (void) waiqinHTTPClient: (WaiqinHttpClient *) client getOneUserforqunzhuDelegate: (id) responseData;
 
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client UserUpdateUnitNameDelegate: (id)responseData;
+
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client UserAddUnitNameDelegate:(id)responseData;
 @end
 

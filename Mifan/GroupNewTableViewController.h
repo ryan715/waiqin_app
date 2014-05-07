@@ -16,11 +16,12 @@
 
 @end
 
-@interface GroupNewTableViewController : UITableViewController
+@interface GroupNewTableViewController : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) id<GroupNewTableViewControllerDelegate> delegate;
 
 - (IBAction)backAction:(id)sender;
+- (IBAction)GroupNewClick:(id)sender;
 @end
 
 

@@ -147,7 +147,7 @@
         
         //dictionaryList = [arrayList objectAtIndex: 0];
         for (int j= 0; j< arrayList.count; j++) {
-            NSLog(@"the iterator is %d", j);
+//            NSLog(@"the iterator is %d", j);
             dictionaryList = [arrayList objectAtIndex: j];
             
             NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];

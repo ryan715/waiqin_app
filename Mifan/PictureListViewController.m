@@ -19,8 +19,14 @@
 {
     UIImage *photoImage;
     NSMutableArray *itemList;
+    
+    NSMutableArray *moreArray;
     User *user;
     Hint *h;
+    
+    int dataNumber;
+    BOOL _loadingMore;
+    int pageNumber;
 }
 @end
 
@@ -39,8 +45,11 @@
 {
     [super viewDidLoad];
     itemList = [[NSMutableArray alloc] init];
+    moreArray = [[NSMutableArray alloc] init];
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
+    
+    pageNumber = 1;
     
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
@@ -53,6 +62,8 @@
     self.title = @"图文上报";
     
     h = [[Hint alloc]initWithNibName:@"Hint" bundle:nil];
+    
+    [self customRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +112,8 @@
     
 }
 
+
+
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
 {
     NSDictionary *res = [responseData objectForKey:@"wsr"];
@@ -115,9 +128,19 @@
         dictionaryList = [arrayList objectAtIndex: 0];
         user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
         
-        [client listImage:user.idString withPageIndex:@"1" withPageSize:@"15"];
+        [self getData:@"1" httpClient:client];
+        pageNumber = 1;
+        }
     }
-    }
+}
+
+/* 获取服务端shuju */
+- (void)getData: (NSString *)stringPage httpClient:(WaiqinHttpClient *)httpClient
+{
+    [httpClient listImage:user.idString withPageIndex:stringPage withPageSize:@"15"];
+    
+//    NSLog(@"refesh");
+
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listImageDelegate:(id)responseData
@@ -138,20 +161,30 @@
         
         if (idCount != [NSNull null]) {
             strCount = idCount;
+            
             if (![strCount isEqualToString:@"0"]) {
+                
+                dataNumber = [strCount intValue];
+                
                 NSArray *arrayList = [res objectForKey:@"lists"];
-                [itemList removeAllObjects];
+                [moreArray removeAllObjects];
                 //        NSLog(@"the array list is %d", arrayList.count);
                 for (int i= 0; i< arrayList.count; i++) {
                     dictionaryList = [arrayList objectAtIndex:i];
                     NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
                     Picture *model = [[Picture alloc] initWithName: [dictionaryList objectForKey:@"username"] Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString];
                     
-                    [itemList addObject:model];
+                    [moreArray addObject:model];
                     //            NSLog(@"the pic list is %d", itemList.count);
                     
                 }
+                
+                for (int j=0; j<[moreArray count]; j++) {
+                    [itemList addObject:[moreArray objectAtIndex:j]];
+                }
                 [self.tableView reloadData];
+                [self createTableFooter];
+
             } else {
                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
                                                              message:@"当前无数据"
@@ -171,10 +204,7 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120.0f;
-}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -194,6 +224,19 @@
     [cell.pictureImageView setClickToViewController];
     
     
+//    cell.titleLabel.font = [UIFont systemFontOfSize: 13];
+//    cell.titleLabel.text = ((Picture *)itemList[indexPath.row]).titleString;
+//    cell.titleLabel.numberOfLines = 0 ;
+    CGSize requiredSize = [ ((Picture *)itemList[indexPath.row]).titleString sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize: CGSizeMake(200, 10000) lineBreakMode:NSLineBreakByWordWrapping];
+//    cell.titleLabel.frame = CGRectMake(113, 48, requiredSize.width, requiredSize.height);
+//    NSLog(@"the titlelabel hight is %f", requiredSize.height);
+    if (requiredSize.height > 53.0f ) {
+        float realHeight = requiredSize.height - 53.0f;
+        CGRect rect = cell.frame;
+        rect.size.height = cell.frame.size.height + realHeight;
+        cell.frame = rect;
+    }
+    
     if (cell == nil) {
         [self.tableView registerNib:[UINib nibWithNibName:@"PicturesCell" bundle:nil] forCellReuseIdentifier:pictureCell];
         PicturesCell *cell1 = [self.tableView dequeueReusableCellWithIdentifier:pictureCell];
@@ -201,6 +244,22 @@
         
         cell1.pictureImageView.canClick = YES;
         [cell1.pictureImageView setClickToViewController];
+        
+//        cell1.titleLabel.font = [UIFont systemFontOfSize: 13];
+//        cell1.titleLabel.text = ((Picture *)itemList[indexPath.row]).titleString;
+//        cell1.titleLabel.numberOfLines = 0 ;
+        CGSize requiredSize = [ ((Picture *)itemList[indexPath.row]).titleString sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize: CGSizeMake(200, 10000) lineBreakMode:NSLineBreakByWordWrapping];
+//        cell1.titleLabel.frame = CGRectMake(113, 48, requiredSize.width, requiredSize.height);
+        if (requiredSize.height > 53.0f ) {
+            float realHeight = requiredSize.height - 53.0f;
+            
+            CGRect rect = cell1.frame;
+            rect.size.height = cell.frame.size.height + realHeight;
+            cell1.frame = rect;
+            
+        }
+
+        
         cell = cell1;
     }
     return cell;
@@ -269,6 +328,29 @@
     return YES;
 }
 */
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    PicturesCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    if(cell.frame.size.height > 120){
+//        return cell.frame.size.height;
+//    } else {
+//        return 120.0f;
+//    }
+//    
+//    NSLog(@"the cell is %d",indexPath.row);
+//    NSLog(@"the high is %d", cell.frame.size.height);
+
+    
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+//    NSLog(@"the cell is %d",indexPath.row);
+//    NSLog(@"the high is %d", cell.frame.size.height);
+    
+    
+    return cell.frame.size.height;
+    
+}
 
 
 #pragma mark - Navigation
@@ -342,5 +424,104 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [self loadData];
 }
+
+- (void) createTableFooter
+{
+    self.tableView.tableFooterView = nil;
+    UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 40.0f)];
+    
+    UILabel *loadMoreText = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 116.0f, 40.0f)];
+    [loadMoreText setCenter:tableFooterView.center];
+    [loadMoreText setFont: [UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [loadMoreText setText: @"上拉显示更多"];
+    [tableFooterView addSubview:loadMoreText];
+    self.tableView.tableFooterView = tableFooterView;
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!_loadingMore && scrollView.contentOffset.y > ((scrollView.contentSize.height - scrollView.frame.size.height))) {
+        [self loadDataBegin];
+    }
+}
+
+- (void)loadDataBegin
+{
+    if (_loadingMore == NO) {
+        _loadingMore = YES;
+        UIActivityIndicatorView *tableFooterActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(75.0f, 10.0f, 20.0f, 20.0f)];
+        [tableFooterActivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        [tableFooterActivityIndicator startAnimating];
+        [self.tableView.tableFooterView addSubview:tableFooterActivityIndicator];
+        
+//        [tableFooterActivityIndicator stopAnimating];
+        [self loadDataing];
+    }
+}
+
+- (void)loadDataing
+{
+    int pageInt = dataNumber / 15;
+    
+    
+    if (pageNumber < pageInt) {
+        pageNumber ++;
+        
+        NSString *pageString = [NSString stringWithFormat:@"%d", pageNumber];
+        [self getData:pageString httpClient:_client];
+        [self loadDataEnd];
+
+    } else {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                     message:@"当前无数据"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+        
+        [self createTableFooter];
+
+    }
+   }
+
+
+- (void)loadDataEnd
+{
+    _loadingMore = NO;
+    [self createTableFooter];
+}
+
+
+/**************   下拉刷新 ********/
+
+- (void)customRefresh
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    //refreshControl.tintColor = [UIColor magentaColor];
+    [refreshControl addTarget:self action:@selector(RefreshTable) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)RefreshTable
+{
+    [itemList removeAllObjects];
+//    NSLog(@"refresh table");
+//    if ([_client isEqual:[NSNull null]]) {
+        _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+//        NSLog(@"the client is null");
+//    }
+//    [self getData:@"1" httpClient:_client];
+    
+    [self loadData];
+    [self performSelector:@selector(updateTable) withObject:nil afterDelay:1];
+}
+
+- (void)updateTable
+{
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+/**************   下拉刷新 ********/
+
 
 @end
