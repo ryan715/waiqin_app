@@ -33,6 +33,12 @@
     self.textPassword.delegate = self;
     self.ConfirmPasswordText.delegate = self;
 	// Do any additional setup after loading the view.
+    
+    /* 点击空白 隐藏键盘 */
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,6 +203,44 @@
         return YES;
     }
     return NO;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    float offset = -80.0f;
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    CGRect rect = CGRectMake(0.0f, offset, width, height);
+    self.view.frame = rect;
+    [UIView commitAnimations];
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    float offset = 0.0f;
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    CGRect rect = CGRectMake(0.0f, offset, width, height);
+    self.view.frame = rect;
+    [UIView commitAnimations];
+    
+    
+}
+
+
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.textName resignFirstResponder];
+    [self.textPassword resignFirstResponder];
+    [self.ConfirmPasswordText resignFirstResponder];
 }
 
 

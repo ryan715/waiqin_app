@@ -51,6 +51,8 @@
     [self.view addSubview:photoImageView];
 }
 
+
+
 /* 点击空白 隐藏键盘 */
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [textView resignFirstResponder];

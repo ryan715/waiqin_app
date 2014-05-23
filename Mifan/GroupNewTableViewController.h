@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
+#import "KeychainItemWrapper.h"
+#import "User.h"
 
 @class GroupNewTableViewController;
 
@@ -16,10 +20,13 @@
 
 @end
 
-@interface GroupNewTableViewController : UITableViewController<UITextFieldDelegate>
+@interface GroupNewTableViewController : UITableViewController<UITextFieldDelegate, WaiqinHttpClientDelegate>
 
 @property (nonatomic, weak) id<GroupNewTableViewControllerDelegate> delegate;
-
+@property (weak, nonatomic) MBProgressHUD *hud;
+@property (retain, nonatomic) KeychainItemWrapper *wrapper;
+@property (retain, nonatomic) User *user;
+@property (retain, nonatomic) WaiqinHttpClient *client;
 - (IBAction)backAction:(id)sender;
 - (IBAction)GroupNewClick:(id)sender;
 @end

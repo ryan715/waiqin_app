@@ -42,10 +42,11 @@
 //        NSString *userPassword = _user.passwordString;
     self.textName.text = userName;
     self.textPassword.text = userPassword;
-//
-//    }
-//    
-//    
+
+    
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
     
     
     }
@@ -287,6 +288,44 @@
     }
     return NO;
 }
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.textName resignFirstResponder];
+    [self.textPassword resignFirstResponder];
+}
+
+
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+        float  offset = -40.0f; //view向上移动的距离
+         NSTimeInterval animationDuration = 0.30f;
+         [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+         [UIView setAnimationDuration:animationDuration];
+         float width = self.view.frame.size.width;
+         float height = self.view.frame.size.height;
+         CGRect rect = CGRectMake(0.0f, offset , width, height);
+         self.view.frame = rect;
+         [UIView  commitAnimations];
+}
+
+
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+         float offset = 0.0f ;
+         NSTimeInterval animationDuration = 0.30f;
+         [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+         [UIView setAnimationDuration:animationDuration];
+         float width = self.view.frame.size.width;
+         float height = self.view.frame.size.height;
+         CGRect rect = CGRectMake(0.0f, offset , width, height);
+         self.view.frame = rect;
+         [UIView commitAnimations];
+}
+
 
 
 @end

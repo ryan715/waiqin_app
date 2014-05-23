@@ -264,12 +264,47 @@ static int const intPageSize = 15;
     
     [self POST:@"UserAddUnitName" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:UserAddUnitNameDelegate:)]) {
-            [self.delegate waiqinHTTPClient:self UserUpdateUnitNameDelegate:responseObject];
+            
+            //NSLog(@"THE UserAddUnitName %@ ", responseObject);
+            [self.delegate waiqinHTTPClient:self UserAddUnitNameDelegate:responseObject];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
     }];
     
+}
+
+/* 按群名字查找 */
+- (void)GetUnitByName:(NSString *)unitname
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"unitname"] = unitname;
+    
+    [self POST:@"GetUnitByName" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:GetUnitByNameDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self GetUnitByNameDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+
+    }];
+}
+
+/* 入群申请 */
+- (void)AddUserApplytoqz:(NSString *)unitid Userid:(NSString *)userid Beizhu:(NSString *)beizhu
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"unitid"] = unitid;
+    parameters[@"userid"] = userid;
+    parameters[@"beizhu"] = beizhu;
+    
+    [self POST:@"AddUserApplytoqz" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:AddUserApplytoqzDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self AddUserApplytoqzDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
 }
 
 

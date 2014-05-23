@@ -40,6 +40,11 @@
 - (void) UserUpdateUnitName: (NSString *)userid UnitName: (NSString *)unitname;
 
 - (void) UserAddUnitName: (NSString *)userid UnitName: (NSString *)unitname;
+
+- (void) GetUnitByName: (NSString *)unitname;
+
+- (void) AddUserApplytoqz: (NSString *)unitid Userid: (NSString *)userid Beizhu: (NSString *)beizhu;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -63,5 +68,10 @@
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client UserUpdateUnitNameDelegate: (id)responseData;
 
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client UserAddUnitNameDelegate:(id)responseData;
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client GetUnitByNameDelegate:(id)responseData;
+
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client AddUserApplytoqzDelegate:(id)responseData;
+
+
 @end
 

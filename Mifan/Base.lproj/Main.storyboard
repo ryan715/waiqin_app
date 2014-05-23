@@ -100,13 +100,13 @@
                                 <rect key="frame" x="35" y="347" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXX-3w-00j">
                                 <rect key="frame" x="35" y="385" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0s-7S-FBR">
                                 <rect key="frame" x="-55" y="441" width="250" height="30"/>
@@ -297,17 +297,17 @@
             </objects>
             <point key="canvasLocation" x="4181" y="1010"/>
         </scene>
-        <!--Group Join Table View Controller-->
+        <!--Group Join Table View Controller - Title-->
         <scene sceneID="41A-7l-RNv">
             <objects>
                 <tableViewController id="VH8-o8-Udw" customClass="GroupJoinTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5GP-wH-MYL">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="5GP-wH-MYL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bsj-TD-v7J">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GroupJoin" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupJoin" id="bsj-TD-v7J">
+                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bsj-TD-v7J" id="77l-ta-8Cg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -320,11 +320,97 @@
                             <outlet property="delegate" destination="VH8-o8-Udw" id="Ld3-kQ-icR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="LZJ-ie-kAC"/>
+                    <toolbarItems>
+                        <barButtonItem title="查找" id="OiH-c5-s0o">
+                            <connections>
+                                <action selector="searchButtonClick:" destination="VH8-o8-Udw" id="W4G-6V-eja"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="EDJ-u0-TQG">
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="OiH-c5-s0o" id="smR-tI-FUC"/>
+                        </connections>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="rzx-GD-jvE" kind="push" identifier="searchGroupIdentifier" id="sM8-Kg-FgH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibS-n5-fkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4624" y="1409"/>
+        </scene>
+        <!--Group Applay Table View Controller-->
+        <scene sceneID="bgz-sZ-4Z6">
+            <objects>
+                <tableViewController id="SlM-lt-0im" customClass="GroupApplayTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="e13-Zh-jZy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="applyTable" id="OOC-ry-ggy">
+                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OOC-ry-ggy" id="u8Q-2v-mza">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SlM-lt-0im" id="iTj-3K-nst"/>
+                            <outlet property="delegate" destination="SlM-lt-0im" id="M6n-l8-qGi"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="发送" id="LY7-fa-JMN">
+                            <connections>
+                                <action selector="sendButtonClick:" destination="SlM-lt-0im" id="0ZY-FQ-hat"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="PKK-a0-yrx">
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="LY7-fa-JMN" id="qaK-4g-GVY"/>
+                        </connections>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hFl-uK-1qO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5667" y="1409"/>
+        </scene>
+        <!--Group Search Table View Controller-->
+        <scene sceneID="nHz-PO-eCI">
+            <objects>
+                <tableViewController id="rzx-GD-jvE" customClass="GroupSearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DNH-gQ-52i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U8X-Cw-34g">
+                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U8X-Cw-34g" id="mm3-20-sqr">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rzx-GD-jvE" id="pTd-OB-pck"/>
+                            <outlet property="delegate" destination="rzx-GD-jvE" id="e3q-oN-bz2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="XFa-7r-dX2"/>
+                    <connections>
+                        <segue destination="SlM-lt-0im" kind="push" identifier="GroupApply" id="Nwg-6V-uKq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7f-ar-ZpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5101" y="1409"/>
         </scene>
         <!--Group New Table View Controller - Title-->
         <scene sceneID="RAS-Fd-J9i">
@@ -838,8 +924,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Z2j-J9-3oV"/>
-        <segue reference="Jdd-SC-9DX"/>
         <segue reference="tWm-lP-lJN"/>
+        <segue reference="bJH-Cz-HMm"/>
+        <segue reference="HU3-uO-G0G"/>
     </inferredMetricsTieBreakers>
 </document>

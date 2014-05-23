@@ -25,6 +25,7 @@
 		1809357118D7D20E0001A7A6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356618D7D20E0001A7A6 /* AFURLRequestSerialization.m */; };
 		1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356818D7D20E0001A7A6 /* AFURLResponseSerialization.m */; };
 		1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809356A18D7D20E0001A7A6 /* AFURLSessionManager.m */; };
+		180FFB401921D15A0002C0A9 /* GroupSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FFB3F1921D15A0002C0A9 /* GroupSearchTableViewController.m */; };
 		1814C0E318EE48E000093BCC /* PicturesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814C0E218EE48E000093BCC /* PicturesCell.m */; };
 		1814C0E518EE491900093BCC /* PicturesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1814C0E418EE491900093BCC /* PicturesCell.xib */; };
 		1814C0E818EE529A00093BCC /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814C0E718EE529A00093BCC /* Picture.m */; };
@@ -95,6 +96,8 @@
 		18B923C61835CBC9008B6685 /* tx7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BE1835CBC9008B6685 /* tx7.jpg */; };
 		18B923C71835CBC9008B6685 /* tx8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18B923BF1835CBC9008B6685 /* tx8.jpg */; };
 		18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB2A8218EBABA900B69D07 /* PictureListViewController.m */; };
+		18E1559D192AE11B00790C85 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1559C192AE11B00790C85 /* Group.m */; };
+		18E155A0192AFF7000790C85 /* GroupApplayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1559F192AFF7000790C85 /* GroupApplayTableViewController.m */; };
 		18E436561905FEE000F9BAE8 /* ClickImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E436551905FEE000F9BAE8 /* ClickImage.m */; };
 		18E4365A1906005000F9BAE8 /* Hint.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E436581906005000F9BAE8 /* Hint.m */; };
 		18E4365B1906005000F9BAE8 /* Hint.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E436591906005000F9BAE8 /* Hint.xib */; };
@@ -157,6 +160,8 @@
 		1809356818D7D20E0001A7A6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		1809356918D7D20E0001A7A6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		1809356A18D7D20E0001A7A6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		180FFB3E1921D15A0002C0A9 /* GroupSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupSearchTableViewController.h; sourceTree = "<group>"; };
+		180FFB3F1921D15A0002C0A9 /* GroupSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSearchTableViewController.m; sourceTree = "<group>"; };
 		1814C0E118EE48E000093BCC /* PicturesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesCell.h; sourceTree = "<group>"; };
 		1814C0E218EE48E000093BCC /* PicturesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesCell.m; sourceTree = "<group>"; };
 		1814C0E418EE491900093BCC /* PicturesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicturesCell.xib; sourceTree = "<group>"; };
@@ -259,6 +264,10 @@
 		18B923BF1835CBC9008B6685 /* tx8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tx8.jpg; sourceTree = "<group>"; };
 		18CB2A8118EBABA900B69D07 /* PictureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureListViewController.h; sourceTree = "<group>"; };
 		18CB2A8218EBABA900B69D07 /* PictureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureListViewController.m; sourceTree = "<group>"; };
+		18E1559B192AE11B00790C85 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		18E1559C192AE11B00790C85 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		18E1559E192AFF7000790C85 /* GroupApplayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupApplayTableViewController.h; sourceTree = "<group>"; };
+		18E1559F192AFF7000790C85 /* GroupApplayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupApplayTableViewController.m; sourceTree = "<group>"; };
 		18E436541905FEE000F9BAE8 /* ClickImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickImage.h; sourceTree = "<group>"; };
 		18E436551905FEE000F9BAE8 /* ClickImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickImage.m; sourceTree = "<group>"; };
 		18E436571906005000F9BAE8 /* Hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hint.h; sourceTree = "<group>"; };
@@ -486,6 +495,10 @@
 				183317751908A84100AF4902 /* GroupNewTableViewController.m */,
 				183317771908ACCC00AF4902 /* GroupJoinTableViewController.h */,
 				183317781908ACCC00AF4902 /* GroupJoinTableViewController.m */,
+				180FFB3E1921D15A0002C0A9 /* GroupSearchTableViewController.h */,
+				180FFB3F1921D15A0002C0A9 /* GroupSearchTableViewController.m */,
+				18E1559E192AFF7000790C85 /* GroupApplayTableViewController.h */,
+				18E1559F192AFF7000790C85 /* GroupApplayTableViewController.m */,
 			);
 			path = Mifan;
 			sourceTree = "<group>";
@@ -578,6 +591,8 @@
 				1814C0E718EE529A00093BCC /* Picture.m */,
 				18B8B0E118F258E300CE69CA /* User.h */,
 				18B8B0E218F258E300CE69CA /* User.m */,
+				18E1559B192AE11B00790C85 /* Group.h */,
+				18E1559C192AE11B00790C85 /* Group.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -739,6 +754,7 @@
 				1809355018D7D1FA0001A7A6 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				1809353C18D7CF550001A7A6 /* WaiqinHttpClient.m in Sources */,
 				18B923AC1835AA99008B6685 /* SidebarMenuViewController.m in Sources */,
+				18E155A0192AFF7000790C85 /* GroupApplayTableViewController.m in Sources */,
 				1809356B18D7D20E0001A7A6 /* AFHTTPRequestOperation.m in Sources */,
 				18E4B8B618ED081A0002DC0F /* UIImage+RoundedCorner.m in Sources */,
 				1809354F18D7D1FA0001A7A6 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -761,7 +777,9 @@
 				183317761908A84100AF4902 /* GroupNewTableViewController.m in Sources */,
 				1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */,
 				18E4B8B918ED08290002DC0F /* Photo.m in Sources */,
+				180FFB401921D15A0002C0A9 /* GroupSearchTableViewController.m in Sources */,
 				18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */,
+				18E1559D192AE11B00790C85 /* Group.m in Sources */,
 				1809357118D7D20E0001A7A6 /* AFURLRequestSerialization.m in Sources */,
 				181FFC791835153B00059284 /* main.m in Sources */,
 				18F767F2185215B700D46232 /* VicinityViewController.m in Sources */,

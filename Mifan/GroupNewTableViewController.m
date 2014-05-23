@@ -7,6 +7,7 @@
 //
 
 #import "GroupNewTableViewController.h"
+#import "MBProgressHUD.h"
 
 @interface GroupNewTableViewController ()
 {
@@ -156,8 +157,87 @@
 
 - (IBAction)GroupNewClick:(id)sender
 {
-    NSLog(@"the group name is %@", GroupNameTextField.text);
+//    NSLog(@"the group name is %@", GroupNameTextField.text);
+    [self loadData];
 }
+
+/* 载入个人数据 */
+- (void)loadData
+{
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+}
+
+/* 提交 群名称 */
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+        status = statusID;
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *dictionaryList;
+            NSArray *arrayList = [res objectForKey:@"lists"];
+            dictionaryList = [arrayList objectAtIndex: 0];
+            self.user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+            
+            [_client UserAddUnitName:self.user.idString UnitName:GroupNameTextField.text];
+        }
+    }
+}
+
+/* 处理提交 反馈 */
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client UserAddUnitNameDelegate:(id)responseData
+{
+    
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+        status = statusID;
+        if ([status isEqualToString:@"1"]) {
+            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:@"创建成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [successAlertView show];
+//
+        } else {
+            NSString *strMessage = [res objectForKey:@"message"];
+            UIAlertView *errAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:strMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [errAlertView show];
+//
+        }
+    }
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didFailWithError:(NSError *)error
+{
+   
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:@"创建失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [errorAlertView show];
+}
+
+
+
+
 
 
 

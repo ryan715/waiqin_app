@@ -128,7 +128,7 @@
 - (void)waiqinHTTPClient: (WaiqinHttpClient *)client userListDelegate:(id)responseData
 {
     
-    NSLog(@"the respose data are %@", responseData);
+//    NSLog(@"the respose data are %@", responseData);
     NSDictionary *res = [responseData objectForKey:@"wsr"];
 //    NSString *status = [res objectForKey:@"status"];
     
