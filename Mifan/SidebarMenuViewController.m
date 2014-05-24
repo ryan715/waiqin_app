@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "PictureListViewController.h"
 #import "AboutViewController.h"
+#import "MessagesTableViewController.h"
 
 @interface SidebarMenuViewController ()
 
@@ -38,7 +39,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"title", @"profile", @"vicinity", @"picture", @"friends", @"about"];}
+    _menuItems = @[@"title", @"profile", @"vicinity", @"picture", @"friends", @"messages", @"about"];}
 
 - (void)didReceiveMemoryWarning
 {
@@ -132,11 +133,11 @@
         [segue destinationViewController];
     }
     
-//    if ([segue.identifier isEqualToString:@"toProfile"]) {
-//        NSLog(@"toProfile");
-//        AboutViewController *aboutViewController = (AboutViewController *)segue.destinationViewController;
-//        [segue destinationViewController];
-//    }
+    if ([segue.identifier isEqualToString:@"toMessages"]) {
+        //NSLog(@"toProfile");
+        MessagesTableViewController *messagesViewController = (MessagesTableViewController *)segue.destinationViewController;
+        [segue destinationViewController];
+    }
 
 
     

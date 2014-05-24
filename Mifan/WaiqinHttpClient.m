@@ -307,6 +307,24 @@ static int const intPageSize = 15;
     }];
 }
 
+/* 入群申请信息列表 */
+- (void)GetUserApplytoqzlist:(NSString *)pageindex PageSize:(NSString *)pagesize UserID:(NSString *)userid
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"pageindex"] = pageindex;
+    parameters[@"pagesize"] = pagesize;
+    parameters[@"userid"] = userid;
+    
+    [self POST:@"GetUserApplytoqzlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:GetUserApplytoqzlistDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self GetUserApplytoqzlistDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+}
+
+
 
 - (BOOL) isConnectionAvailable
 {

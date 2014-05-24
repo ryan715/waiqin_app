@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18000A331930464400D98B40 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18000A321930464400D98B40 /* MessagesTableViewController.m */; };
+		18000A361930752500D98B40 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 18000A351930752500D98B40 /* Message.m */; };
+		18000A3919307F8600D98B40 /* MessagesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18000A3819307F8600D98B40 /* MessagesTableViewCell.m */; };
+		18000A3B19307FAF00D98B40 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18000A3A19307FAF00D98B40 /* MessagesTableViewCell.xib */; };
 		1809353C18D7CF550001A7A6 /* WaiqinHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */; };
 		1809354F18D7D1FA0001A7A6 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809353F18D7D1FA0001A7A6 /* AFNetworkActivityIndicatorManager.m */; };
 		1809355018D7D1FA0001A7A6 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809354118D7D1FA0001A7A6 /* UIActivityIndicatorView+AFNetworking.m */; };
@@ -122,6 +126,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18000A311930464400D98B40 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
+		18000A321930464400D98B40 /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
+		18000A341930752500D98B40 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		18000A351930752500D98B40 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		18000A3719307F8600D98B40 /* MessagesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewCell.h; sourceTree = "<group>"; };
+		18000A3819307F8600D98B40 /* MessagesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewCell.m; sourceTree = "<group>"; };
+		18000A3A19307FAF00D98B40 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
 		1809353A18D7CF550001A7A6 /* WaiqinHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaiqinHttpClient.h; sourceTree = "<group>"; };
 		1809353B18D7CF550001A7A6 /* WaiqinHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaiqinHttpClient.m; sourceTree = "<group>"; };
 		1809353E18D7D1FA0001A7A6 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
@@ -472,6 +483,8 @@
 				181FFCA518351B7900059284 /* RegisterViewController.m */,
 				18B923AA1835AA99008B6685 /* SidebarMenuViewController.h */,
 				18B923AB1835AA99008B6685 /* SidebarMenuViewController.m */,
+				18000A311930464400D98B40 /* MessagesTableViewController.h */,
+				18000A321930464400D98B40 /* MessagesTableViewController.m */,
 				181FFC731835153B00059284 /* Supporting Files */,
 				181FFCA71835203D00059284 /* SWRevealViewController */,
 				1814C0DF18EE489900093BCC /* Util */,
@@ -593,6 +606,8 @@
 				18B8B0E218F258E300CE69CA /* User.m */,
 				18E1559B192AE11B00790C85 /* Group.h */,
 				18E1559C192AE11B00790C85 /* Group.m */,
+				18000A341930752500D98B40 /* Message.h */,
+				18000A351930752500D98B40 /* Message.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -606,6 +621,9 @@
 				1814C0E118EE48E000093BCC /* PicturesCell.h */,
 				1814C0E218EE48E000093BCC /* PicturesCell.m */,
 				1814C0E418EE491900093BCC /* PicturesCell.xib */,
+				18000A3719307F8600D98B40 /* MessagesTableViewCell.h */,
+				18000A3819307F8600D98B40 /* MessagesTableViewCell.m */,
+				18000A3A19307FAF00D98B40 /* MessagesTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -706,6 +724,7 @@
 				181FFC851835153B00059284 /* Images.xcassets in Resources */,
 				1814C0E518EE491900093BCC /* PicturesCell.xib in Resources */,
 				18B923C61835CBC9008B6685 /* tx7.jpg in Resources */,
+				18000A3B19307FAF00D98B40 /* MessagesTableViewCell.xib in Resources */,
 				181FFC771835153B00059284 /* InfoPlist.strings in Resources */,
 				18B923C41835CBC9008B6685 /* tx5.jpg in Resources */,
 				181FFC801835153B00059284 /* Main.storyboard in Resources */,
@@ -741,6 +760,7 @@
 				181FFCA618351B7900059284 /* RegisterViewController.m in Sources */,
 				181A318318E92484000B8A40 /* LocationDetailViewController.m in Sources */,
 				181A318018E8FF6A000B8A40 /* Location.m in Sources */,
+				18000A331930464400D98B40 /* MessagesTableViewController.m in Sources */,
 				18E4365A1906005000F9BAE8 /* Hint.m in Sources */,
 				1809357018D7D20E0001A7A6 /* AFURLConnectionOperation.m in Sources */,
 				186F23F418E4FF0F00BE8626 /* LocationMeViewController.m in Sources */,
@@ -766,6 +786,7 @@
 				18A8A0D118F8EB1D0029FE68 /* Reachability.m in Sources */,
 				1809357318D7D20E0001A7A6 /* AFURLSessionManager.m in Sources */,
 				18E4B8B518ED081A0002DC0F /* UIImage+Resize.m in Sources */,
+				18000A3919307F8600D98B40 /* MessagesTableViewCell.m in Sources */,
 				1884299918556A3F0029D38F /* AboutViewController.m in Sources */,
 				18B861FC18F7DFBC0003046A /* ImageHelper.m in Sources */,
 				187512B618F37F3D00FEECEE /* MemberDetailViewController.m in Sources */,
@@ -778,6 +799,7 @@
 				1809357218D7D20E0001A7A6 /* AFURLResponseSerialization.m in Sources */,
 				18E4B8B918ED08290002DC0F /* Photo.m in Sources */,
 				180FFB401921D15A0002C0A9 /* GroupSearchTableViewController.m in Sources */,
+				18000A361930752500D98B40 /* Message.m in Sources */,
 				18CB2A8318EBABA900B69D07 /* PictureListViewController.m in Sources */,
 				18E1559D192AE11B00790C85 /* Group.m in Sources */,
 				1809357118D7D20E0001A7A6 /* AFURLRequestSerialization.m in Sources */,

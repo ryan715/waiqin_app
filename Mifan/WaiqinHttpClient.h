@@ -45,6 +45,7 @@
 
 - (void) AddUserApplytoqz: (NSString *)unitid Userid: (NSString *)userid Beizhu: (NSString *)beizhu;
 
+- (void) GetUserApplytoqzlist: (NSString *)pageindex PageSize: (NSString *)pagesize UserID: (NSString *)userid;
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -72,6 +73,6 @@
 
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client AddUserApplytoqzDelegate:(id)responseData;
 
-
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client GetUserApplytoqzlistDelegate:(id)responseData;
 @end
 
