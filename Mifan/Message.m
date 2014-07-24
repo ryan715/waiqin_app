@@ -10,7 +10,7 @@
 
 @implementation Message
 
-- (id)initWithid:(NSString *)idstring userid:(NSString *)userid ischuli:(NSString *)ischuli status:(NSString *)status jjbeizhu:(NSString *)jjbeizhu beizhu:(NSString *)beizhu createdate:(NSString *)createdate updatedate:(NSString *)updatedate truename:(NSString *)truename
+- (id)initWithid:(NSString *)idstring userid:(NSString *)userid ischuli:(NSString *)ischuli status:(NSString *)status jjbeizhu:(NSString *)jjbeizhu beizhu:(NSString *)beizhu createdate:(NSString *)createdate updatedate:(NSString *)updatedate truename:(NSString *)truename username:(NSString *)username
 {
     self = [super init];
     
@@ -18,12 +18,20 @@
         self.idString = idstring;
         self.useridString  = userid;
         self.ischuliString  = ischuli;
-        self.statusString = status;
+        if ([status isEqualToString:@"0"]) {
+            self.statusString = @"未处理";
+        } else if ([status isEqualToString:@"1"]) {
+            self.statusString = @"已同意";
+        } else if([status isEqualToString:@"2"]) {
+            self.statusString = @"已拒绝";
+        }
+//        self.statusString = status;
         self.jjbeizhuString = jjbeizhu;
         self.beizhuString = beizhu;
         self.createdateString = createdate;
         self.updatedateString = updatedate;
         self.truenameString = truename;
+        self.usernameString = username;
     }
     
     return self;

@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "KeychainItemWrapper.h"
 #import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
 
 @interface MessagesTableViewController : UITableViewController<WaiqinHttpClientDelegate>
 
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
 @property (retain, nonatomic) WaiqinHttpClient *client;
 @property (nonatomic, weak)IBOutlet UIBarButtonItem *sidebarButton;
+
+@property (weak, nonatomic) MBProgressHUD *hud;
 - (void) createTableFooter;
 - (void) loadDataBegin;
 - (void) loadDataing;

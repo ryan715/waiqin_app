@@ -41,12 +41,16 @@
    // _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
-    self.title = @"我的定位";
+    self.title = @"考勤定位";
+    
+    itemList = [[NSMutableArray alloc] init];
+    
+    
+    
     [self customUIBarButtonItem];
     [self customeTableView];
     [self getUserAction];
     
-    itemList = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,14 +73,18 @@
 /* 创建定位列表 */
 - (void)customeTableView
 {
-    self.listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, 320, 528)];
+    self.listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, 320, 528) style:UITableViewStyleGrouped];
     [self.listTable setDelegate:self];
     [self.listTable setDataSource:self];
+    
     [self.view addSubview:self.listTable];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([itemList count] == 0) {
+        return 1;
+    }
     return [itemList count];
 }
 
@@ -92,24 +100,32 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableViewCellIdentifier];
+        
+        [cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
+
     }
     
-    Location *locationModel = [itemList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = locationModel.beizhu;
-    
+    if ([itemList count] == 0) {
+        cell.textLabel.text = @"当前无数据";
+    } else {
+        Location *locationModel = [itemList objectAtIndex:indexPath.row];
+//        cell.textLabel.text = locationModel.beizhu;
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@的定位", locationModel.createDate, locationModel.userName];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
+        
+    }
     return cell;
+}
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LocationDetailViewController *locationDetail = [[LocationDetailViewController alloc] init];
-//    [self.navigationController pushViewController:locationDetail animated:YES];
-//    
-//    UIBarButtonItem *returnButtonItem = [[UIBarButtonItem alloc] init];
-//    returnButtonItem.title = @"返回";
-//    self.navigationItem.backBarButtonItem = returnButtonItem;
 
     [self performSegueWithIdentifier:@"toLocationDetail" sender:self];
 
@@ -120,14 +136,19 @@
 {
     WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
     client.delegate = self;
-    [client listLocationAction:@"32" withPageIndex:@"1" withPageSize:@"10"];
+    [client listLocationAction:@"41" withPageIndex:@"1" withPageSize:@"100"];
 
 }
 
 
 - (void)getUserAction
 {
-    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+
+    [self.hud show:YES];
+    
+       _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
     NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
     
@@ -149,19 +170,24 @@
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
 {
+    
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     id statusID = [res objectForKey:@"status"];
     NSString *status = @"";
     
     if (statusID != [NSNull null]) {
-
+        status = statusID;
+        
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         NSArray *arrayList = [res objectForKey:@"lists"];
+        
+       
+        
         dictionaryList = [arrayList objectAtIndex: 0];
         userModel = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
-        
-        [_client listLocationAction:userModel.idString withPageIndex:@"1" withPageSize:@"10"];
+      
+        [_client listLocationAction:userModel.idString withPageIndex:@"1" withPageSize:@"100"];
 //        [client userList:userModel.idString pageIndex:@"1" pageSize:@"15"];
         }
     }
@@ -172,23 +198,26 @@
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client listLocation:(id)responseData
 {
-    //NSLog(@"the list all is %@", responseData);
+//    NSLog(@"check");
+//    NSLog(@"check%@", responseData);
+    
+
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
     
-    //[self.hud hide:YES];
+    
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         NSArray *array = [res objectForKey:@"lists"];
-        NSLog(@"the itemlist array size %f",array.count);
+//        NSLog(@"the itemlist array size %f",array.count);
 
         for (int  i=0; i<array.count; i++) {
             dictionaryList = array[i];
-            Location *location = [[Location alloc] initWithCustom:[dictionaryList objectForKey:@"beizhu"] UserId:[dictionaryList objectForKey:@"id"] Longitude:[dictionaryList objectForKey:@"longitude"] Latitude:[dictionaryList objectForKey:@"latitude"] Telephone:[dictionaryList objectForKey:@"telephone"] TrueName:[dictionaryList objectForKey:@"truename"]];
-            NSLog(@"the beizhu is %@",[dictionaryList objectForKey:@"beizhu"]);
+            Location *location = [[Location alloc] initWithCustom:[dictionaryList objectForKey:@"beizhu"] UserId:[dictionaryList objectForKey:@"id"] Longitude:[dictionaryList objectForKey:@"longitude"] Latitude:[dictionaryList objectForKey:@"latitude"] Telephone:[dictionaryList objectForKey:@"telephone"] UserName:[dictionaryList objectForKey:@"username"] CreateDate:[dictionaryList objectForKey:@"createdate"]];
+//            NSLog(@"the beizhu is %@",[dictionaryList objectForKey:@"beizhu"]);
             [itemList addObject:location];
         }
-        //NSLog(@"the itemlist count size %f",[itemList ]);
+        NSLog(@"the itemlist count size %d",[itemList count]);
         [self.listTable reloadData];
     }
     else{
@@ -206,7 +235,7 @@
     ////    NSDictionary *lists = [res objectForKey:@"lists"];
     ////
     //  NSLog(@"THE department IS %@",department);
-    
+    [self.hud hide:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -234,11 +263,16 @@
 - (void)backToLocation:(LocationMeViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+//    itemList = [[NSMutableArray alloc] init];
+    [itemList removeAllObjects];
+    [self getUserAction];
 }
 
 - (void)DetailBackToLocation:(LocationDetailViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+//    [self getUserAction];
 }
 
 

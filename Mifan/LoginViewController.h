@@ -12,8 +12,11 @@
 #import "MBProgressHUD.h"
 #import "KeychainItemWrapper.h"
 #import "User.h"
-@interface LoginViewController : UIViewController<UITextFieldDelegate,RegisterViewControllerDelegate, WaiqinHttpClientDelegate>
-
+@interface LoginViewController : UIViewController<UITextFieldDelegate,RegisterViewControllerDelegate, WaiqinHttpClientDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    UITextField *nameTextField;
+    UITextField *passwordTextField;
+}
 
 @property(weak,nonatomic) IBOutlet UITextField *textName;
 @property(weak,nonatomic) IBOutlet UITextField *textPassword;
@@ -21,7 +24,11 @@
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
 @property (retain, nonatomic) User *user;
 
-- (IBAction)Login:(id)sender;
+@property NSMutableArray *textFieldArrays;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIBarButtonItem * barButton;
+
+//- (IBAction)Login:(id)sender;
 
 - (IBAction)Register:(id)sender;
 

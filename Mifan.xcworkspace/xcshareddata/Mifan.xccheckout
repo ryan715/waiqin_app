@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>165E6712-DEA9-4523-98B9-465564BA83AD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mifan</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7510349E-498E-4F97-B765-C0F1099810F6</key>
+		<string>https://github.com/ryan715/waiqin_app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Mifan.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7510349E-498E-4F97-B765-C0F1099810F6</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ryan715/waiqin_app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7510349E-498E-4F97-B765-C0F1099810F6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7510349E-498E-4F97-B765-C0F1099810F6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mifan</string>
+		</dict>
+	</array>
+</dict>
+</plist>

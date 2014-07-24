@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WaiqinHttpClient.h"
 #import "User.h"
+#import "KeychainItemWrapper.h"
 
 @class LocationMeViewController;
 
@@ -21,13 +22,19 @@
 @end
 
 @interface LocationMeViewController : UIViewController<MAMapViewDelegate, CLLocationManagerDelegate, WaiqinHttpClientDelegate>
-
+{
+    User *user;
+}
 @property (nonatomic, retain) NSString *longitudeValue;
 @property (nonatomic, retain) NSString *latitudeValue;
 @property (nonatomic, retain) NSString *placeValue;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, weak) User *userModel;
 @property (nonatomic, weak) id<LocationMeViewControllerDelegate>delegate;
+
+@property (retain, nonatomic) KeychainItemWrapper *wrapper;
+@property (weak, nonatomic) WaiqinHttpClient *client;
+
 - (IBAction)uploadButtonClick:(id)sender;
 - (IBAction)backAction:(id)sender;
 

@@ -10,6 +10,7 @@
 #import "User.h"
 #import "KeychainItemWrapper.h"
 #import "WaiqinHttpClient.h"
+#import "MBProgressHUD.h"
 
 @interface MainViewController : UITableViewController<WaiqinHttpClientDelegate>
 
@@ -17,5 +18,8 @@
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
 
 @property (weak, nonatomic) WaiqinHttpClient *client;
+
+@property (weak, nonatomic) MBProgressHUD *hud;
+
 
 @end

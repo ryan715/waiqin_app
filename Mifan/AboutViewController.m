@@ -42,7 +42,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self getUserAction];
+//    [self getUserAction];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:(float)(239/255.0) green:(float)(239/255.0) blue:(float)(244/255.0) alpha:1.0];
+    self.tableView.backgroundColor = [UIColor colorWithRed:(float)(239/255.0) green:(float)(239/255.0) blue:(float)(244/255.0) alpha:1.0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +67,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,8 +80,18 @@
     }
     if (indexPath.row == 0) {
         NSLog(@"test");
-        [cell.contentView addSubview:[self customUser:@""]];
+//        [cell.contentView addSubview:[self customUser:@""]];
+        cell.textLabel.text = @" yxr.306789@163.com";
+        
+        UIImage *imageZhifubao = [UIImage imageNamed:@"zhifubao.png"];
+        [cell.imageView setImage:imageZhifubao];
+    } else if(indexPath.row == 1){
+        cell.textLabel.text = @"         2650974866";
+        UIImage *imageQq = [UIImage imageNamed:@"qq.png"];
+        [cell.imageView setImage:imageQq];
     }
+    
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:14.0];
     return cell;
 }
 
@@ -115,7 +128,7 @@
         dictionaryList = [arrayList objectAtIndex: 0];
         user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
         
-        [self customUser:@""];
+//        [self customUser:@""];
         
     }
 }
@@ -129,6 +142,40 @@
     imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
     return imageView;
     //[self.view addSubview:imageView];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footView;
+    UILabel *footLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    footLabel.text = @"技术支持:芒果科技";
+    footLabel.textColor = [UIColor colorWithRed:(float)(109/255.0) green:(float)(109/255.0) blue:(float)(114/255.0) alpha:1.0];
+                           
+    footLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:12.0];
+    
+    footLabel.backgroundColor = [UIColor clearColor];
+    footLabel.textAlignment = UITextAlignmentCenter;
+//    [footLabel sizeToFit];
+    footLabel.frame = CGRectMake(0.0, 0.0, 320, 30);
+    
+    
+    CGRect footViewFrame = CGRectMake(0.0f, 0.0f, 320.0, 40.0);
+    footView = [[UIView alloc] initWithFrame:footViewFrame];
+    [footView addSubview:footLabel];
+    
+    return footView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 30.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://shenghuo.alipay.com/transfer/ac/acFill.htm"]];
+    }
 }
 
 /*

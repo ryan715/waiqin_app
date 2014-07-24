@@ -10,4 +10,13 @@
 
 @interface SidebarMenuViewController : UITableViewController
 
+@property (nonatomic, strong) UILabel *sidebarTitleLabel;
+@property (nonatomic, strong) UILabel *sidebarProfileLabel;
+@property (nonatomic, strong) UILabel *sidebarVicinityLabel;
+@property (nonatomic, strong) UILabel *sidebarPictureLabel;
+@property (nonatomic, strong) UILabel *sidebarFriendsLabel;
+@property (nonatomic, strong) UILabel *sidebarMessagesLabel;
+@property (nonatomic, strong) UILabel *sidebarAboutLabel;
+
+
 @end

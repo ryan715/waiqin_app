@@ -9,6 +9,7 @@
 #import "MembersCell.h"
 #import "Member.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ImageHelper.h"
 
 @implementation MembersCell
 
@@ -35,19 +36,26 @@
     
     [self.memberImg setImageWithURL:[NSURL URLWithString: model.memberImage]];
     
-        
-    //    NSLog(@"the pic url %@", model.pictureString);
+//    UIImage *profileImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: model.memberImage]]];
+//    
+////    圆形化
+////    ImageHelper *imageHelper = [[ImageHelper alloc] init];
+//    [self.memberImg setImage: [imageHelper ellipseImage:profileImage withInset:0.0]];
+////    [self.memberImg setImage:[imageHelper ellipseImage:self.memberImg.image withInset:0.0]];
+    
+//    NSLog(@"the pic url %@", model.memberNc);
     
     self.nameLabel.text = model.memberNc;
+    self.nameLabel.textColor = [UIColor colorWithRed:(float)(102/255.0) green:(float)(204/255.0) blue:(205/255.0) alpha:1.0];
     self.xbLabel.text = model.memberXb;
     
-//    if ([model.memberXb isEqualToString:@"0"]) {
-//        self.xbLabel.text = @"群员";
-//    } else {
-//        self.xbLabel.text = @"群主";
-//    }
     self.qmLabel.text = model.memberNl;
+    
+    
+    self.memberImg.layer.cornerRadius = self.memberImg.frame.size.width/2;
+    self.memberImg.clipsToBounds = YES;
 }
+
 
 
 

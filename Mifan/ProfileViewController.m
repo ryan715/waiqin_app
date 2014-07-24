@@ -44,14 +44,36 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     self.title = @"我";
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    [self.hud show:YES];
     
     [self getUserAction];
+    [self customController];
+
+//    [self.hud hide:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)customController {
+    self.logoutButton = [[FUIButton alloc] init];
+    CGRect buttonFrame = CGRectMake(60, 480, 200, 40);
+    self.logoutButton.frame = buttonFrame;
+    self.logoutButton.buttonColor = [UIColor turquoiseColor];
+    self.logoutButton.cornerRadius = 3.0f;
+    self.logoutButton.titleLabel.font = [UIFont boldFlatFontOfSize:20];
+    [self.logoutButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [self.logoutButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [self.logoutButton setTitle:@"注  销 " forState:UIControlStateNormal];
+    [self.logoutButton addTarget:self action:@selector(LogoutButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.logoutButton];
 }
 
 - (void)getUserAction
@@ -106,7 +128,7 @@
        
     NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
     
-    memberModel = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
+    memberModel = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"username"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
         NSLog(@"the member url is %@", memberModel.memberImage);
         [self customUser:memberModel.memberImage];
     }
@@ -124,14 +146,19 @@
 //    UIImage *profileImage = [NSURL URLWithString: imageURLString];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-//    [imageView setImageWithURL:[NSURL URLWithString: imageURLString]];
-
+    [imageView setImageWithURL:[NSURL URLWithString: imageURLString]];
+    imageView.layer.cornerRadius = imageView.frame.size.width /2;
+    imageView.clipsToBounds = YES;
+    imageView.layer.borderWidth = 3.0f;
+    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    ImageHelper *imageHelper = [[ImageHelper alloc] init];
+//    ImageHelper *imageHelper = [[ImageHelper alloc] init];
 //    setImageWithURL:[NSURL URLWithString: model.memberImage]
     
-    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
+//    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
 //    return imageView;
+    
+    
     imageView.contentMode = UIViewContentModeCenter;
     imageView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2-100);
     
@@ -167,8 +194,8 @@
 //    lblName.font = [UIFont fontWithName:@"Arial" size:22.0];
 //   
    
-CGSize labelSize = [memberModel.memberNc sizeWithFont:[UIFont systemFontOfSize:22.0]constrainedToSize:CGSizeMake(300, 100) lineBreakMode:NSLineBreakByCharWrapping];// 这里限制宽30, 不限制高度
-    UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width, labelSize.height+50)];
+CGSize labelSize = [memberModel.memberNc sizeWithFont:[UIFont systemFontOfSize:22.0]constrainedToSize:CGSizeMake(400, 100) lineBreakMode:NSLineBreakByCharWrapping];// 这里限制宽30, 不限制高度
+    UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+5, labelSize.height+50)];
     lblName.text = memberModel.memberNc;
     lblName.textColor = [UIColor whiteColor];
     lblName.font = [UIFont fontWithName:@"Arial" size:22.0];
@@ -218,6 +245,8 @@ CGSize labelSize = [memberModel.memberNc sizeWithFont:[UIFont systemFontOfSize:2
 {
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
+//    NSString *successMsg = [res objectForKey:@"msg"];
+    NSString *successMsg = @"操作成功";
     if ([status isEqualToString:@"1"]) {
 //        NSDictionary *dictionaryList;
 //        NSArray *arrayList = [res objectForKey:@"lists"];
@@ -225,13 +254,14 @@ CGSize labelSize = [memberModel.memberNc sizeWithFont:[UIFont systemFontOfSize:2
 //        user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
 //        
 //        [self customUser:@""];
-        
-        NSLog(@"update image success");
+        UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"芒果外勤" message:successMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [AlertView show];
+
+//        NSLog(@"update image success");
+        [self getUserAction];
     }
 
 }
-
-
 
 
 - (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSzie

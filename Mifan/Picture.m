@@ -10,13 +10,15 @@
 
 @implementation Picture
 
-- (id)initWithName:(NSString *)name Title:(NSString *)title Picture:(NSString *)picture
+- (id)initWithName:(NSString *)idpicture Name:(NSString *)name Title:(NSString *)title Picture:(NSString *)picture CreateDate:(NSString *)createDate
 {
     self = [super init];
     if (self) {
+        self.idString = idpicture;
         self.nameString = name;
         self.titleString = title;
         self.pictureString = picture;
+        self.dateString = createDate;
     }
     return self;
 }

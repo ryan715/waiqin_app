@@ -59,7 +59,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self loadData];
-    self.title = @"图文上报";
+    self.title = @"活动上报";
     
     h = [[Hint alloc]initWithNibName:@"Hint" bundle:nil];
     
@@ -172,7 +172,7 @@
                 for (int i= 0; i< arrayList.count; i++) {
                     dictionaryList = [arrayList objectAtIndex:i];
                     NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
-                    Picture *model = [[Picture alloc] initWithName: [dictionaryList objectForKey:@"username"] Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString];
+                    Picture *model = [[Picture alloc] initWithName: [dictionaryList objectForKey:@"id"]Name: [dictionaryList objectForKey:@"username"] Title:[dictionaryList objectForKey:@"beizhu"] Picture:urlString CreateDate:[dictionaryList objectForKey:@"createdate"]];
                     
                     [moreArray addObject:model];
                     //            NSLog(@"the pic list is %d", itemList.count);
@@ -223,6 +223,8 @@
     cell.pictureImageView.canClick = YES;
     [cell.pictureImageView setClickToViewController];
     
+    cell.buttonReport.tag = indexPath.row;
+    [cell.buttonReport addTarget:self action:@selector(reportAction:) forControlEvents:UIControlEventTouchUpInside];
     
 //    cell.titleLabel.font = [UIFont systemFontOfSize: 13];
 //    cell.titleLabel.text = ((Picture *)itemList[indexPath.row]).titleString;
@@ -245,6 +247,10 @@
         cell1.pictureImageView.canClick = YES;
         [cell1.pictureImageView setClickToViewController];
         
+        cell1.buttonReport.tag = indexPath.row;
+        [cell1.buttonReport addTarget:self action:@selector(reportAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
 //        cell1.titleLabel.font = [UIFont systemFontOfSize: 13];
 //        cell1.titleLabel.text = ((Picture *)itemList[indexPath.row]).titleString;
 //        cell1.titleLabel.numberOfLines = 0 ;
@@ -262,8 +268,42 @@
         
         cell = cell1;
     }
+    
+    
     return cell;
 }
+
+
+/*
+ report click event
+ 
+ ryan 2014.7.18
+ 
+ */
+- (void)reportAction:(UIButton *)sender
+{
+    Picture *model = [[Picture alloc] init];
+    model = itemList[sender.tag];
+//    NSLog(user.idString)
+    [_client AddPicjbRecord:model.idString Userid:user.idString Beizhu:@""];
+}
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client AddPicjbRecordDelegate:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    NSString *status = [res objectForKey:@"status"];
+    NSString *message = [res objectForKey:@"message"];
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
+                                                     message:message
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
+    
+}
+
+
+
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -422,6 +462,7 @@
 - (void)toNewList:(PictureNewViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [itemList removeAllObjects];
     [self loadData];
 }
 

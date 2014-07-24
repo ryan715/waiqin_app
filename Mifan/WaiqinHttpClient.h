@@ -46,6 +46,11 @@
 - (void) AddUserApplytoqz: (NSString *)unitid Userid: (NSString *)userid Beizhu: (NSString *)beizhu;
 
 - (void) GetUserApplytoqzlist: (NSString *)pageindex PageSize: (NSString *)pagesize UserID: (NSString *)userid;
+
+- (void)UpdateUserqzApplytosq: (NSString *)status ApplyID:(NSString *)applyid UserID:(NSString *)userid Jjbeizhu: (NSString *)jjbeizhu;
+
+- (void) AddPicjbRecord: (NSString *)picid Userid: (NSString *)userid Beizhu: (NSString *)beizhu;
+
 @end
 
 @protocol WaiqinHttpClientDelegate <NSObject>
@@ -74,5 +79,10 @@
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client AddUserApplytoqzDelegate:(id)responseData;
 
 - (void) waiqinHTTPClient:(WaiqinHttpClient *)client GetUserApplytoqzlistDelegate:(id)responseData;
+
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client UpdateUserqzApplytosqDelegate:(id)responseData;
+
+- (void) waiqinHTTPClient:(WaiqinHttpClient *)client AddPicjbRecordDelegate:(id)responseData;
+
 @end
 

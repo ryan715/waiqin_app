@@ -8,6 +8,7 @@
 
 #import "MemberDetailViewController.h"
 #import "ImageHelper.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MemberDetailViewController ()
 
@@ -28,20 +29,33 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"the user id is %@",model.memberNl);
+//    NSLog(@"the user id is %@",model.memberNl);
     
-    UIImage *profileImage = [UIImage imageNamed:@"tx1.jpg"];
+//    UIImage *profileImage = [UIImage imageNamed:@"tx1.jpg"];
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    [self.hud show:YES];
+    
+
+    
+//    UIImage *profileImage = [[UIImage alloc] initWithData:[ NSData dataWithContentsOfURL:[NSURL URLWithString:model.memberImage]]];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 80, 100, 100)];
-    ImageHelper *imageHelper = [[ImageHelper alloc] init];
-    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
+    [imageView setImageWithURL:[NSURL URLWithString: model.memberImage]];
+    
+    imageView.layer.cornerRadius = imageView.frame.size.width /2;
+    imageView.clipsToBounds = YES;
+    
+//    ImageHelper *imageHelper = [[ImageHelper alloc] init];
+//    imageView.image  = [imageHelper ellipseImage:profileImage withInset:0.0];
     
     UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(150, 80, 100, 100)];
     lblName.text = model.memberNc;
     lblName.font = [UIFont fontWithName:@"Arial" size:18.0];
     
     UILabel *lblGroup = [[UILabel alloc] initWithFrame:CGRectMake(150, 120, 200, 100)];
-    lblGroup.text = [NSString stringWithFormat:@"%@ —— %@",model.memberNl, model.memberXb];
+    lblGroup.text = [NSString stringWithFormat:@"%@ %@",model.memberNl, model.memberXb];
     lblGroup.font = [UIFont fontWithName:@"Arial" size:14.0];
     lblGroup.textColor = [UIColor grayColor];
     
@@ -49,6 +63,8 @@
     [self.view addSubview:lblName];
     [self.view addSubview:lblGroup];
     [self customeTableView];
+    
+    [self.hud hide:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,10 +118,10 @@
     
     //Location *locationModel = [itemList objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
-        cell.textLabel.text = model.telephoneString;
+        cell.textLabel.text = [NSString stringWithFormat:@"电话号码: %@", model.telephoneString];
     } else if(indexPath.row == 1)
     {
-        cell.textLabel.text = model.emailString;
+        cell.textLabel.text = [NSString stringWithFormat:@"email: %@", model.emailString];
     }
     
     

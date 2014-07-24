@@ -15,7 +15,8 @@
 @property (copy, nonatomic) NSString *longitude;
 @property (copy, nonatomic) NSString *latitude;
 @property (copy, nonatomic) NSString *telephone;
-@property (copy, nonatomic) NSString *trueName;
+@property (copy, nonatomic) NSString *userName;
+@property (copy, nonatomic) NSString *createDate;
 
-- (id)initWithCustom:(NSString *)beizhu UserId:(NSString *)userId Longitude:(NSString *)longitude Latitude:(NSString *)latitude Telephone:(NSString *)telephone TrueName:(NSString *)trueName;
+- (id)initWithCustom:(NSString *)beizhu UserId:(NSString *)userId Longitude:(NSString *)longitude Latitude:(NSString *)latitude Telephone:(NSString *)telephone UserName:(NSString *)userName CreateDate:( NSString *)createDate;
 @end

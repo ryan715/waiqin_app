@@ -94,7 +94,7 @@
     client.delegate = self;
 //    NSLog(@"the upload user is %@", _userModel.nameString);
     
-    [client uploadImage:_userModel.nameString withBeizhu:contentString withImage:photoString];
+    [client uploadImage:_userModel.idString withBeizhu:contentString withImage:photoString];
 }
 
 - (void)waiqinHTTPClient:(WaiqinHttpClient *)client uploadImage:(id)responseDate

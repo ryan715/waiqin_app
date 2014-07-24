@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Member.h"
+#import "MBProgressHUD.h"
 
 @interface MemberDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) Member *model;
 @property (strong, nonatomic) UITableView *listTable;
+
+@property (weak, nonatomic) MBProgressHUD *hud;
 @end

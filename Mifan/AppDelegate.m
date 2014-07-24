@@ -18,7 +18,34 @@
     
     [MAMapServices sharedServices].apiKey = @"2607dc3e66c4ae002aa4f21dce40053c";
     
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    UIColor *backColor = [UIColor colorWithRed:(float)(101/255.0f) green:(float)(101/255.0f) blue:(float)(101/255.0f) alpha:1.0f];
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+    
+//    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:backColor, NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size: 18.0], NSFontAttributeName, nil]];
+    
+    [[UINavigationBar appearance] setTintColor:backColor];
+    
+    
+    launchView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
+    [launchView setImage:[UIImage imageNamed:@"Default.png"]];
+     [self performSelector:@selector(removeLauchView) withObject:nil afterDelay:3.0];
     return YES;
+}
+
+- (void)removeLauchView
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:2.0];
+    [UIView setAnimationDidStopSelector:@selector(RemoveView)];
+    launchView.alpha = 0;
+    [UIView commitAnimations];
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

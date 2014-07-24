@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *jjbeizhuString;
 @property (strong, nonatomic) NSString *createdateString;
 @property (strong, nonatomic) NSString *updatedateString;
+@property (strong, nonatomic) NSString *usernameString;
 
 - (id)initWithid:(NSString *)idstring
                userid:(NSString *)userid
@@ -27,7 +28,8 @@
             beizhu:(NSString *)beizhu
       createdate:(NSString *)createdate
       updatedate:(NSString *)updatedate
-        truename:(NSString *)truename;
+        truename:(NSString *)truename
+        username:(NSString *)username;
 
 
 @end

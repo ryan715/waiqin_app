@@ -33,13 +33,21 @@ CLPlacemark *placemark;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.mapView = [[MAMapView alloc]initWithFrame:CGRectMake(0, 60, 320, 518)];
+    self.mapView = [[MAMapView alloc]initWithFrame:CGRectMake(0, 60, 320, 508)];
     self.mapView.delegate = self;
     
     [self.view addSubview:self.mapView];
     
     locationManager = [[CLLocationManager alloc] init];
     geocoder = [[CLGeocoder alloc] init];
+    
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
+    
+    
+    [self getUserAction];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,8 +80,9 @@ CLPlacemark *placemark;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
-   
-    NSLog(@"the long is %@, the lat is %@",self.longitudeValue, self.latitudeValue);
+    [_client uploadLocation:user.idString withBeizhu:self.placeValue withLongitude:self.longitudeValue withLatitude:self.latitudeValue];
+
+//    NSLog(@"the long is %@, the lat is %@",self.longitudeValue, self.latitudeValue);
 }
 
 
@@ -101,10 +110,13 @@ CLPlacemark *placemark;
                                       placemark.administrativeArea,
                                       placemark.country];
             
-            WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
-            client.delegate = self;
-            [client uploadLocation:userModel.idString withBeizhu:self.placeValue withLongitude:self.longitudeValue withLatitude:self.latitudeValue];
-//            NSLog(@"the long is %@, the lat is %@, the address is %@",self.longitudeValue, self.latitudeValue, self.placeValue);
+//            WaiqinHttpClient *client = [WaiqinHttpClient sharedWaiqinHttpClient];
+//            client.delegate = self;
+            
+            
+//            NSLog(@"the user name is %@", userModel.idString);
+            
+            //            NSLog(@"the long is %@, the lat is %@, the address is %@",self.longitudeValue, self.latitudeValue, self.placeValue);
             
             
 
@@ -138,6 +150,53 @@ CLPlacemark *placemark;
 - (IBAction)backAction:(id)sender
 {
     [self.delegate backToLocation:self];
+}
+
+
+- (void)getUserAction
+{
+    _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
+    NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
+    
+    _client = [WaiqinHttpClient sharedWaiqinHttpClient];
+    const char *cStr = [userPassword UTF8String];
+    unsigned char result[16];
+    CC_MD5( cStr, strlen(cStr), result );
+    userPassword = [NSString stringWithFormat:
+                    @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                    result[0], result[1], result[2], result[3],
+                    result[4], result[5], result[6], result[7],
+                    result[8], result[9], result[10], result[11],
+                    result[12], result[13], result[14], result[15]
+                    ];
+    
+    _client.delegate = self;
+    [_client loginActionUser:userName withPassword:userPassword];
+}
+
+
+
+- (void)waiqinHTTPClient:(WaiqinHttpClient *)client didSignin:(id)responseData
+{
+    NSDictionary *res = [responseData objectForKey:@"wsr"];
+    id statusID = [res objectForKey:@"status"];
+    NSString *status = @"";
+    
+    if (statusID != [NSNull null]) {
+        
+        status = statusID;
+        //NSLog(@"the respose data are %@", responseData);
+        if ([status isEqualToString:@"1"]) {
+            
+            //NSLog(@"the respose data are %@", responseData);
+            NSDictionary *dictionaryList;
+            NSArray *arrayList = [res objectForKey:@"lists"];
+            dictionaryList = [arrayList objectAtIndex: 0];
+            user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
+            
+        }
+    }
 }
 
 

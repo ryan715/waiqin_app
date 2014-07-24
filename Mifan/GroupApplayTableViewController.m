@@ -8,6 +8,7 @@
 
 #import "GroupApplayTableViewController.h"
 #import "UIPlaceHolderTextView.h"
+#import "MessageApplyViewController.h"
 
 @interface GroupApplayTableViewController ()
 {
@@ -192,6 +193,7 @@
     [errorAlertView show];
 
 }
+
 
 /*
 // Override to support conditional editing of the table view.

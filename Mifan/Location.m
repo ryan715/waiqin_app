@@ -10,7 +10,7 @@
 
 @implementation Location
 
-- (id)initWithCustom:(NSString *)beizhu UserId:(NSString *)userId Longitude:(NSString *)longitude Latitude:(NSString *)latitude Telephone:(NSString *)telephone TrueName:(NSString *)trueName
+- (id)initWithCustom:(NSString *)beizhu UserId:(NSString *)userId Longitude:(NSString *)longitude Latitude:(NSString *)latitude Telephone:(NSString *)telephone UserName:(NSString *)userName CreateDate:(NSString *)createDate
 {
     self = [super init];
     if (self) {
@@ -19,7 +19,8 @@
         self.longitude = longitude;
         self.latitude = latitude;
         self.telephone = telephone;
-        self.trueName = trueName;
+        self.userName = userName;
+        self.createDate = createDate;
     }
     return self;
 }

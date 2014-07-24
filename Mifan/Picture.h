@@ -10,10 +10,12 @@
 
 @interface Picture : NSObject
 
+@property (copy, nonatomic) NSString *idString;
 @property (copy, nonatomic) NSString *nameString;
 @property (copy, nonatomic) NSString *titleString;
 @property (copy, nonatomic) NSString *pictureString;
+@property (weak, nonatomic) NSString *dateString;
 
-- (id)initWithName:(NSString *)name Title:(NSString *)title Picture:(NSString *)picture;
+- (id)initWithName:(NSString *)idpicture Name:(NSString *)name Title:(NSString *)title Picture:(NSString *)picture CreateDate:(NSString *)createDate;
 
 @end

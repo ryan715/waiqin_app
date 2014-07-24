@@ -69,7 +69,8 @@
 //       Member *model = [[Member alloc] initWithImage:_dataArray[i][0] Nc:_dataArray[i][1] Xb:_dataArray[i][2] Nl:_dataArray[i][3]];
 //       [_dataList addObject:model];
 //    }
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
     [self getUserAction];
     
@@ -78,6 +79,17 @@
 
 - (void)getUserAction
 {
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    self.hud.removeFromSuperViewOnHide =YES;
+//    self.hud.mode = MBProgressHUDModeText;
+//    self.hud.labelText = NSLocalizedString(@"网络链接失败", nil);
+//    self.hud.minSize = CGSizeMake(132.f, 108.0f);
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+
+    [self.hud show:YES];
+    
+
+    
     _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
     NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
@@ -152,7 +164,7 @@
             
             NSString *urlString = [NSString stringWithFormat:@"http://72.14.191.249:8080/ExpertSelectSystemV1.1%@", [dictionaryList objectForKey:@"imgstr"]];
             
-            Member *model = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"truename"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
+            Member *model = [[Member alloc] initWithImage:urlString Nc:[dictionaryList objectForKey:@"username"] Xb:[dictionaryList objectForKey:@"isqunzhu"] Nl:[dictionaryList objectForKey:@"unitname"] Email:[dictionaryList objectForKey:@"email"] Telephone:[dictionaryList objectForKey:@"telephone"]];
             [_dataList addObject:model];
            
             [self.tableView reloadData];
@@ -166,6 +178,8 @@
 
     }
     }
+    
+    [self.hud hide:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,6 +204,23 @@
 
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if ([self tableView: tableView heightForHeaderInSection: section] == 0.0) {
+        return nil;
+    }
+    
+    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0.0, 0.0, self.view.frame.size.width, [self tableView: tableView heightForHeaderInSection:section])];
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 0.001;
+    return height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *tzCell = @"MemberCellIdentifier";
@@ -203,6 +234,9 @@
     //NSLog(@"THE DATA COUNT IS %ld", _dataList.count);
     MembersCell *cell = [self.tableView dequeueReusableCellWithIdentifier:tzCell];
     [cell setupCell:_dataList[indexPath.row]];
+    cell.backgroundColor = [UIColor colorWithRed:(float)(240/255.0) green:(float)(244/255.0) blue:(float)(245/255.0) alpha:1.0];
+    
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     if (cell == nil)
     {
@@ -210,8 +244,9 @@
         [self.tableView registerNib:[UINib nibWithNibName:@"MembersCell" bundle:nil] forCellReuseIdentifier:tzCell];
          MembersCell *cell1 = [self.tableView dequeueReusableCellWithIdentifier:tzCell];
         [cell1 setupCell:_dataList[indexPath.row]];
+        cell1.backgroundColor = [UIColor colorWithRed:(float)(240/255.0) green:(float)(244/255.0) blue:(float)(245/255.0) alpha:1.0];
         cell = cell1;
-        NSLog(@"CELL IS NIL ");
+//        NSLog(@"CELL IS NIL ");
     }
     return cell;
 
@@ -230,7 +265,7 @@
     //    UIBarButtonItem *returnButtonItem = [[UIBarButtonItem alloc] init];
     //    returnButtonItem.title = @"返回";
     //    self.navigationItem.backBarButtonItem = returnButtonItem;
-    NSLog(@"click");
+//    NSLog(@"click");
     [self performSegueWithIdentifier:@"toMemberDetail" sender:self];
     
     

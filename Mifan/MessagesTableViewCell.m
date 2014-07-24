@@ -37,9 +37,10 @@
     //    [self.memberImg setImage:image];
     [self.avatarIamgeView setImageWithURL:[NSURL URLWithString: @""]];
     //    NSLog(@"the pic url %@", model.pictureString);
-    self.nameLabel.text = model.truenameString;
+    self.nameLabel.text = model.usernameString;
     self.dateLabel.text = model.createdateString;
     self.messageLabel.text = model.beizhuString;
+    self.statusLabel.text = model.statusString;
 }
 
 

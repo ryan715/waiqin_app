@@ -12,6 +12,7 @@
 #import "Message.h"
 #import "MessagesTableViewCell.h"
 #import "SWRevealViewController.h"
+#import "MessageApplyViewController.h"
 
 @interface MessagesTableViewController ()
 {
@@ -80,6 +81,11 @@
     return itemList.count;
 }
 
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -92,7 +98,7 @@
     
     MessagesTableViewCell *cell= [self.tableView dequeueReusableCellWithIdentifier:MessageTableViewCellIdentifier];
     [cell setupCell:itemList[indexPath.row]];
-    
+    [cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
     if (cell == nil) {
         [self.tableView registerNib:[UINib nibWithNibName:@"MessagesTableViewCell" bundle:nil ] forCellReuseIdentifier:MessageTableViewCellIdentifier];
         MessagesTableViewCell *cell1= [self.tableView dequeueReusableCellWithIdentifier:MessageTableViewCellIdentifier];
@@ -105,6 +111,11 @@
 
 - (void)getUserID: (WaiqinHttpClient *)waiqinHtppclient
 {
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    [self.hud show:YES];
+    
     _wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"mango" accessGroup:nil];
     NSString *userName = [_wrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *userPassword = [_wrapper objectForKey:(__bridge id)kSecValueData];
@@ -128,6 +139,8 @@
 /* 获取服务端数据 */
 - (void)getData
 {
+    
+    
     _client = [WaiqinHttpClient sharedWaiqinHttpClient];
     _client.delegate = self;
     [self getUserID:_client];
@@ -150,7 +163,7 @@
             dictionaryList = [arrayList objectAtIndex: 0];
             user = [[User alloc] initWithImage:@"" name: [dictionaryList objectForKey:@"username"] pwd:[dictionaryList objectForKey:@"password"] group:[dictionaryList objectForKey:@"unitname"] idString:[dictionaryList objectForKey:@"id"]];
             
-            [_client GetUserApplytoqzlist:@"1" PageSize:@"15" UserID:user.idString];
+            [_client GetUserApplytoqzlist:@"1" PageSize:@"30" UserID:user.idString];
         }
     }
 }
@@ -165,7 +178,7 @@
     
     NSDictionary *res = [responseData objectForKey:@"wsr"];
     NSString *status = [res objectForKey:@"status"];
-    
+    NSString *errorMessage = [res objectForKey:@"message"];
     if ([status isEqualToString:@"1"]) {
         NSDictionary *dictionaryList;
         
@@ -174,7 +187,7 @@
         
         if (idCount != [NSNull null]) {
             strCount = idCount;
-            NSLog(@"CHECK");
+//            NSLog(@"CHECK");
             if (![strCount isEqualToString:@"0"]) {
                 
                 dataNumber = [strCount intValue];
@@ -185,17 +198,17 @@
                 for (int i= 0; i< arrayList.count; i++) {
                     dictionaryList = [arrayList objectAtIndex:i];
                     
-                    Message *model = [[Message alloc] initWithid:[dictionaryList objectForKey:@"id"] userid:[dictionaryList objectForKey:@"userid"]  ischuli:[dictionaryList objectForKey:@"ischuli"]  status:[dictionaryList objectForKey:@"status"]  jjbeizhu:[dictionaryList objectForKey:@"jjbeizhu"]  beizhu:[dictionaryList objectForKey:@"beizhu"]  createdate:[dictionaryList objectForKey:@"createdate"]  updatedate:[dictionaryList objectForKey:@"updatedate"]  truename:[dictionaryList objectForKey:@"truename"]];
+                    Message *model = [[Message alloc] initWithid:[dictionaryList objectForKey:@"id"] userid:[dictionaryList objectForKey:@"userid"]  ischuli:[dictionaryList objectForKey:@"ischuli"]  status:[dictionaryList objectForKey:@"status"]  jjbeizhu:[dictionaryList objectForKey:@"jjbeizhu"]  beizhu:[dictionaryList objectForKey:@"beizhu"]  createdate:[dictionaryList objectForKey:@"createdate"]  updatedate:[dictionaryList objectForKey:@"updatedate"]  truename:[dictionaryList objectForKey:@"truename"] username:[dictionaryList objectForKey:@"username"]];
                     
                     [moreArray addObject:model];
                     //            NSLog(@"the pic list is %d", itemList.count);
                     
                 }
-                NSLog(@"THE moreArray COUNT IS %d", [moreArray count]);
+//                NSLog(@"THE moreArray COUNT IS %d", [moreArray count]);
                 for (int j=0; j<[moreArray count]; j++) {
                     [itemList addObject:[moreArray objectAtIndex:j]];
                 }
-                NSLog(@"THE ITEMLIST COUNT IS %d", [itemList count]);
+//                NSLog(@"THE ITEMLIST COUNT IS %d", [itemList count]);
                 [self.tableView reloadData];
                 //[self createTableFooter];
                 
@@ -211,16 +224,41 @@
         
     } else {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"芒果外勤"
-                                                     message:@"加载失败"
+                                                     message:errorMessage
                                                     delegate:nil
                                            cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [av show];
     }
+    [self.hud hide:YES];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Message *message = [[Message alloc] init];
+    message = (Message *)itemList[indexPath.row];
+    NSLog(@"check ischuli %@ %d", message.ischuliString, indexPath.row);
+    
+    [self performSegueWithIdentifier:@"toMessageApply" sender:self];
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"toMessageApply"]) {
+        
+        MessageApplyViewController *messageApply = segue.destinationViewController;
+        messageApply.message =[itemList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+//        NSdLog(messageApply.message.idString);
+    }
+    
 }
 
 

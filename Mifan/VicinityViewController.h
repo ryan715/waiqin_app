@@ -13,12 +13,13 @@
 #import "LocationDetailViewController.h"
 #import "KeychainItemWrapper.h"
 
+
 @interface VicinityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WaiqinHttpClientDelegate, LocationMeViewControllerDelegate, LocationDetailViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton;
 @property (retain, nonatomic) KeychainItemWrapper *wrapper;
-@property (weak, nonatomic) WaiqinHttpClient *client;
+@property (retain, nonatomic) WaiqinHttpClient *client;
 @property (weak, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) UITableView *listTable;
 

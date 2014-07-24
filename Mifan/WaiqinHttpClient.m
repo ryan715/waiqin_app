@@ -61,7 +61,7 @@ static int const intPageSize = 15;
             [self.delegate waiqinHTTPClient: self didSignin:responseObject];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-         NSLog(@"the error is %@",error);
+//         NSLog(@"the error is %@",error);
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:didFailWithError:)]) {
            
             [self.delegate waiqinHTTPClient: self didFailWithError:error];
@@ -74,7 +74,7 @@ static int const intPageSize = 15;
 - (void)uploadLocation:(NSString *)userName withBeizhu:(NSString *)beizhu withLongitude:(NSString *)longitude withLatitude:(NSString *)latitude
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"Username"] = userName;
+    parameters[@"userid"] = userName;
     parameters[@"Beizhu"] = beizhu;
     parameters[@"Longitude"] = longitude;
     parameters[@"Latitude"] = latitude;
@@ -82,6 +82,7 @@ static int const intPageSize = 15;
     [self POST:@"GetAddLocationRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:uploadLocation:)]) {
             [self.delegate waiqinHTTPClient:self uploadLocation:responseObject];
+//            NSLog(@"the uploadLocation response %@", responseObject);
         }
     }
         
@@ -101,6 +102,7 @@ static int const intPageSize = 15;
     [self POST:@"GetLocationRecordlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:listLocation:)]) {
             [self.delegate waiqinHTTPClient:self listLocation:responseObject];
+            NSLog(@"the listLocationAction is %@", responseObject);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
@@ -118,16 +120,17 @@ static int const intPageSize = 15;
     parameters[@"Beizhu"] = beiZhu;
     parameters[@"Imgstr"] = image;
     parameters[@"Isopen"] = @"1";
+    parameters[@"userid"] = userName;
     [self POST:@"GetAddPicRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:uploadImage:)
             ]) {
             
-            NSLog(@"the upload image is %@",responseObject);
+//            NSLog(@"the upload image is %@",responseObject);
             [self.delegate waiqinHTTPClient:self uploadImage:responseObject];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
-        NSLog(@"the upload image is %@",error);
+//        NSLog(@"the upload image is %@",error);
     }];
 }
 
@@ -141,6 +144,7 @@ static int const intPageSize = 15;
     [self POST:@"GetPicRecordlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:listImageDelegate:)]) {
             [self.delegate waiqinHTTPClient:self listImageDelegate:responseObject];
+//            NSLog(@"check listImage %@", responseObject);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
@@ -314,16 +318,61 @@ static int const intPageSize = 15;
     parameters[@"pageindex"] = pageindex;
     parameters[@"pagesize"] = pagesize;
     parameters[@"userid"] = userid;
+//    NSLog(@"CHECK GetUserApplytoqzlist USERID %@", userid);
     
     [self POST:@"GetUserApplytoqzlist" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:GetUserApplytoqzlistDelegate:)]) {
             [self.delegate waiqinHTTPClient:self GetUserApplytoqzlistDelegate:responseObject];
+//            NSLog(@"check GetUserApplytoqzlist %@", responseObject);
+            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate waiqinHTTPClient:self didFailWithError:error];
     }];
 }
 
+
+/* 处理用户入群申请 */
+- (void)UpdateUserqzApplytosq:(NSString *)status ApplyID:(NSString *)applyid UserID:(NSString *)userid Jjbeizhu:(NSString *)jjbeizhu
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"status"] = status;
+    parameters[@"applyid"] = applyid;
+    parameters[@"userid"] = userid;
+    parameters[@"jjbeizhu"] = jjbeizhu;
+    
+    [self POST:@"UpdateUserqzApplytosq" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:UpdateUserqzApplytosqDelegate:)]) {
+            [self.delegate waiqinHTTPClient:self UpdateUserqzApplytosqDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+}
+
+
+/* 
+ 
+ report the picture
+ ryan 2014.7.18
+ 
+ */
+- (void) AddPicjbRecord:(NSString *)picid Userid:(NSString *)userid Beizhu:(NSString *)beizhu
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"picid"] = picid;
+    parameters[@"userid"] = userid;
+    parameters[@"beizhu"] = beizhu;
+    
+    [self POST:@"AddPicjbRecord" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([self.delegate respondsToSelector:@selector(waiqinHTTPClient:AddPicjbRecordDelegate:)]){
+            [self.delegate waiqinHTTPClient:self AddPicjbRecordDelegate:responseObject];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate waiqinHTTPClient:self didFailWithError:error];
+    }];
+
+}
 
 
 - (BOOL) isConnectionAvailable
